@@ -1,116 +1,39 @@
-﻿using System;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
-using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Support.UI;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
-namespace addressbook_web_tests
+namespace addressbook_webtest
 {
-    [TestFixture]
-    public class UntitledTestCase
+    [TestClass]
+    public class UnitTest1
     {
-        private IWebDriver driver;
-        private StringBuilder verificationErrors;
-        private string baseURL;
-        private bool acceptNextAlert = true;
-
-        [SetUp]
-        public void SetupTest()
+        [TestMethod]
+        public void TestMethodSquare()
         {
-            driver = new FirefoxDriver();
-            baseURL = "http://localhost/addressbook";
-            verificationErrors = new StringBuilder();
+            Square s1 = new Square(5);
+            Square s2 = new Square(10);
+            Square s3 = s1;
+
+            Assert.AreEqual(s1.Size, 5);
+            Assert.AreEqual(s2.Size, 10);
+            Assert.AreEqual(s3.Size, 5);
+
+            s3.Size = 15;
+            Assert.AreEqual(s1.Size, 15);
         }
 
-        [TearDown]
-        public void TeardownTest()
+        [TestMethod]
+        public void TestMethodCircle()
         {
-            try
-            {
-                driver.Quit();
-            }
-            catch (Exception)
-            {
-                // Ignore errors if unable to close the browser
-            }
-            Assert.AreEqual("", verificationErrors.ToString());
-        }
+            Circle s1 = new Circle(5);
+            Circle s2 = new Circle(10);
+            Circle s3 = s1;
 
-        [Test]
-        public void TheUntitledTestCaseTest()
-        {
-            driver.Navigate().GoToUrl(baseURL);
-            driver.FindElement(By.Name("user")).Clear();
-            driver.FindElement(By.Name("user")).SendKeys("admin");
-            driver.FindElement(By.Id("LoginForm")).Click();
-            driver.FindElement(By.Name("pass")).Click();
-            driver.FindElement(By.Name("pass")).Clear();
-            driver.FindElement(By.Name("pass")).SendKeys("secret");
-            driver.FindElement(By.XPath("//input[@value='Login']")).Click();
-            driver.FindElement(By.LinkText("groups")).Click();
-            driver.FindElement(By.XPath("//div[@id='content']/form/input[4]")).Click();
-            driver.FindElement(By.Name("group_name")).Click();
-            driver.FindElement(By.Name("group_name")).Clear();
-            driver.FindElement(By.Name("group_name")).SendKeys("DECEMBER");
-            driver.FindElement(By.Name("group_header")).Click();
-            driver.FindElement(By.Name("group_header")).Clear();
-            driver.FindElement(By.Name("group_header")).SendKeys("12");
-            driver.FindElement(By.Name("group_footer")).Click();
-            driver.FindElement(By.Name("group_footer")).Clear();
-            driver.FindElement(By.Name("group_footer")).SendKeys("2");
-            driver.FindElement(By.Name("submit")).Click();
-            driver.FindElement(By.LinkText("group page")).Click();
-            driver.FindElement(By.LinkText("Logout")).Click();
-        }
-        private bool IsElementPresent(By by)
-        {
-            try
-            {
-                driver.FindElement(by);
-                return true;
-            }
-            catch (NoSuchElementException)
-            {
-                return false;
-            }
-        }
+            Assert.AreEqual(s1.Radius, 5);
+            Assert.AreEqual(s2.Radius, 10);
+            Assert.AreEqual(s3.Radius, 5);
 
-        private bool IsAlertPresent()
-        {
-            try
-            {
-                driver.SwitchTo().Alert();
-                return true;
-            }
-            catch (NoAlertPresentException)
-            {
-                return false;
-            }
-        }
-
-        private string CloseAlertAndGetItsText()
-        {
-            try
-            {
-                IAlert alert = driver.SwitchTo().Alert();
-                string alertText = alert.Text;
-                if (acceptNextAlert)
-                {
-                    alert.Accept();
-                }
-                else
-                {
-                    alert.Dismiss();
-                }
-                return alertText;
-            }
-            finally
-            {
-                acceptNextAlert = true;
-            }
+            s3.Radius = 15;
+            Assert.AreEqual(s1.Radius, 15);
         }
     }
 }
