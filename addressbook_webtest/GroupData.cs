@@ -40,16 +40,17 @@ namespace addressbook_web_tests
                 header = value;
             }
         }
-
-                public string Footer;
+        public string Footer
         {
             get
-        {
+            {
                 return footer;
-        }
+            }
             set
-        {
+            {
                 footer = value;
+            }
         }
-    }
-}
+      }
+    } 
+

@@ -48,8 +48,8 @@ namespace addressbook_web_tests
             GoToGroupsPage();
             InitGroupCreation();
             GroupData group = new GroupData("December");
-            group.Header = "January"
-            group.Footer = "February"
+            group.Header = "January";
+            group.Footer = "February";
             FillGroupForm(group);
             SubmitGroupCreation();
             ReturnToGroupsPage();
@@ -74,12 +74,12 @@ namespace addressbook_web_tests
             driver.FindElement(By.Name("submit")).Click();
         }
 
-        private void FillGroupForm(string name, string header, string footer)
+        private void FillGroupForm(GroupData group) 
         {
             
             driver.FindElement(By.Name("group_name")).Click();
             driver.FindElement(By.Name("group_name")).Clear();
-            driver.FindElement(By.Name("group_name")).SendKeys(name);
+            driver.FindElement(By.Name("group_name")).SendKeys(group.Name);
             driver.FindElement(By.Name("group_header")).Click();
             driver.FindElement(By.Name("group_header")).Clear();
             driver.FindElement(By.Name("group_header")).SendKeys(group.Header);
@@ -104,7 +104,7 @@ namespace addressbook_web_tests
         {
             
             driver.FindElement(By.Name("user")).Clear();
-            driver.FindElement(By.Name("user")).SendKeys(username);
+            driver.FindElement(By.Name("user")).SendKeys(account.Username);
             driver.FindElement(By.Id("LoginForm")).Click();
             driver.FindElement(By.Name("pass")).Click();
             driver.FindElement(By.Name("pass")).Clear();
@@ -175,11 +175,5 @@ namespace addressbook_web_tests
                 acceptNextAlert = true;
             }
         }
-    }
-
-    internal class group
-    {
-        internal static string Footer;
-        internal static string Header;
     }
 }
