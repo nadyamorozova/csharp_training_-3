@@ -40,7 +40,6 @@ namespace ContactBook
             {
                 firstname = value;
             }
-
         }
     }
 }

@@ -7,7 +7,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
-namespace addressbook_web_tests
+namespace ContactBook
 {
     [TestFixture]
     public class UntitledTestCase
@@ -152,18 +152,6 @@ namespace addressbook_web_tests
             {
                 acceptNextAlert = true;
             }
-        }
-    }
-
-    internal class Contact
-    {
-        private string v1;
-        private string v2;
-
-        public Contact(string v1, string v2)
-        {
-            this.v1 = v1;
-            this.v2 = v2;
         }
     }
 }
