@@ -64,9 +64,11 @@
     <Compile Include="ContactData.cs" />
     <Compile Include="Figure.cs" />
     <Compile Include="GroupData.cs" />
+    <Compile Include="GroupRemoval.cs" />
     <Compile Include="Square.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GroupCreationTestsNew.cs" />
+    <Compile Include="TestBase.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="ContactCreationTest.cs" />
   </ItemGroup>
