@@ -12,8 +12,11 @@ namespace addressbook_web_tests
 {
     public class ContactHelper : HelperBase
     {
-        public ContactHelper(IWebDriver driver) : base(driver){ 
-        }  
+        public ContactHelper(ApplicationManager manager) : base(manager);
+        {
+        }
+    public Create(ContactsData contactdata)
+    { 
 
         public void InitContactCreation()
         {

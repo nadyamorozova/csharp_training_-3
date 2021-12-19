@@ -22,10 +22,19 @@ namespace addressbook_web_tests
 
         public ApplicationManager()
         {
-            loginHelper = new LoginHelper(driver);
-            navigator = new NavigationHelper(driver, baseURL);
-            grouphelper = new GroupHelper(driver);
-            contacthelper = new ContactHelper(driver);
+            driver = new FirefoxDriver();
+            baseURL = "http://localhost";
+            loginHelper = new LoginHelper(this);
+            navigator = new NavigationHelper(this, baseURL);
+            grouphelper = new GroupHelper(this, baseURL);
+            contacthelper = new ContactHelper(this);
+        }
+        public IWebDriver Driver 
+        {
+            get
+            {
+                return driver;
+            }
         }
         public void Stop()
         {
@@ -72,6 +81,5 @@ namespace addressbook_web_tests
             }
 
         }
-
     }
 }

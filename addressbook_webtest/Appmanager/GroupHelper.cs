@@ -11,10 +11,51 @@ namespace addressbook_web_tests
 {
     public class GroupHelper : HelperBase
     {
-       
-        public GroupHelper(IWebDriver driver) : base(driver)
+        public GroupHelper Create(GroupData group)
         {
+            manager.Navigator.GoToGroupsPage();
+
+            InitGroupCreation();
+            FillGroupForm(group);
+            SubmitGroupCreation();
+            ReturnToGroupsPage();
+            return this;
         }
+
+        public GroupHelper Modify(int v, GroupData newData)
+        {
+            manager.Navigator.GoToGroupsPage();
+            SelectGroup(p);
+            InitGroupModification();
+            FillGroupForm(newData);
+            SubmitGroupModification();
+            ReturnToGroupsPage();
+            return this;
+        }
+
+        private void SubmitGroupModification()
+        {
+            throw new NotImplementedException();
+        }
+
+        public GroupHelper Remove(int p)
+        {
+            manager.Navigator.GoToGroupsPage();
+
+            SelectGroup(p);
+            RemoveGroup();
+            ReturnToGroupsPage();
+            return this;
+        }
+
+  
+
+        private void InitGroupModification()
+        {
+            throw new NotImplementedException();
+        }
+
+      
         public GroupHelper InitGroupCreation()
         {
 
@@ -45,6 +86,7 @@ namespace addressbook_web_tests
         public GroupHelper ReturnToGroupsPage()
         {
             driver.FindElement(By.LinkText("group page")).Click();
+            return this;
         }
         public GroupHelper SelectGroup(int index)
         {
@@ -56,6 +98,19 @@ namespace addressbook_web_tests
             driver.FindElement(By.XPath("//div[@id='content']/form/input[5]")).Click();
             return this;
         }
+
+        public GroupHelper InitGroupModification()
+        {
+            driver.FindElement(By.Name("edit")).Click();
+            return this;
+        }
+
+            public GroupHelper SubmitGroupModification1()
+        {
+            driver.FindElement(By.Name("update")).Click();
+            return this;
+        }
     }
 }
-    
+
+

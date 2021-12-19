@@ -15,11 +15,16 @@ namespace addressbook_web_tests
        
         private string baseURL;
 
-        public NavigationHelper (IWebDriver driver, string baseURL ) 
-            : base(driver)
+        public NavigationHelper(ApplicationManager manager, string baseURL) 
+            : base(manager)
         {
             this.baseURL = baseURL;
         }
+
+        public NavigationHelper(ApplicationManager manager) : base(manager)
+        {
+        }
+
         public void GoToHomePage()
         {
             driver.Navigate().GoToUrl("http://localhost/addressbook/index.php");

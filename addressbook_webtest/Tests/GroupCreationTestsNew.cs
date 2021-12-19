@@ -9,22 +9,24 @@ namespace addressbook_web_tests
     [TestFixture]
     public class GroupCreationTestsNew : TestBase
     {
-       
+
         [Test]
         public void GroupCreationTest()
         {
-            app.Navigator.GoToHomePage();
-            app.Auth.Login(new AccountData("admin", "secret"));
-            app.Navigator.GoToGroupsPage();
-           
             GroupData group = new GroupData("December");
             group.Header = "January";
             group.Footer = "February";
-            app.Groups
-                       .InitGroupCreation()
-                       .FillGroupForm(group)
-                       .SubmitGroupCreation()
-                       .ReturnToGroupsPage();
+
+
+            app.Groups.Create(group);
+        }
+
+        [Test]
+        public void EmptyGroupCreationTest()
+        {
+            GroupData group = new GroupData("");
+            group.Header = "";
+            group.Footer = "";
         }
     }
 }
