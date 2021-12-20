@@ -11,20 +11,15 @@ using OpenQA.Selenium.Support.UI;
 
 namespace addressbook_web_tests
 {
-   public class LoginHelper  : HelperBase
-    { 
+    public class LoginHelper : HelperBase
+    {
 
         public LoginHelper(ApplicationManager manager)
             : base(manager)
         {
         }
 
-        public void Login(AccountData accountData)
-        {
-            throw new NotImplementedException();
-        }
-    }
-        public void Login(AccountData account, object driver)
+        public void Login(AccountData account)
         {
 
             driver.FindElement(By.Name("user")).Clear();
@@ -34,8 +29,9 @@ namespace addressbook_web_tests
             driver.FindElement(By.Name("pass")).Clear();
             driver.FindElement(By.Name("pass")).SendKeys(account.Password);
             driver.FindElement(By.XPath("//input[@value='Login']")).Click();
-        
+
         }
+    }
 }
 
 

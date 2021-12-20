@@ -15,11 +15,12 @@ namespace addressbook_web_tests
         public void ContactCreationTest()
         {
 
-            
-            app.Contacts.InitContactCreation();
-            app.Contacts.FillContactForm(new Contact("Nadya", "Morozova"));
-            app.Contacts.SubmitContactCreation();
-            app.Groups.ReturnToGroupsPage();
+            ContactData contacts = new ContactData("Nadya");
+            ContactData.LastName = "Morozova";
+            ContactData.Address = "Verbnaya street";
+            ContactData email = "ya@ya.ru";
+            app.Contacts.Create(contacts);
+          
          }
     }
 }

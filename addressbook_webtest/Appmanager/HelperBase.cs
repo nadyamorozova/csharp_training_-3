@@ -13,11 +13,12 @@ namespace addressbook_web_tests
         protected IWebDriver driver;
         protected string baseURL;
 
-       public HelperBase(ApplicationManager manager)
-       {
+        public HelperBase(ApplicationManager manager)
+        {
             this.manager = manager;
             this.driver = manager.Driver;
-                 
-       }
+
+
+        }
     }
 }
