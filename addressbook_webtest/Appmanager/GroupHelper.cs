@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using addressbook_webtest.Model;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Support.UI;
+using System;
 
-namespace addressbook_web_tests
+namespace addressbook_webtest.AppManager
 {
     public class GroupHelper : HelperBase
     {
@@ -22,6 +17,15 @@ namespace addressbook_web_tests
             InitGroupCreation();
             FillGroupForm(group);
             SubmitGroupCreation();
+            ReturnToGroupsPage();
+            return this;
+        }
+       public GroupHelper Remove(int p)
+        {
+            manager.Navigator.GoToGroupsPage();
+
+            SelectGroup(p);
+            RemoveGroup();
             ReturnToGroupsPage();
             return this;
         }
@@ -42,17 +46,7 @@ namespace addressbook_web_tests
             throw new NotImplementedException();
         }
 
-        public GroupHelper Remove(int p)
-        {
-            manager.Navigator.GoToGroupsPage();
-
-            SelectGroup(p);
-            RemoveGroup();
-            ReturnToGroupsPage();
-            return this;
-        }
-
-  
+      
 
         private void InitGroupModification()
         {

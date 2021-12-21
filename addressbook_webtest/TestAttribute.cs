@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace addressbook_web_tests
+namespace addressbook_webtest
 {
     internal class TestAttribute : Attribute
     {

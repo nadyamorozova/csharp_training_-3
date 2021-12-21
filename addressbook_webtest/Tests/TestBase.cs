@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using addressbook_webtest.AppManager;
+using addressbook_webtest.Model;
 using NUnit.Framework;
 
 
-namespace addressbook_web_tests
+namespace addressbook_webtest.Test
 {
     public class TestBase
     {

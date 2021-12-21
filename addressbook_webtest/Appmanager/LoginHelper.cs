@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using addressbook_webtest.Model;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Support.UI;
 
 
 
-namespace addressbook_web_tests
+namespace addressbook_webtest.AppManager
 {
     public class LoginHelper : HelperBase
     {

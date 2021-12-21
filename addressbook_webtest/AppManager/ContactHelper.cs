@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using addressbook_webtest.Model;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Support.UI;
 
-
-namespace addressbook_web_tests
+namespace addressbook_webtest.AppManager
 {
     public class ContactHelper : HelperBase
     {
@@ -77,25 +70,5 @@ namespace addressbook_web_tests
             return this;
         }
     }
-
-    public class ContactData
-    {
-        internal static string Address;
-        internal string FirstName;
-        internal string Mobile;
-        internal string Email;
-        private string v;
-
-        public ContactData(string v)
-        {
-            this.v = v;
-        }
-
-        public static object LastName { get; internal set; }
-
-        public static implicit operator ContactData(string v)
-        {
-            throw new NotImplementedException();
-        }
-    }
 }
+    

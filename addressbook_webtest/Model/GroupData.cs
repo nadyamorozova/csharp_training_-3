@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace addressbook_web_tests
+namespace addressbook_webtest.Model
 {
     public class GroupData
     {
@@ -17,7 +17,7 @@ namespace addressbook_web_tests
             this.name = name;
         }
 
-       
+
         public string Name
         {
             get
@@ -51,6 +51,6 @@ namespace addressbook_web_tests
                 footer = value;
             }
         }
-      }
-    } 
+    }
+}
 

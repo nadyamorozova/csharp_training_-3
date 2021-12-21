@@ -4,21 +4,45 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace addressbook_web_tests
+namespace addressbook_webtest.Model
 {
-    public class Contact
+    public class ContactData
     {
         private string lastname;
         private string firstname;
+        private string address;
+        private string mobile;
+        private string email;
 
-        public Contact(string lastname, string firstname)
+        public ContactData(string firstname, string lastname, string address, string mobile, string email)
         {
-            this.lastname = lastname;
             this.firstname = firstname;
+            this.lastname = lastname;
+            this.address = address;
+            this.mobile = mobile;
+            this.email = email;
+
         }
 
 
-        public string Lastname
+        public ContactData(string name)
+        {
+            this.firstname = name;
+
+        }
+        public string FirstName
+        {
+            get
+            {
+                return firstname;
+            }
+            set
+            {
+                firstname = value;
+            }
+        }
+
+        public string LastName
         {
             get
             {
@@ -29,17 +53,43 @@ namespace addressbook_web_tests
                 lastname = value;
             }
         }
-
-        public string Firstname
+        public string Address
         {
             get
             {
-                return firstname;
+                return address;
             }
             set
             {
-                firstname = value;
+                address = value;
             }
+        }
+        public string Mobile
+        {
+            get
+            {
+                return mobile;
+            }
+            set
+            {
+                mobile = value;
+            }
+        }
+        public string Email
+        {
+            get
+            {
+                return email;
+            }
+            set
+            {
+                email = value;
+            }
+        }
+
+        public static implicit operator ContactData(string v)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -4,18 +4,17 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using NUnit.Framework;
 
-
 namespace addressbook_webtest.Test
 {
+     
     [TestFixture]
-    public class GroupRemovalTests : TestBase
+    public class ContactRemovalTest : TestBase
     {
-      
+
         [Test]
-        public void GroupRemovalTest()
+        public void ContactRemovalTests()
         {
-            app.Groups.Remove(1);
-            
+            app.Contacts.Remove(1);
         }
     }
 }

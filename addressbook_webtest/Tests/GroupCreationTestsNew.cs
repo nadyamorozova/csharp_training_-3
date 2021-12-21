@@ -1,10 +1,7 @@
-﻿using System;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
+﻿using addressbook_webtest.Model;
 using NUnit.Framework;
 
-namespace addressbook_web_tests
+namespace addressbook_webtest.Test
 {
     [TestFixture]
     public class GroupCreationTestsNew : TestBase

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
+﻿using addressbook_webtest.Model;
 using NUnit.Framework;
 
-
-namespace addressbook_web_tests
+namespace addressbook_webtest.Test
 {
     [TestFixture]
     public class ContactCreationTests : TestBase
@@ -16,12 +12,13 @@ namespace addressbook_web_tests
         {
 
             ContactData contacts = new ContactData("Nadya");
-            ContactData.LastName = "Morozova";
-            ContactData.Address = "Verbnaya street";
-            ContactData email = "ya@ya.ru";
+            contacts.LastName = "Morozova";
+            contacts.Address = "Verbnaya street";
+            contacts.Email = "ya@ya.ru";
             app.Contacts.Create(contacts);
           
-         }
+        
+        }
     }
 }
 

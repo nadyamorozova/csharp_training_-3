@@ -8,7 +8,7 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
 
-namespace addressbook_web_tests
+namespace addressbook_webtest.AppManager
 {
     public class ApplicationManager
     {
@@ -19,7 +19,7 @@ namespace addressbook_web_tests
         protected NavigationHelper navigator;
         protected GroupHelper grouphelper;
         protected ContactHelper contacthelper;
-
+        
         public ApplicationManager()
         {
             driver = new FirefoxDriver();
@@ -29,7 +29,7 @@ namespace addressbook_web_tests
             grouphelper = new GroupHelper(this, baseURL);
             contacthelper = new ContactHelper(this);
         }
-        public IWebDriver Driver 
+        public IWebDriver Driver
         {
             get
             {
@@ -64,22 +64,22 @@ namespace addressbook_web_tests
                 return navigator;
             }
         }
-            public GroupHelper Groups
+        public GroupHelper Groups
         {
             get
             {
-                return Groups;
+                return grouphelper;
             }
         }
 
-            public ContactHelper   Contacts
+        public ContactHelper Contacts
         {
             get
             {
-                return Contacts;
+                return contacthelper;
 
             }
-
         }
     }
 }
+    
