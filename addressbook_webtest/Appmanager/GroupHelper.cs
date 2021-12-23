@@ -1,36 +1,47 @@
-﻿using addressbook_webtest.Model;
-using OpenQA.Selenium;
+﻿
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Support.UI;
 
-namespace addressbook_webtest.AppManager
+namespace addressbook_web_tests
 {
     public class GroupHelper : HelperBase
     {
-        public GroupHelper(ApplicationManager manager, string baseURL) : base(manager)
+     public GroupHelper(ApplicationManager manager) : base(manager)
         {
         }
-
-        public GroupHelper Create(GroupData group)
+          public GroupHelper Create(GroupData group)
         {
             manager.Navigator.GoToGroupsPage();
 
-            InitGroupCreation();
+            InitNewGroupCreation();
             FillGroupForm(group);
             SubmitGroupCreation();
             ReturnToGroupsPage();
             return this;
         }
-       public GroupHelper Remove(int p)
+
+        internal void Create(GroupData groupData)
         {
+            throw new NotImplementedException();
+        }
+
+        public GroupHelper Remove(int p)
+            {
             manager.Navigator.GoToGroupsPage();
 
             SelectGroup(p);
             RemoveGroup();
             ReturnToGroupsPage();
             return this;
-        }
+            }
 
-        public GroupHelper Modify(int v, GroupData newData)
+           public GroupHelper Modify(int v, GroupData newData)
         {
             manager.Navigator.GoToGroupsPage();
             SelectGroup(v);
@@ -46,18 +57,36 @@ namespace addressbook_webtest.AppManager
             throw new NotImplementedException();
         }
 
-      
-
-        private void InitGroupModification()
+        public GroupHelper SubmitGroupModification1()
         {
-            throw new NotImplementedException();
+            driver.FindElement(By.Name("update")).Click();
+            return this;
+        }
+        public GroupHelper InitGroupModification()
+        {
+            driver.FindElement(By.Name("edit")).Click();
+            return this;
+        }
+           public GroupHelper SelectGroup(int index)
+        {
+            driver.FindElement(By.XPath("//div[@id='content']/form/span[" + index + "]")).Click();
+            return this;
         }
 
-      
-        public GroupHelper InitGroupCreation()
+           public GroupHelper RemoveGroup()
+        {
+            driver.FindElement(By.XPath("//div[@id='content']/form/input[5]")).Click();
+            return this;
+        }
+            public GroupHelper ReturnToGroupsPage()
+        {
+            driver.FindElement(By.LinkText("group page")).Click();
+            return this;
+        }
+            public GroupHelper InitNewGroupCreation()
         {
 
-            driver.FindElement(By.XPath("//div[@id='content']/form/input[4]")).Click();
+            driver.FindElement(By.Name("new")).Click();
             return this;
         }
         public GroupHelper FillGroupForm(GroupData group)
@@ -80,29 +109,12 @@ namespace addressbook_webtest.AppManager
 
             driver.FindElement(By.Name("submit")).Click();
             return this;
-        }
-        public GroupHelper ReturnToGroupsPage()
-        {
-            driver.FindElement(By.LinkText("group page")).Click();
-            return this;
-        }
-        public GroupHelper SelectGroup(int index)
-        {
-            driver.FindElement(By.XPath("//div[@id='content']/form/span[" + index + "]")).Click();
-            return this;
-        }
-        public GroupHelper RemoveGroup()
-        {
-            driver.FindElement(By.XPath("//div[@id='content']/form/input[5]")).Click();
-            return this;
-        }
-
-        public GroupHelper SubmitGroupModification1()
-        {
-            driver.FindElement(By.Name("update")).Click();
-            return this;
+        
         }
     }
-}
 
+    public class ApplicationManager
+    {
+    }
+}
 

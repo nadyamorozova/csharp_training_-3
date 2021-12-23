@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using addressbook_web_tests;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
@@ -14,11 +15,10 @@ namespace addressbook_webtest.AppManager
     {
         protected IWebDriver driver;
         protected string baseURL;
-
         protected LoginHelper loginHelper;
         protected NavigationHelper navigator;
-        protected GroupHelper grouphelper;
-        protected ContactHelper contacthelper;
+        protected GroupHelper groupHelper;
+        protected ContactHelper contactHelper;
         
         public ApplicationManager()
         {
@@ -26,8 +26,8 @@ namespace addressbook_webtest.AppManager
             baseURL = "http://localhost";
             loginHelper = new LoginHelper(this);
             navigator = new NavigationHelper(this, baseURL);
-            grouphelper = new GroupHelper(this, baseURL);
-            contacthelper = new ContactHelper(this);
+            groupHelper = new GroupHelper(this);
+            contactHelper = new ContactHelper(this);
         }
         public IWebDriver Driver
         {
@@ -68,7 +68,7 @@ namespace addressbook_webtest.AppManager
         {
             get
             {
-                return grouphelper;
+                return groupHelper;
             }
         }
 
@@ -76,7 +76,7 @@ namespace addressbook_webtest.AppManager
         {
             get
             {
-                return contacthelper;
+                return contactHelper;
 
             }
         }

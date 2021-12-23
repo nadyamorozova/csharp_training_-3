@@ -1,15 +1,31 @@
-﻿using addressbook_webtest.Model;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Support.UI;
 
 
 
-namespace addressbook_webtest.AppManager
+namespace addressbook_web_tests
 {
     public class LoginHelper : HelperBase
     {
+        private addressbook_webtest.AppManager.ApplicationManager applicationManager;
 
-        public LoginHelper(ApplicationManager manager)
-            : base(manager)
+        public LoginHelper(addressbook_webtest.AppManager.ApplicationManager applicationManager)
+        {
+            this.applicationManager = applicationManager;
+        }
+    }
+
+    public class HelperBase
+    {
+    }
+
+    public LoginHelper(ApplicationManager manager) : base(manager)
         {
         }
 

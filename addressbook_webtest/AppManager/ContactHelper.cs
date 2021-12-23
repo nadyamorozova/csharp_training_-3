@@ -1,13 +1,28 @@
-﻿using addressbook_webtest.Model;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Support.UI;
 
-namespace addressbook_webtest.AppManager
+
+namespace addressbook_web_tests
 {
     public class ContactHelper : HelperBase
     {
+        private addressbook_webtest.AppManager.ApplicationManager applicationManager;
+
         public ContactHelper(ApplicationManager manager) : base(manager)
         {
         }
+
+        public ContactHelper(addressbook_webtest.AppManager.ApplicationManager applicationManager)
+        {
+            this.applicationManager = applicationManager;
+        }
+
         public ContactHelper Create(ContactData contactData)
         {
             GoToAddNewPage();
@@ -16,6 +31,12 @@ namespace addressbook_webtest.AppManager
             ReturnToAddNewPage();
             return this;
         }
+
+        internal void Modify(addressbook_webtest.Model.ContactData newData)
+        {
+            throw new NotImplementedException();
+        }
+
         public ContactHelper Modify(ContactData newData)
         {
 
@@ -70,5 +91,25 @@ namespace addressbook_webtest.AppManager
             return this;
         }
     }
+
+    public class ContactData
+    {
+        internal static string Address;
+        internal string FirstName;
+        internal string Mobile;
+        internal string Email;
+        private string v;
+
+        public ContactData(string v)
+        {
+            this.v = v;
+        }
+
+        public static object LastName { get; internal set; }
+
+        public static implicit operator ContactData(string v)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
-    

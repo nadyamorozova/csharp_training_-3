@@ -12,7 +12,6 @@ namespace addressbook_webtest.Test
             ContactData newData = new ContactData("Nadia");
             newData.LastName = "Morozova";
             newData.Address = "Verbosti street";
-            newData.Mobile = "78965";
             newData.Email = "ya@ya.ru";
             app.Contacts.Modify(newData);               
         }

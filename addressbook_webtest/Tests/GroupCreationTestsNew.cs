@@ -1,4 +1,8 @@
-﻿using addressbook_webtest.Model;
+﻿using System;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
+using addressbook_webtest.Model;
 using NUnit.Framework;
 
 namespace addressbook_webtest.Test
@@ -13,17 +17,15 @@ namespace addressbook_webtest.Test
             GroupData group = new GroupData("December");
             group.Header = "January";
             group.Footer = "February";
-
-
             app.Groups.Create(group);
         }
 
         [Test]
         public void EmptyGroupCreationTest()
         {
-            GroupData group = new GroupData("");
-            group.Header = "";
-            group.Footer = "";
+            GroupData groupData = new GroupData("");
+            groupData.Header = "";
+            groupData.Footer = "";
         }
     }
 }

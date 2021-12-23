@@ -1,4 +1,8 @@
-﻿using addressbook_webtest.Model;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using NUnit.Framework;
 
 namespace addressbook_webtest.Test
@@ -9,11 +13,13 @@ namespace addressbook_webtest.Test
         [Test]
         public void GroupModificatinTests()
         {
-            GroupData newData = new GroupData("Dec");
-            newData.Header = "Jan";
-            newData.Footer = "Feb";
+            GroupData newData = new GroupData("Modify");
+            newData.Header = "Modify ";
+            newData.Footer = "Modify";
+
 
             app.Groups.Modify(1, newData);
+
         }
-   }
+    }
 }

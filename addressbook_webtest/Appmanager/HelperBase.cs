@@ -9,6 +9,7 @@ namespace addressbook_webtest.AppManager
 {
     public class HelperBase
     {
+    
         protected ApplicationManager manager;
         protected IWebDriver driver;
         protected string baseURL;
@@ -16,7 +17,7 @@ namespace addressbook_webtest.AppManager
         public HelperBase(ApplicationManager manager)
         {
             this.manager = manager;
-            this.driver = manager.Driver;
+            driver = manager.Driver;
         }
     }
 }

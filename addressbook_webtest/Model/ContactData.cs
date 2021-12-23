@@ -64,18 +64,7 @@ namespace addressbook_webtest.Model
                 address = value;
             }
         }
-        public string Mobile
-        {
-            get
-            {
-                return mobile;
-            }
-            set
-            {
-                mobile = value;
-            }
-        }
-        public string Email
+              public string Email
         {
             get
             {
@@ -85,11 +74,6 @@ namespace addressbook_webtest.Model
             {
                 email = value;
             }
-        }
-
-        public static implicit operator ContactData(string v)
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace addressbook_webtest.Model
+namespace addressbook_webtest
 {
     public class GroupData
     {
@@ -12,12 +12,18 @@ namespace addressbook_webtest.Model
         private string header = "";
         private string footer = "";
 
-        public GroupData(string name)
+        public GroupData(string name, string header, string footer)
+        {
+            this.name = name;
+            this.header = header;
+            this.footer = footer;
+        }
+
+        public GroupData(String name)
+
         {
             this.name = name;
         }
-
-
         public string Name
         {
             get
