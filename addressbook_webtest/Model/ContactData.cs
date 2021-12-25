@@ -11,15 +11,13 @@ namespace addressbook_webtest
         private string lastname;
         private string firstname;
         private string address;
-        private string mobile;
         private string email;
 
-        public ContactData(string firstname, string lastname, string address, string mobile, string email)
+        public ContactData(string firstname, string lastname, string address, string email)
         {
             this.firstname = firstname;
             this.lastname = lastname;
             this.address = address;
-            this.mobile = mobile;
             this.email = email;
 
         }

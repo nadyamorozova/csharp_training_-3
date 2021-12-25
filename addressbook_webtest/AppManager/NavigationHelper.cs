@@ -8,7 +8,7 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
 
-namespace addressbook_webtest.AppManager
+namespace addressbook_webtest
 {
    public class NavigationHelper : HelperBase
     {

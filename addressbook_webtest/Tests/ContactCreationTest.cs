@@ -20,7 +20,7 @@ namespace addressbook_webtest
             contacts.Address = "Verbnaya street";
             contacts.Email = "ya@ya.ru";
 
-            app.Contacts.Create(contacts)
+            app.Contacts.Create(contacts);
         }
     }
 }

@@ -27,11 +27,6 @@ namespace addressbook_webtest
             return this;
         }
 
-        internal void Modify(addressbook_webtest.Model.ContactData newData)
-        {
-            throw new NotImplementedException();
-        }
-
         public ContactHelper Modify(ContactData newData)
         {
 
@@ -80,7 +75,6 @@ namespace addressbook_webtest
             driver.FindElement(By.Name("firstname")).Click();
             driver.FindElement(By.Name("firstname")).SendKeys(group.FirstName);
 
-            driver.FindElement(By.Name("mobile")).SendKeys(group.Mobile);
             driver.FindElement(By.Name("email")).Click();
             driver.FindElement(By.Name("email")).SendKeys(group.Email);
             return this;
