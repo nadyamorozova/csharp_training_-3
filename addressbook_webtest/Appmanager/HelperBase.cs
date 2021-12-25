@@ -5,7 +5,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
-namespace addressbook_webtest.AppManager
+namespace addressbook_webtest
 {
     public class HelperBase
     {
@@ -18,6 +18,27 @@ namespace addressbook_webtest.AppManager
         {
             this.manager = manager;
             driver = manager.Driver;
+        }
+        public void Type(By locator, string text)
+        {
+            if (text != null)
+            {
+                driver.FindElement(locator).Clear();
+                driver.FindElement(locator).SendKeys(text);
+            }
+        }
+
+        public bool IsElementPresent(By by)
+        {
+            try
+            {
+                driver.FindElement(by);
+                return true;
+            }
+            catch (NoSuchElementException)
+            {
+                return false;
+            }
         }
     }
 }

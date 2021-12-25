@@ -5,10 +5,10 @@ using System.Threading;
 using NUnit.Framework;
 
 
-namespace addressbook_web_tests
+namespace addressbook_webtest
 {
     [TestFixture]
-    public class ContactCreationTests : TestBase
+    public class ContactCreationTests : AuthTestBase
     {
 
         [Test]
@@ -16,12 +16,11 @@ namespace addressbook_web_tests
         {
 
             ContactData contacts = new ContactData("Nadya");
-            ContactData.LastName = "Morozova";
-            ContactData.Address = "Verbnaya street";
-            ContactData email = "ya@ya.ru";
+            contacts.LastName = "Morozova";
+            contacts.Address = "Verbnaya street";
+            contacts.Email = "ya@ya.ru";
 
-            app.Contacts.Create(contacts);
-
+            app.Contacts.Create(contacts)
         }
     }
 }

@@ -8,7 +8,7 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
 
-namespace addressbook_webtest.AppManager
+namespace addressbook_webtest
 {
    public class NavigationHelper : HelperBase
     {
@@ -21,13 +21,9 @@ namespace addressbook_webtest.AppManager
             this.baseURL = baseURL;
         }
 
-        public NavigationHelper(ApplicationManager manager) : base(manager)
+         public void GoToHomePage()
         {
-        }
-
-        public void GoToHomePage()
-        {
-            driver.Navigate().GoToUrl("http://localhost/addressbook/index.php");
+            driver.Navigate().GoToUrl("baseURL");
         }
 
         public void GoToGroupsPage()

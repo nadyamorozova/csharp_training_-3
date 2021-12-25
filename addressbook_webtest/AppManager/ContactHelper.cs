@@ -8,21 +8,16 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
 
-namespace addressbook_web_tests
+namespace addressbook_webtest
 {
     public class ContactHelper : HelperBase
     {
-        private addressbook_webtest.AppManager.ApplicationManager applicationManager;
 
         public ContactHelper(ApplicationManager manager) : base(manager)
         {
         }
 
-        public ContactHelper(addressbook_webtest.AppManager.ApplicationManager applicationManager)
-        {
-            this.applicationManager = applicationManager;
-        }
-
+     
         public ContactHelper Create(ContactData contactData)
         {
             GoToAddNewPage();
@@ -89,27 +84,6 @@ namespace addressbook_web_tests
             driver.FindElement(By.Name("email")).Click();
             driver.FindElement(By.Name("email")).SendKeys(group.Email);
             return this;
-        }
-    }
-
-    public class ContactData
-    {
-        internal static string Address;
-        internal string FirstName;
-        internal string Mobile;
-        internal string Email;
-        private string v;
-
-        public ContactData(string v)
-        {
-            this.v = v;
-        }
-
-        public static object LastName { get; internal set; }
-
-        public static implicit operator ContactData(string v)
-        {
-            throw new NotImplementedException();
         }
     }
 }

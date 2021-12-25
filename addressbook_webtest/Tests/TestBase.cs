@@ -1,9 +1,7 @@
-﻿using addressbook_webtest.AppManager;
-using addressbook_webtest.Model;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 
-namespace addressbook_webtest.Test
+namespace addressbook_webtest
 {
     public class TestBase
     {
@@ -11,17 +9,10 @@ namespace addressbook_webtest.Test
         protected ApplicationManager app;
 
         [SetUp]
-        public void SetupTest()
+        public void SetupApplicationManager()
         {
-            app = new ApplicationManager();
-            app.Navigator.GoToHomePage();
-            app.Auth.Login(new AccountData("admin", "secret"));
-        }
-
-        [TearDown]
-        public void TeardownTest()
-        {
-            app.Stop();  
+            ApplicationManager.GetInstance();
+          
         }
     }
   }

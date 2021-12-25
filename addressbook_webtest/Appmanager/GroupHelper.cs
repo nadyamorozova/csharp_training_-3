@@ -8,7 +8,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
-namespace addressbook_web_tests
+namespace addressbook_webtest
 {
     public class GroupHelper : HelperBase
     {
@@ -24,11 +24,6 @@ namespace addressbook_web_tests
             SubmitGroupCreation();
             ReturnToGroupsPage();
             return this;
-        }
-
-        internal void Create(GroupData groupData)
-        {
-            throw new NotImplementedException();
         }
 
         public GroupHelper Remove(int p)
@@ -92,10 +87,13 @@ namespace addressbook_web_tests
         public GroupHelper FillGroupForm(GroupData group)
         {
 
-            driver.FindElement(By.Name("group_name")).Click();
-            driver.FindElement(By.Name("group_name")).Clear();
-            driver.FindElement(By.Name("group_name")).SendKeys(group.Name);
-            driver.FindElement(By.Name("group_header")).Click();
+
+            Type(By.Name("group_name"), group.Name);
+            Type(By.Name("group_header"), group.Header);
+            Type(By.Name("group_footer"), group.Footer);
+            return this;
+            
+            
             driver.FindElement(By.Name("group_header")).Clear();
             driver.FindElement(By.Name("group_header")).SendKeys(group.Header);
             driver.FindElement(By.Name("group_footer")).Click();
@@ -104,17 +102,18 @@ namespace addressbook_web_tests
             return this;
         }
 
+        private static void Type(By locator, string text)
+        {
+            driver.FindElement(locator).Clear();
+            driver.FindElement(locator).SendKeys(text);
+        }
+
         public GroupHelper SubmitGroupCreation()
         {
 
             driver.FindElement(By.Name("submit")).Click();
             return this;
-        
         }
-    }
-
-    public class ApplicationManager
-    {
     }
 }
 
