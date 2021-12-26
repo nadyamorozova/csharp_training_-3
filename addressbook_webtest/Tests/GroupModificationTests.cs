@@ -14,8 +14,8 @@ namespace addressbook_webtest
         public void GroupModificatinTests()
         {
             GroupData newData = new GroupData("Modify");
-            newData.Header = "Modify ";
-            newData.Footer = "Modify";
+            newData.Header = null;
+            newData.Footer = null;
 
 
             app.Groups.Modify(1, newData);
