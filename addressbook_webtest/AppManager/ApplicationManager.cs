@@ -50,6 +50,7 @@ namespace addressbook_webtest
             if (!app.IsValueCreated)
             {
                 ApplicationManager newInstance = new ApplicationManager();
+                newInstance.Navigator.GoToHomePage();
                 app.Value = newInstance;
             }
                

@@ -10,8 +10,8 @@ namespace addressbook_webtest
     [TestFixture]
     public class LoginTests : TestBase
     {
-       [Test]
-       public void LoginWithValidCredentials() 
+        [Test]
+        public void LoginWithValidCredentials()
         {
             // prepare
             app.Auth.Logout();
@@ -19,7 +19,7 @@ namespace addressbook_webtest
             // action
             AccountData account = new AccountData("admin", "secret");
             app.Auth.Login(new AccountData("admin", "secret"));
-            
+
             //verification
             Assert.IsTrue(app.Auth.IsLoggedIn(account));
         }
@@ -36,5 +36,7 @@ namespace addressbook_webtest
             //verification
             Assert.IsFalse(app.Auth.IsLoggedIn(account));
         }
+    }
+}
 
 

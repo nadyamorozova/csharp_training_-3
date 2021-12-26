@@ -19,6 +19,7 @@ namespace addressbook_webtest
         }
         public void Login(AccountData account)
         {
+            
             if (IsLoggedIn())
             {
                 if (IsLoggedIn(account))
@@ -43,6 +44,7 @@ namespace addressbook_webtest
         public bool IsLoggedIn()
         {
             return IsElementPresent(By.Name("logout"));
+            throw new NotImplementedException();
         }
         public bool IsLoggedIn(AccountData account)
         {

@@ -102,11 +102,7 @@ namespace addressbook_webtest
             return this;
         }
 
-        private static void Type(By locator, string text)
-        {
-            driver.FindElement(locator).Clear();
-            driver.FindElement(locator).SendKeys(text);
-        }
+      
 
         public GroupHelper SubmitGroupCreation()
         {

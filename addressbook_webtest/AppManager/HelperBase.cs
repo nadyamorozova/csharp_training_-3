@@ -12,7 +12,6 @@ namespace addressbook_webtest
     
         protected ApplicationManager manager;
         protected IWebDriver driver;
-        protected string baseURL;
 
         public HelperBase(ApplicationManager manager)
         {
