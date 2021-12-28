@@ -87,7 +87,6 @@ namespace addressbook_webtest
         public GroupHelper FillGroupForm(GroupData group)
         {
 
-
             Type(By.Name("group_name"), group.Name);
             Type(By.Name("group_header"), group.Header);
             Type(By.Name("group_footer"), group.Footer);
@@ -101,9 +100,7 @@ namespace addressbook_webtest
             driver.FindElement(By.Name("group_footer")).SendKeys(group.Footer);
             return this;
         }
-
-      
-
+            
         public GroupHelper SubmitGroupCreation()
         {
 

@@ -72,11 +72,9 @@ namespace addressbook_webtest
         }
         public ContactHelper FillContactForm(ContactData group)
         {
-            driver.FindElement(By.Name("firstname")).Click();
-            driver.FindElement(By.Name("firstname")).SendKeys(group.FirstName);
+            Type(By.Name("firstname"), group.FirstName);
+            Type(By.Name("email"), group.Email);
 
-            driver.FindElement(By.Name("email")).Click();
-            driver.FindElement(By.Name("email")).SendKeys(group.Email);
             return this;
         }
     }
