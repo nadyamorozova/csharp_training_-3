@@ -11,7 +11,7 @@ namespace addressbook_webtest
         [SetUp]
         public void SetupApplicationManager()
         {
-            ApplicationManager.GetInstance();
+            app = ApplicationManager.GetInstance();
           
         }
     }
