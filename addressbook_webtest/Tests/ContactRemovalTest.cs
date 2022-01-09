@@ -9,7 +9,7 @@ namespace addressbook_webtest
 {
      
     [TestFixture]
-    public class ContactRemovalTest : TestBase
+    public class ContactRemovalTest : AuthTestBase
     {
 
         [Test]

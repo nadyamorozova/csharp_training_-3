@@ -23,22 +23,20 @@ namespace addressbook_webtest
 
          public void GoToHomePage()
         {
-            if (driver.Url == baseURL + "/addressbook/") 
-            {
-                return;
-            }
-            driver.Navigate().GoToUrl(baseURL + "/addressbook/");
+           
+            driver.Navigate().GoToUrl(baseURL);
         }
 
-        public void GoToGroupsPage()
-        {
-            if(driver.Url == baseURL + "/addressbook/"
-                && IsElementPresent(By.Name("new"))) 
-            
-            {
-                return;
-            }
-            driver.FindElement(By.LinkText("groups")).Click();
-        }
+   
+    public void GoToGroupsPage()
+    {
+        driver.FindElement(By.LinkText("groups")).Click();
     }
+    public void ReturnToHomePage()
+    {
+        driver.FindElement(By.LinkText("home page")).Click();
+
+    }
+    
+  }
 }

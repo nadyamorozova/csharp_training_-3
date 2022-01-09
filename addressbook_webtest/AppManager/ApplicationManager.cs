@@ -16,24 +16,34 @@ namespace addressbook_webtest
         protected IWebDriver driver;
         protected string baseURL;
         protected LoginHelper loginHelper;
+        private NavigationHelper navigationHelper;
         protected NavigationHelper navigator;
         protected GroupHelper groupHelper;
         protected ContactHelper contactHelper;
-       
-        private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>() ; 
 
-        private ApplicationManager()
+
+
+        public ApplicationManager()
         {
             driver = new FirefoxDriver();
-            baseURL = "http://localhost";
+            baseURL = "http://localhost/addressbook/";
 
             loginHelper = new LoginHelper(this);
-            navigator = new NavigationHelper(this, baseURL);
+            navigationHelper = new NavigationHelper(this, baseURL);
             groupHelper = new GroupHelper(this);
             contactHelper = new ContactHelper(this);
         }
 
-          ~ApplicationManager()
+        public IWebDriver Driver
+        {
+            get
+            {
+                return driver;
+            }
+        }
+
+
+        public void Stop()
         {
             try
             {
@@ -45,27 +55,6 @@ namespace addressbook_webtest
             }
         }
 
-        public static ApplicationManager GetInstance () 
-        {
-            if (!app.IsValueCreated)
-            {
-                ApplicationManager newInstance = new ApplicationManager();
-                newInstance.Navigator.GoToHomePage();
-                app.Value = newInstance;
-            }
-               
-            
-            return app.Value; 
-    }
-        public IWebDriver Driver
-        {
-            get
-            {
-                return driver;
-            }
-        }
-      
-
         public LoginHelper Auth
         {
             get
@@ -73,12 +62,11 @@ namespace addressbook_webtest
                 return loginHelper;
             }
         }
-
         public NavigationHelper Navigator
         {
             get
             {
-                return navigator;
+                return navigationHelper;
             }
         }
         public GroupHelper Groups
@@ -88,15 +76,14 @@ namespace addressbook_webtest
                 return groupHelper;
             }
         }
-
         public ContactHelper Contacts
         {
             get
             {
                 return contactHelper;
-
             }
         }
     }
 }
+
     

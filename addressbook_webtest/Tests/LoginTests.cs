@@ -11,29 +11,21 @@ namespace addressbook_webtest
     public class LoginTests : TestBase
     {
         [Test]
-        public void LoginWithValidCredentials()
+        public void LoginWithCredentials()
         {
-            // prepare
+            
             app.Auth.Logout();
-
-            // action
             AccountData account = new AccountData("admin", "secret");
-            app.Auth.Login(new AccountData("admin", "secret"));
-
-            //verification
+            app.Auth.Login(account);
             Assert.IsTrue(app.Auth.IsLoggedIn(account));
         }
         [Test]
-        public void LoginWitInhValidCredentials()
+        public void LoginWithInValidCredentials()
         {
-            // prepare
+           
             app.Auth.Logout();
-
-            // action
             AccountData account = new AccountData("admin", "123456");
-            app.Auth.Login(new AccountData("admin", "secret"));
-
-            //verification
+            app.Auth.Login(account);
             Assert.IsFalse(app.Auth.IsLoggedIn(account));
         }
     }
