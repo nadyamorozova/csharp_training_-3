@@ -25,6 +25,23 @@ namespace addressbook_webtest
             manager.Navigator.ReturnToHomePage();
             return this;
         }
+        public List<ContactData> GetContactList()
+        {
+            List<ContactData> contacts = new List<ContactData>();
+            manager.Navigator.GoToHomePage();
+            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr[name='entry']"));
+            foreach (IWebElement element in elements)
+            {
+             IList<IWebElement> lastnames = element.FindElements(By.CssSelector("td:nth-child(2)"));
+             IList<IWebElement> firstnames = element.FindElements(By.CssSelector("td:nth-child(3)"));
+             foreach (IWebElement lastname in lastnames) foreach (IWebElement firstname in firstnames)
+             {
+              contacts.Add(new ContactData(firstname.Text, lastname.Text));
+             }
+            }
+            return contacts;
+        }
+
 
         public ContactHelper Modify(int p, ContactData newData)
         {
@@ -83,22 +100,11 @@ namespace addressbook_webtest
             driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[" + index + "]/td[8]/a/img")).Click();
             return this;
         }
-
-        private void SelectContact(int p)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void InitContactModification(int p)
-        {
-            throw new NotImplementedException();
-        }
         public ContactHelper SubmitContactModification()
         {
             driver.FindElement(By.Name("update")).Click();
             return this;
         }
-
         public ContactHelper SelectContact(int index)
         {
             driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[" + index + "]/td/input")).Click();
@@ -111,30 +117,6 @@ namespace addressbook_webtest
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
             return this;
 
-        }
-    }
-}
-
-
-
-
-       
-        
-
-
-
-
-
-            public ContactHelper GoToAddNewPage()
-        {
-            driver.FindElement(By.LinkText("add new")).Click();
-            return this;
-        }
-     
-        public ContactHelper ReturnToAddNewPage()
-        {
-            driver.FindElement(By.LinkText("home page")).Click();
-            return this;
         }
     }
 }

@@ -14,28 +14,63 @@ namespace addressbook_webtest
         [Test]
         public void GroupCreationTest()
         {
-            GroupData group = (new GroupData("December")));
+            GroupData group = (new GroupData("December"));
             group.Header = "January";
             group.Footer = "February";
 
-
             List<GroupData> oldGroups = app.Groups.GetGroupList();
             app.Groups.Create(group);
+
+            Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
+
             List<GroupData> newGroups = app.Groups.GetGroupList();
-            Assert.AreEqual(oldGroups.Count + 1, newGroups.Count);
+            oldGroups.Add(group);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
         }
 
         [Test]
         public void EmptyGroupCreationTest()
         {
-            GroupData groupData = new GroupData("");
-            groupData.Header = "";
-            groupData.Footer = "";
+            GroupData group = (new GroupData(""));
+            group.Header = "";
+            group.Footer = "";
+           
 
             List<GroupData> oldGroups = app.Groups.GetGroupList();
-            app.Groups.Create(groupData);
+
+            app.Groups.Create(group);
+
+            Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
+
+
             List<GroupData> newGroups = app.Groups.GetGroupList();
-            Assert.AreEqual(oldGroups.Count + 1, newGroups.Count);
+            oldGroups.Add(group);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
+        }
+
+        [Test]
+        
+        public void BadNameGroupCreationTest()
+        {
+            GroupData group = (new GroupData("x'x"));
+            group.Header = "";
+            group.Footer = "";
+
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
+
+            app.Groups.Create(group);
+
+            Assert.AreEqual(oldGroups.Count, app.Groups.GetGroupCount());
+
+
+            List<GroupData> newGroups = app.Groups.GetGroupList();
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
         }
     }
 }
