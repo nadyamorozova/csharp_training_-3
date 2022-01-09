@@ -12,6 +12,8 @@ namespace addressbook_webtest
         private string firstname;
         private string address;
         private string email;
+        private string v;
+        internal string Lastname;
 
         public ContactData(string firstname, string lastname, string address, string email)
         {
@@ -28,6 +30,12 @@ namespace addressbook_webtest
             this.firstname = name;
 
         }
+
+        public ContactData(string name, string v) : this(name)
+        {
+            this.v = v;
+        }
+
         public string FirstName
         {
             get
@@ -73,5 +81,8 @@ namespace addressbook_webtest
                 email = value;
             }
         }
+
+        public string Middlename { get; internal set; }
+        public string Firstname { get; internal set; }
     }
 }
