@@ -9,18 +9,11 @@ namespace addressbook_webtest
         protected ApplicationManager app;
 
         [SetUp]
-        public void SetupTest()
-        {
-            app = new ApplicationManager();
-            app.Navigator.GoToHomePage();
-            app.Auth.Login(new AccountData("admin", "secret"));
+        public void SetupApplicationManager()
 
-        }
-
-        [TearDown]
-        public void TeardownTest()
         {
-            app.Stop();
+            app = ApplicationManager.GetInstance();
+         
         }
     }
 }

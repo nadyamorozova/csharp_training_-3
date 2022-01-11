@@ -22,7 +22,7 @@ namespace addressbook_webtest
 
         private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
-        private ApplicationManager()
+        public ApplicationManager()
         {
 
             driver = new FirefoxDriver();

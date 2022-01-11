@@ -42,10 +42,7 @@ namespace addressbook_webtest
                 {
                     IWebElement lastname = element.FindElement(By.CssSelector("td:nth-child(2)"));
                     IWebElement firstname = element.FindElement(By.CssSelector("td:nth-child(3)"));
-                    //second version
-                    //IList<IWebElement> cells = element.FindElements(By.TagName("td"));
-                    //IWebElement lastname = cells[1];
-                    //IWebElement firstname = cells[2];
+                  
                     contactCache.Add(new ContactData(firstname.Text, lastname.Text)
                     {
                         Id = 

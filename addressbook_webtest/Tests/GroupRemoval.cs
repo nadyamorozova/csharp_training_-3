@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -28,9 +29,11 @@ namespace addressbook_webtest
 
             GroupData toBeRemoved = oldGroups[0];
             oldGroups.RemoveAt(0);
+           
             Assert.AreEqual(oldGroups, newGroups);
+            foreach (GroupData group in newGroups)
             {
-                Assert.AreNotEqual(Group.Id, toBeRemoved.Id);
+               Assert.AreNotEqual(group.Id, toBeRemoved.Id);
             }
 
         }
