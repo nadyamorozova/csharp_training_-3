@@ -6,57 +6,55 @@ using System.Threading.Tasks;
 
 namespace addressbook_webtest
 {
-    public class GroupData
+    public class GroupData : IEquatable<GroupData>, IComparable<GroupData>
     {
-        private string name;
-        private string header = "";
-        private string footer = "";
 
-        public GroupData(string name, string header, string footer)
+
+        public GroupData(string name)
         {
-            this.name = name;
-            this.header = header;
-            this.footer = footer;
+            Name = name;
+        }
+        public bool Equals(GroupData other)
+        {
+            if (Object.ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (Object.ReferenceEquals(this, other))
+            {
+                return true;
+            }
+            return Name == other.Name;
         }
 
-        public GroupData(String name)
 
+        public override int GetHashCode()
         {
-            this.name = name;
+            return Name.GetHashCode();
         }
-        public string Name
+        public override string ToString()
         {
-            get
-            {
-                return name;
-            }
-            set
-            {
-                name = value;
-            }
+            return "name=" + Name;
         }
-        public string Header
+        public int CompareTo(GroupData other)
         {
-            get
+            if (Object.ReferenceEquals(other, null))
             {
-                return header;
+                return 1;
             }
-            set
-            {
-                header = value;
-            }
+            return Name.CompareTo(other.Name);
         }
-        public string Footer
-        {
-            get
-            {
-                return footer;
-            }
-            set
-            {
-                footer = value;
-            }
-        }
+
+
+
+        public string Name { get; set; }
+
+        public string Header { get; set; }
+
+        public string Footer { get; set; }
+
+        public string Id { get; set; }
     }
+    
 }
 

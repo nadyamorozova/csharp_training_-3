@@ -25,6 +25,17 @@ namespace addressbook_webtest
             manager.Navigator.GoToGroupsPage();
             return this;
         }
+
+        private void FillGroupForm(GroupData group)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void InitNewGroupCreation()
+        {
+            throw new NotImplementedException();
+        }
+
         private List<GroupData> groupCache = null;
         public List<GroupData> GetGroupList()
         {
@@ -35,15 +46,16 @@ namespace addressbook_webtest
                 ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
                 foreach (IWebElement element in elements)
                 {
-                    groupCache.Add(new GroupData(element.Text));
+                    groupCache.Add(new GroupData(element.Text)
+                    {
+                        Id = element.FindElement(By.TagName("input")).GetAttribute("value")
+                    });
                 }
             }
             return new List<GroupData>(groupCache);
         }
 
-
-
-        public GroupHelper Modify(int p, GroupData newData)
+            public GroupHelper Modify(int p, GroupData newData)
         {
             manager.Navigator.GoToGroupsPage();
             SelectGroup(p);
@@ -52,6 +64,11 @@ namespace addressbook_webtest
             SubmitGroupModification();
             manager.Navigator.GoToGroupsPage();
             return this;
+        }
+
+        private void InitGroupModification()
+        {
+            throw new NotImplementedException();
         }
 
         public GroupHelper Remove(int p)
