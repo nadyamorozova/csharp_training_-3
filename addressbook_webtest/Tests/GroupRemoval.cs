@@ -25,13 +25,8 @@ namespace addressbook_webtest
             Assert.AreEqual(oldGroups.Count - 1, app.Groups.GetGroupCount());
 
             List<GroupData> newGroups = app.Groups.GetGroupList();
-
-            GroupData toBeRemoved = oldGroups[0];
             oldGroups.RemoveAt(0);
             Assert.AreEqual(oldGroups, newGroups);
-            {
-                Assert.AreNotEqual(Group.Id, toBeRemoved.Id);
-            }
 
         }
     }

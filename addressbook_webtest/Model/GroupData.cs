@@ -6,55 +6,57 @@ using System.Threading.Tasks;
 
 namespace addressbook_webtest
 {
-    public class GroupData : IEquatable<GroupData>, IComparable<GroupData>
+    public class GroupData
     {
+        private string name;
+        private string header = "";
+        private string footer = "";
 
-
-        public GroupData(string name)
+        public GroupData(string name, string header, string footer)
         {
-            Name = name;
+            this.name = name;
+            this.header = header;
+            this.footer = footer;
         }
-        public bool Equals(GroupData other)
+
+        public GroupData(String name)
+
         {
-            if (Object.ReferenceEquals(other, null))
+            this.name = name;
+        }
+        public string Name
+        {
+            get
             {
-                return false;
+                return name;
             }
-            if (Object.ReferenceEquals(this, other))
+            set
             {
-                return true;
+                name = value;
             }
-            return Name == other.Name;
         }
-
-
-        public override int GetHashCode()
+        public string Header
         {
-            return Name.GetHashCode();
-        }
-        public override string ToString()
-        {
-            return "name=" + Name;
-        }
-        public int CompareTo(GroupData other)
-        {
-            if (Object.ReferenceEquals(other, null))
+            get
             {
-                return 1;
+                return header;
             }
-            return Name.CompareTo(other.Name);
+            set
+            {
+                header = value;
+            }
         }
-
-
-
-        public string Name { get; set; }
-
-        public string Header { get; set; }
-
-        public string Footer { get; set; }
-
-        public string Id { get; set; }
+        public string Footer
+        {
+            get
+            {
+                return footer;
+            }
+            set
+            {
+                footer = value;
+            }
+        }
     }
-    
 }
 

@@ -8,12 +8,15 @@ namespace addressbook_webtest
 {
     public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
-        
+        private string lastname;
+        private string firstname;
+        private string middlename = "";
 
         public ContactData(string firstname, string lastname)
         {
-            Firstname = firstname;
-            Lastname = lastname; 
+            this.firstname = firstname;
+            this.lastname = lastname;
+           
         }
         public bool Equals(ContactData other)
         {
@@ -25,19 +28,19 @@ namespace addressbook_webtest
             {
                 return true;
             }
-            return Firstname == other.Firstname && Lastname == other.Lastname;
+            return firstname == other.firstname && lastname == other.lastname;
 
         }
 
         public override int GetHashCode()
         {
-            return Firstname.GetHashCode() & Lastname.GetHashCode();
+            return firstname.GetHashCode() & lastname.GetHashCode();
 
         }
 
         public override string ToString()
         {
-            return $"contact = {Lastname} {Firstname}";
+            return $"contact = {lastname} {firstname}";
         }
 
         public int CompareTo(ContactData other)
@@ -46,23 +49,51 @@ namespace addressbook_webtest
             {
                 return 1;
             }
-            if (this.Firstname != other.Firstname)
+            if (this.firstname != other.firstname)
             {
-                return Firstname.CompareTo(other.Firstname);
+                return firstname.CompareTo(other.firstname);
             }
-            if (this.Lastname != other.Lastname)
+            if (this.lastname != other.lastname)
             {
-                return Lastname.CompareTo(other.Lastname);
+                return lastname.CompareTo(other.lastname);
             }
-            return Lastname.CompareTo(other.Lastname) & Firstname.CompareTo(other.Firstname);
+            return lastname.CompareTo(other.lastname) & firstname.CompareTo(other.firstname);
+   
+    }
+
+         public string LastName
+        {
+            get
+            {
+                return lastname;
+            }
+            set
+            {
+                lastname = value;
+            }
         }
-        public string Firstname { get; set; }
-
-        public string Middlename { get; set; }
-
-        public string Lastname { get; set; }
-
-        public string Id { get; set; }
-
+       
+        public string Middlename 
+         {
+            get
+            {
+                return middlename;
+            }
+            set
+            {
+                middlename = value;
+            }
+        }
+        public string Firstname
+        {
+            get
+            {
+                return firstname;
+            }
+            set
+            {
+                firstname = value;
+            }
+        }
     }
 }
