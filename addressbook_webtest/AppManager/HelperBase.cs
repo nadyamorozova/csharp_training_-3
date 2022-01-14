@@ -39,5 +39,13 @@ namespace addressbook_webtest
                 return false;
             }
         }
+
+        public void InitContactModification(int index)
+        {
+                 driver.FindElements(By.Name("entry"))[index]
+                .FindElements(By.TagName("td"))[7]
+                .FindElement(By.TagName("a")).Click();
+            
+        }
     }
 }

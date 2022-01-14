@@ -25,36 +25,41 @@ namespace addressbook_webtest
             manager.Navigator.ReturnToHomePage();
             return this;
         }
-        public int GetContactCount()
+
+          public int GetContactCount()
         {
             return driver.FindElements(By.CssSelector("tr[name='entry']")).Count;
         }
 
-        private List<ContactData> contactCache = null;
+        internal void Modify(ContactData newData)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<ContactData> GetContactList()
         {
-            if (contactCache == null)
-            {
-                contactCache = new List<ContactData>();
+           
+                List<ContactData> contacts = new List<ContactData>();
                 manager.Navigator.GoToHomePage();
                 ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr[name='entry']"));
                 foreach (IWebElement element in elements)
                 {
-                    IWebElement lastname = element.FindElement(By.CssSelector("td:nth-child(2)"));
-                    IWebElement firstname = element.FindElement(By.CssSelector("td:nth-child(3)"));
-                  
-                    contactCache.Add(new ContactData(firstname.Text, lastname.Text)
+                    IList<IWebElement> cells = element.FindElements(By.TagName("td"));
+                    contacts.Add(new ContactData(element.Text, null));
+                    Console.WriteLine(element.Text);
+                    IList<IWebElement> lastnames =
+                    element.FindElements(By.CssSelector("td:nth-child(2)"));
+                    IList<IWebElement> firstnames = element.FindElements(By.CssSelector("td:nth-child(3)"));
+                    foreach (IWebElement lastname in lastnames) foreach (IWebElement firstname in firstnames)
                     {
-                        Id = 
-                     element.FindElement(By.TagName("input")).GetAttribute("value")
-                    });
+                        contacts.Add(new ContactData(firstname.Text, lastname.Text));
+                    }
                 }
-            }
-            return new List<ContactData>(contactCache);
+            return contacts;
         }
 
 
-        public ContactHelper Modify(int p, ContactData newData)
+            public ContactHelper Modify(int p, ContactData newData)
         {
 
             SelectContact(p);
@@ -103,7 +108,6 @@ namespace addressbook_webtest
         public ContactHelper SubmitContactCreation()
         {
             driver.FindElement(By.XPath("//div[@id='content']/form/input[21]")).Click();
-            contactCache = null;
             return this;
         }
 
@@ -115,7 +119,6 @@ namespace addressbook_webtest
         public ContactHelper SubmitContactModification()
         {
             driver.FindElement(By.Name("update")).Click();
-            contactCache = null;
             return this;
         }
         public ContactHelper SelectContact(int index)
@@ -128,9 +131,49 @@ namespace addressbook_webtest
         public ContactHelper RemoveContact()
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
-            contactCache = null;
             return this;
 
         }
+        public ContactData GetContactInformationFromEditForm(int index)
+        {
+            manager.Navigator.GoToHomePage();
+            InitContactModification(0);
+
+            string firstName = driver.FindElement(By.Name("firstname")).GetAttribute("value");
+            string lastName  = driver.FindElement(By.Name("lastname")).GetAttribute("value");
+            string address  = driver.FindElement(By.Name("address")).GetAttribute("value");
+
+            string homePhone = driver.FindElement(By.Name("home")).GetAttribute("value");
+            string mobilePhone = driver.FindElement(By.Name("mobile")).GetAttribute("value");
+            string workPhone = driver.FindElement(By.Name("work")).GetAttribute("value");
+
+            return new ContactData(firstName, lastName)
+            {
+                Address = address,
+                HomePhone = homePhone,
+                MobilePhone = mobilePhone,
+                WorkPhone = workPhone
+            };
+            
+            throw new NotImplementedException();
+        }
+
+        public ContactData GetContactInformationFromTable(int index)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
+
+
+//IWebElement lastname = element.FindElement(By.CssSelector("td:nth-child(2)"));
+//IWebElement firstname = element.FindElement(By.CssSelector("td:nth-child(3)"));
+
+//contactCache.Add(new ContactData(firstname.Text, lastname.Text)
+//{
+ //   Id =
+// element.FindElement(By.TagName("input")).GetAttribute("value")
+//});
+             
+           // return new List<ContactData>(contactCache);
+     

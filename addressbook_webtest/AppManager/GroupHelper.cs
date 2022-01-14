@@ -121,5 +121,11 @@ namespace addressbook_webtest
             driver.FindElement(By.Name("delete")).Click();
             return this;
         }
+         public GroupHelper ReturnToGroupPage()
+          {
+                driver.FindElement(By.LinkText("group page")).Click();
+                return this;
+          }
+        }
     }
- }
+ 

@@ -27,7 +27,6 @@ namespace addressbook_webtest
             return Name == other.Name;
         }
 
-
         public override int GetHashCode()
         {
             return Name.GetHashCode();
@@ -45,8 +44,7 @@ namespace addressbook_webtest
             return Name.CompareTo(other.Name);
         }
 
-
-
+        
         public string Name { get; set; }
 
         public string Header { get; set; }
