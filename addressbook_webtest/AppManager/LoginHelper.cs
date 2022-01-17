@@ -17,15 +17,6 @@ namespace addressbook_webtest
         : base(manager)
         {
         }
-        public void Logout()
-        {
-            if (IsLoggedIn())
-            {
-                driver.FindElement(By.LinkText("Logout")).Click();
-
-            }
-
-        }
         public void Login(AccountData account)
         {
             if (IsLoggedIn())
@@ -37,21 +28,30 @@ namespace addressbook_webtest
                 Logout();
             }
             Type(By.Name("user"), account.Username);
-            Type(By.Name("pass"), account.Password);
-
-            driver.FindElement(By.XPath("//input[@value='Login']")).Click();
+           Type(By.Name("pass"), account.Password);
+           driver.FindElement(By.XPath("//input[@value='Login']")).Click();
         }
 
-        public bool IsLoggedIn(AccountData account)
+        public void Logout()
         {
-            return IsLoggedIn()
-                && driver.FindElement(By.Name("logout")).FindElement(By.TagName("b")).Text
-                    == "(" + account.Username + ")";
+            if (IsLoggedIn())
+            {
+                driver.FindElement(By.LinkText("Logout")).Click();
+                driver.FindElement(By.Name("user"));
+            }
         }
-
         public bool IsLoggedIn()
         {
             return IsElementPresent(By.Name("logout"));
+            throw new NotImplementedException();
+        }
+
+            public bool IsLoggedIn(AccountData account)
+            {
+                return IsLoggedIn()
+                    && driver.FindElement(By.Name("logout")).FindElement(By.TagName("b")).Text
+                        == "(" + account.Username + ")";
+
+            }
         }
     }
-}

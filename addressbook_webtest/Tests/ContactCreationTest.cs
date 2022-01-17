@@ -16,39 +16,22 @@ namespace addressbook_webtest
         {
 
             ContactData contacts = (new ContactData("J","Lo"));
-            contacts.Middlename = "Sergeevna";
+            contacts.Lastname = "Morozova";
 
             List<ContactData> oldContacts = app.Contacts.GetContactList();
             
 
             app.Contacts.Create(contacts);
 
-            Assert.AreEqual(oldContacts.Count + 1, app.Contacts.GetContactCount());
+          
             List<ContactData> newContacts = app.Contacts.GetContactList();
+            
             oldContacts.Add(contacts);
             oldContacts.Sort();
             newContacts.Sort();
 
             Assert.AreEqual(oldContacts, newContacts);
-        }
-
-        [Test]
-        public void EmptyContactCreationTest()
-        {
-            ContactData contact = (new ContactData("", ""));
-            contact.Middlename = "";
-
-            List<ContactData> oldContacts = app.Contacts.GetContactList();
-
-            app.Contacts.Create(contact);
-
-            Assert.AreEqual(oldContacts.Count + 1, app.Contacts.GetContactCount());
-
-            List<ContactData> newContacts = app.Contacts.GetContactList();
-            oldContacts.Add(contact);
-            oldContacts.Sort();
-            newContacts.Sort();
-            Assert.AreEqual(oldContacts, newContacts);
+        
         }
     }
 }

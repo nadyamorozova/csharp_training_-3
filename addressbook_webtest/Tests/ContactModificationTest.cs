@@ -14,9 +14,8 @@ namespace addressbook_webtest
         public void ContactModificationTests()
         {
             ContactData newData = new ContactData("Rename");
-            newData.LastName = "Brinzeva";
+            newData.Lastname = "Brinzeva";
             newData.Address = "USA";
-            newData.Middlename = "Sergeevnas";
             app.Contacts.IsContactPresent();
 
             List<ContactData> oldContacts = app.Contacts.GetContactList();

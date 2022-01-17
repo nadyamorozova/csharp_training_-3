@@ -88,7 +88,7 @@ namespace addressbook_webtest
             if (!IsElementPresent(By.XPath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")))
             {
                 ContactData contact = (new ContactData("J", "Lo"));
-                contact.Middlename = "Sergeevna";
+                
 
                 Create(contact);
             }
@@ -103,8 +103,7 @@ namespace addressbook_webtest
         public ContactHelper FillContactForm(ContactData contact)
         {
             Type(By.Name("firstname"), contact.Firstname);
-            Type(By.Name("middlename"), contact.Middlename);
-            Type(By.Name("lastname"), contact.LastName);
+            Type(By.Name("lastname"), contact.Lastname);
             return this;
         }
 
