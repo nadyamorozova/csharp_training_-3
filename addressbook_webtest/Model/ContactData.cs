@@ -45,7 +45,6 @@ namespace addressbook_webtest
         public override int GetHashCode()
         {
             return firstname.GetHashCode() & lastname.GetHashCode();
-
         }
 
         public override string ToString()

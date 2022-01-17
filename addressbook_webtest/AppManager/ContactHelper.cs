@@ -21,62 +21,65 @@ namespace addressbook_webtest
         {
             InitNewContactCreation();
             FillContactForm(contact);
-            SubmitContactModification();
+            SubmitContactCreation();
             manager.Navigator.ReturnToHomePage();
             return this;
         }
-
-          public int GetContactCount()
+        public int GetContactCount()
         {
             return driver.FindElements(By.CssSelector("tr[name='entry']")).Count;
         }
 
-        internal void Modify(ContactData newData)
-        {
-            throw new NotImplementedException();
-        }
-
+        private List<ContactData> contactCache = null;
         public List<ContactData> GetContactList()
         {
-           
-                List<ContactData> contacts = new List<ContactData>();
+            if (contactCache == null)
+            {
+                contactCache = new List<ContactData>();
                 manager.Navigator.GoToHomePage();
                 ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr[name='entry']"));
                 foreach (IWebElement element in elements)
                 {
-                    IList<IWebElement> cells = element.FindElements(By.TagName("td"));
-                    contacts.Add(new ContactData(element.Text, null));
-                    Console.WriteLine(element.Text);
-                    IList<IWebElement> lastnames =
-                    element.FindElements(By.CssSelector("td:nth-child(2)"));
-                    IList<IWebElement> firstnames = element.FindElements(By.CssSelector("td:nth-child(3)"));
-                    foreach (IWebElement lastname in lastnames) foreach (IWebElement firstname in firstnames)
+                    IWebElement lastname = element.FindElement(By.CssSelector("td:nth-child(2)"));
+                    IWebElement firstname = element.FindElement(By.CssSelector("td:nth-child(3)"));
+
+                    contactCache.Add(new ContactData(firstname.Text, lastname.Text)
                     {
-                        contacts.Add(new ContactData(firstname.Text, lastname.Text));
-                    }
+                        //Id =
+                    // element.FindElement(By.TagName("input")).GetAttribute("value")
+                    });
                 }
-            return contacts;
+            }
+            return new List<ContactData>(contactCache);
         }
 
-
-            public ContactHelper Modify(int p, ContactData newData)
+        public ContactHelper Modify( ContactData newData)
         {
+            GoToAddNewPAge();
+            FillContactForm(newData);
+            SubmitContactModification();
+            ReturnToAddNewPage();
 
-            SelectContact(p);
-            RemoveContact();
-            driver.SwitchTo().Alert().Accept();
-            manager.Navigator.GoToHomePage();
-            
             return this;
+        }
+
+        private void ReturnToAddNewPage()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void GoToAddNewPAge()
+        {
+            throw new NotImplementedException();
         }
 
         public ContactHelper Remove(int p)
         {
-           
+
             SelectContact(p);
             RemoveContact();
             driver.SwitchTo().Alert().Accept();
-           
+
             return this;
         }
 
@@ -101,13 +104,14 @@ namespace addressbook_webtest
         {
             Type(By.Name("firstname"), contact.Firstname);
             Type(By.Name("middlename"), contact.Middlename);
-            Type(By.Name("lastname"), contact.Lastname);
+            Type(By.Name("lastname"), contact.LastName);
             return this;
         }
 
         public ContactHelper SubmitContactCreation()
         {
             driver.FindElement(By.XPath("//div[@id='content']/form/input[21]")).Click();
+            contactCache = null;
             return this;
         }
 
@@ -119,6 +123,7 @@ namespace addressbook_webtest
         public ContactHelper SubmitContactModification()
         {
             driver.FindElement(By.Name("update")).Click();
+            contactCache = null;
             return this;
         }
         public ContactHelper SelectContact(int index)
@@ -131,49 +136,9 @@ namespace addressbook_webtest
         public ContactHelper RemoveContact()
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            contactCache = null;
             return this;
 
         }
-        public ContactData GetContactInformationFromEditForm(int index)
-        {
-            manager.Navigator.GoToHomePage();
-            InitContactModification(0);
-
-            string firstName = driver.FindElement(By.Name("firstname")).GetAttribute("value");
-            string lastName  = driver.FindElement(By.Name("lastname")).GetAttribute("value");
-            string address  = driver.FindElement(By.Name("address")).GetAttribute("value");
-
-            string homePhone = driver.FindElement(By.Name("home")).GetAttribute("value");
-            string mobilePhone = driver.FindElement(By.Name("mobile")).GetAttribute("value");
-            string workPhone = driver.FindElement(By.Name("work")).GetAttribute("value");
-
-            return new ContactData(firstName, lastName)
-            {
-                Address = address,
-                HomePhone = homePhone,
-                MobilePhone = mobilePhone,
-                WorkPhone = workPhone
-            };
-            
-            throw new NotImplementedException();
-        }
-
-        public ContactData GetContactInformationFromTable(int index)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
-
-
-//IWebElement lastname = element.FindElement(By.CssSelector("td:nth-child(2)"));
-//IWebElement firstname = element.FindElement(By.CssSelector("td:nth-child(3)"));
-
-//contactCache.Add(new ContactData(firstname.Text, lastname.Text)
-//{
- //   Id =
-// element.FindElement(By.TagName("input")).GetAttribute("value")
-//});
-             
-           // return new List<ContactData>(contactCache);
-     
