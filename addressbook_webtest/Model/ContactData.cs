@@ -10,9 +10,11 @@ namespace addressbook_webtest
     {
         private string firstname;
         private string lastname;
-
+        private string address;
+        private string mobile;
+        private string email;
     
-       public ContactData(string firstname, string lastname)
+       public ContactData(string firstname, string lastname, string address, string mobile, string email)
         {
             
           Firstname = firstname;
@@ -22,7 +24,10 @@ namespace addressbook_webtest
         {
             lastname = v;
         }
-      
+
+        public ContactData(string v, string v1) : this(v)
+        {
+        }
 
         public bool Equals(ContactData other)
         {
@@ -34,7 +39,8 @@ namespace addressbook_webtest
             {
                 return true;
             }
-            return Firstname == other.Firstname && Lastname == other.Lastname;
+            return Firstname == other.Firstname;  
+            return Lastname == other.Lastname;
 
         }
 
@@ -67,11 +73,9 @@ namespace addressbook_webtest
         }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
-        public string Secondname { get; set; }
         public string Address { get; set; }
-        public string HomePhone { get; set; }
-        public string MobilePhone { get; set; }
-        public string WorkPhone { get; set; }
+         public string Mobile { get; set; }
+        public string Email { get; set; }
 
     }
 }

@@ -14,7 +14,7 @@ namespace addressbook_webtest
         [Test]
         public void GroupCreationTest()
         {
-            GroupData group = (new GroupData("December"));
+            GroupData group = (new GroupData("Test"));
             group.Header = "January";
             group.Footer = "February";
 
@@ -52,26 +52,25 @@ namespace addressbook_webtest
             Assert.AreEqual(oldGroups, newGroups);
         }
 
-        [Test]
+        //[Test]
         
-        public void BadNameGroupCreationTest()
-        {
-            GroupData group = (new GroupData("x'x"));
-            group.Header = "";
-            group.Footer = "";
+        //public void BadNameGroupCreationTest()
+        //{
+        //    GroupData group = (new GroupData("x'x"));
+        //    group.Header = "";
+        //    group.Footer = "";
 
-            List<GroupData> oldGroups = app.Groups.GetGroupList();
+        //    List<GroupData> oldGroups = app.Groups.GetGroupList();
 
-            app.Groups.Create(group);
+        //    app.Groups.Create(group);
 
-            Assert.AreEqual(oldGroups.Count +1, app.Groups.GetGroupCount());
+        //    Assert.AreEqual(oldGroups.Count +1, app.Groups.GetGroupCount());
 
 
-            List<GroupData> newGroups = app.Groups.GetGroupList();
-            oldGroups.Add(group);
-            oldGroups.Sort();
-            newGroups.Sort();
-            Assert.AreEqual(oldGroups, newGroups);
+        //    List<GroupData> newGroups = app.Groups.GetGroupList();
+        //    oldGroups.Add(group);
+        //    oldGroups.Sort();
+        //    newGroups.Sort();
+        //    Assert.AreEqual(oldGroups, newGroups);
         }
     }
-}

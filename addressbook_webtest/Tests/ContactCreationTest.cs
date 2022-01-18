@@ -16,7 +16,12 @@ namespace addressbook_webtest
         {
 
             ContactData contacts = (new ContactData("J","Lo"));
+            contacts.Firstname = "Lora";
             contacts.Lastname = "Morozova";
+            contacts.Address = "Arbat";
+            contacts.Mobile = "777";
+            contacts.Email = "ya@ya.ru";
+
 
             List<ContactData> oldContacts = app.Contacts.GetContactList();
             
