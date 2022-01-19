@@ -54,7 +54,6 @@ namespace addressbook_webtest
 
                 public ContactHelper Modify(int p, ContactData newData)
                 {
-                    IsContactPresent();
                     InitContactModification(p);
                     FillContactForm(newData);
                     SubmitContactModification();
@@ -62,17 +61,7 @@ namespace addressbook_webtest
 
                     return this;
                 }
-
-                private void ReturnToAddNewPage()
-                {
-                    throw new NotImplementedException();
-                }
-
-                private void GoToAddNewPAge()
-                {
-                    throw new NotImplementedException();
-                }
-
+             
                 public ContactHelper Remove(int p)
                 {
 
