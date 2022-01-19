@@ -43,101 +43,98 @@ namespace addressbook_webtest
                     IWebElement lastname = element.FindElement(By.CssSelector("td:nth-child(2)"));
                     IWebElement firstname = element.FindElement(By.CssSelector("td:nth-child(3)"));
 
-                    contactCache.Add(new ContactData(firstname.Text, lastname.Text)
-                    {
-                        //Id =
-                    // element.FindElement(By.TagName("input")).GetAttribute("value")
-                    });
+                    contactCache.Add(new ContactData(firstname.Text, lastname.Text));
+                    
+                        //Id = element.FindElement(By.TagName("input")).GetAttribute("value"));
                 }
             }
-            return new List<ContactData>(contactCache);
-        }
 
-        public ContactHelper Modify( ContactData newData)
-        {
-            GoToAddNewPAge();
-            FillContactForm(newData);
-            SubmitContactModification();
-            ReturnToAddNewPage();
+                 return new List<ContactData>(contactCache);
+                }
 
-            return this;
-        }
+                public ContactHelper Modify(int p, ContactData newData)
+                {
+                    IsContactPresent();
+                    InitContactModification(p);
+                    FillContactForm(newData);
+                    SubmitContactModification();
+                    manager.Navigator.ReturnToHomePage();
 
-        private void ReturnToAddNewPage()
-        {
-            throw new NotImplementedException();
-        }
+                    return this;
+                }
 
-        private void GoToAddNewPAge()
-        {
-            throw new NotImplementedException();
-        }
+                private void ReturnToAddNewPage()
+                {
+                    throw new NotImplementedException();
+                }
 
-        public ContactHelper Remove(int p)
-        {
+                private void GoToAddNewPAge()
+                {
+                    throw new NotImplementedException();
+                }
 
-            SelectContact(p);
-            RemoveContact();
-            driver.SwitchTo().Alert().Accept();
+                public ContactHelper Remove(int p)
+                {
 
-            return this;
-        }
+                    SelectContact(p);
+                    RemoveContact();
+                    driver.SwitchTo().Alert().Accept();
+                    return this;
+                }
 
-        public ContactHelper IsContactPresent()
-        {
-            if (!IsElementPresent(By.XPath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")))
-            {
-                ContactData contact = (new ContactData("J", "Lo"));
-                
+                public ContactHelper IsContactPresent()
+                {
+                    if (!IsElementPresent(By.XPath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")))
+                    {
+                        ContactData contact = (new ContactData("J", "Lo"));
+                        Create(contact);
+                    }
+                    return this;
+                }
 
-                Create(contact);
-            }
-            return this;
-        }
+                public ContactHelper InitNewContactCreation()
+                {
+                    driver.FindElement(By.LinkText("add new")).Click();
+                    return this;
+                }
+                public ContactHelper FillContactForm(ContactData contact)
+                {
+                    Type(By.Name("firstname"), contact.Firstname);
+                    Type(By.Name("lastname"), contact.Lastname);
+                    return this;
+                }
 
-        public ContactHelper InitNewContactCreation()
-        {
-            driver.FindElement(By.LinkText("add new")).Click();
-            return this;
-        }
-        public ContactHelper FillContactForm(ContactData contact)
-        {
-            Type(By.Name("firstname"), contact.Firstname);
-            Type(By.Name("lastname"), contact.Lastname);
-            return this;
-        }
+                public ContactHelper SubmitContactCreation()
+                {
+                    driver.FindElement(By.XPath("//div[@id='content']/form/input[21]")).Click();
+                    contactCache = null;
+                    return this;
+                }
 
-        public ContactHelper SubmitContactCreation()
-        {
-            driver.FindElement(By.XPath("//div[@id='content']/form/input[21]")).Click();
-            contactCache = null;
-            return this;
-        }
+                public ContactHelper InitContactModification(int index)
+                {
+                    driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[" + index + "]/td[8]/a/img")).Click();
+                    return this;
+                }
+                public ContactHelper SubmitContactModification()
+                {
+                    driver.FindElement(By.Name("update")).Click();
+                    return this;
+                }
+                public ContactHelper SelectContact(int index)
+                {
+                    driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[" + index + "]/td/input")).Click();
+                    return this;
+                }
 
-        public ContactHelper InitContactModification(int index)
-        {
-            driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[" + index + "]/td[8]/a/img")).Click();
-            return this;
-        }
-        public ContactHelper SubmitContactModification()
-        {
-            driver.FindElement(By.Name("update")).Click();
-            contactCache = null;
-            return this;
-        }
-        public ContactHelper SelectContact(int index)
-        {
-            driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[" + index + "]/td/input")).Click();
-            return this;
+                public ContactHelper RemoveContact()
+                {
+                    driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+                    return this;
+                }
+            } 
+        } 
+    
 
-        }
 
-        public ContactHelper RemoveContact()
-        {
-            driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
-            contactCache = null;
-            return this;
 
-        }
-    }
-}

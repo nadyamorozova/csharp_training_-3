@@ -15,7 +15,7 @@ namespace addressbook_webtest
         public void ContactCreationTest()
         {
 
-            ContactData contacts = (new ContactData("J","Lo"));
+            ContactData contacts = new ContactData("J","Lo");
             contacts.Firstname = "Lora";
             contacts.Lastname = "Morozova";
             contacts.Address = "Arbat";

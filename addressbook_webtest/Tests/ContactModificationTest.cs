@@ -13,27 +13,11 @@ namespace addressbook_webtest
         [Test]
         public void ContactModificationTests()
         {
-            ContactData newData = new ContactData("Rename");
-            newData.Lastname = "Brinzeva";
-            newData.Address = "USA";
+            ContactData newData = (new ContactData("J", "Lo"));
+            newData.Lastname = "OOO";
+
             app.Contacts.IsContactPresent();
-
-            List<ContactData> oldContacts = app.Contacts.GetContactList();
-            ContactData oldData = oldContacts[0];
-
-            app.Contacts.Modify(newData);
-
-           
-            
-            List<ContactData> newContacts = app.Contacts.GetContactList();
-            
-            oldContacts[0].Firstname = newData.Firstname;
-            oldContacts[0].Lastname = newData.Lastname;
-
-            oldContacts.Sort();
-            newContacts.Sort();
-
-            Assert.AreEqual(oldContacts, oldContacts);
+            app.Contacts.Modify(2, newData);
         }
     }
 }
