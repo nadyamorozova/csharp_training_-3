@@ -20,8 +20,9 @@ namespace addressbook_webtest
 
             List<GroupData> oldGroups = app.Groups.GetGroupList();
             app.Groups.Create(group);
+            Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
 
-         
+
 
             List<GroupData> newGroups = app.Groups.GetGroupList();
             oldGroups.Add(group);
@@ -42,39 +43,37 @@ namespace addressbook_webtest
 
             app.Groups.Create(group);
 
+            Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
+
             List<GroupData> newGroups = app.Groups.GetGroupList();
-            Assert.AreEqual(oldGroups.Count + 1, newGroups.Count);
+           
+            oldGroups.Add(group);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
         }
     }
 }
 
 
-    //Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
-    //    oldGroups.Add(group);
-    //    oldGroups.Sort();
-    //    newGroups.Sort();
-    //    Assert.AreEqual(oldGroups, newGroups);
-    //}
+//[Test]
 
-    //[Test]
+//public void BadNameGroupCreationTest()
+//{
+//    GroupData group = (new GroupData("x'x"));
+//    group.Header = "";
+//    group.Footer = "";
 
-    //public void BadNameGroupCreationTest()
-    //{
-    //    GroupData group = (new GroupData("x'x"));
-    //    group.Header = "";
-    //    group.Footer = "";
+//    List<GroupData> oldGroups = app.Groups.GetGroupList();
 
-    //    List<GroupData> oldGroups = app.Groups.GetGroupList();
+//    app.Groups.Create(group);
 
-    //    app.Groups.Create(group);
-
-    //    Assert.AreEqual(oldGroups.Count +1, app.Groups.GetGroupCount());
+//    Assert.AreEqual(oldGroups.Count +1, app.Groups.GetGroupCount());
 
 
-    //    List<GroupData> newGroups = app.Groups.GetGroupList();
-    //    oldGroups.Add(group);
-    //    oldGroups.Sort();
-    //    newGroups.Sort();
-    //    Assert.AreEqual(oldGroups, newGroups);
+//    List<GroupData> newGroups = app.Groups.GetGroupList();
+//    oldGroups.Add(group);
+//    oldGroups.Sort();
+//    newGroups.Sort();
+//    Assert.AreEqual(oldGroups, newGroups);
 
-    
