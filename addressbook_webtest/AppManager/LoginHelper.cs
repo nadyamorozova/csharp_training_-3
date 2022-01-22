@@ -46,11 +46,18 @@ namespace addressbook_webtest
             throw new NotImplementedException();
         }
 
-            public bool IsLoggedIn(AccountData account)
-            {
-                return IsLoggedIn()
-                    && driver.FindElement(By.Name("logout")).FindElement(By.TagName("b")).Text
-                        == "(" + account.Username + ")";
+        public bool IsLoggedIn(AccountData account)
+        {
+            return IsLoggedIn()
+                && GetLoggeddUserName() == account.Username;
+        }
+
+        public string GetLoggeddUserName()
+        {
+            string text =
+            driver.FindElement(By.Name("logout")).FindElement(By.TagName("b")).Text;
+
+            return text.Substring(1,text.Length-2);
 
             }
         }

@@ -19,7 +19,7 @@ namespace addressbook_webtest
             contacts.Firstname = "Lora";
             contacts.Lastname = "Morozova";
             contacts.Address = "Arbat";
-            contacts.Mobile = "777";
+            contacts.MobilePhone = "777";
             contacts.Email = "ya@ya.ru";
 
 

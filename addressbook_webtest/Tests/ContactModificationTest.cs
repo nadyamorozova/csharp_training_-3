@@ -20,7 +20,7 @@ namespace addressbook_webtest
             List<ContactData> oldContact = app.Contacts.GetContactList();
             ContactData oldData = oldContact[0];
 
-            app.Contacts.Modify(2, newData);
+            app.Contacts.Modify(newData);
 
             Assert.AreEqual(oldContact.Count, app.Contacts.GetContactCount());
 
