@@ -25,34 +25,58 @@ namespace addressbook_webtest
             manager.Navigator.ReturnToHomePage();
             return this;
         }
+
+       
         public int GetContactCount()
         {
             return driver.FindElements(By.CssSelector("tr[name='entry']")).Count;
         }
 
         private List<ContactData> contactCache = null;
+
         public List<ContactData> GetContactList()
         {
-            if (contactCache == null)
+            List<ContactData> contacts = new List<ContactData>();
+            manager.Navigator.GoToHomePage();
+            ICollection<IWebElement> elements =
+            driver.FindElements(By.CssSelector("tr[name='entry']"));
+            foreach (IWebElement element in elements)
             {
-                contactCache = new List<ContactData>();
-                manager.Navigator.GoToHomePage();
-                ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr[name='entry']"));
-                foreach (IWebElement element in elements)
-                {
-                    IWebElement lastname = element.FindElement(By.CssSelector("td:nth-child(2)"));
-                    IWebElement firstname = element.FindElement(By.CssSelector("td:nth-child(3)"));
+                IList<IWebElement> cells = element.FindElements(By.TagName("td"));
+                contacts.Add(new ContactData(element.Text, null));
+                Console.WriteLine(element.Text);
 
-                    contactCache.Add(new ContactData(firstname.Text, lastname.Text));
+                IList<IWebElement> lastnames =
+                element.FindElements(By.CssSelector("td:nth-child(2)"));
+                IList<IWebElement> firstnames =
+                element.FindElements(By.CssSelector("td:nth-child(3)"));
+                foreach (IWebElement lastname in lastnames) 
+                foreach (IWebElement firstname in firstnames)
                     
-                        //Id = element.FindElement(By.TagName("input")).GetAttribute("value"));
+                {
+                contacts.Add(new ContactData(firstname.Text, lastname.Text));
                 }
+
             }
+            return contacts;
+        }
+            //if (contactCache == null)
+            //{
+            //    contactCache = new List<ContactData>();
+            //    manager.Navigator.GoToHomePage();
+            //    ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr[name='entry']"));
+            //    foreach (IWebElement element in elements)
+            //    {
+            //        IWebElement lastname = element.FindElement(By.CssSelector("td:nth-child(2)"));
+            //        IWebElement firstname = element.FindElement(By.CssSelector("td:nth-child(3)"));
 
-                 return new List<ContactData>(contactCache);
-                }
+            //        contactCache.Add(new ContactData(firstname.Text, lastname.Text));
+                    
+            //            //Id = element.FindElement(By.TagName("input")).GetAttribute("value"));
+                
+            
 
-                public ContactHelper Modify(int p, ContactData newData)
+                           public ContactHelper Modify(int p, ContactData newData)
                 {
                     InitContactModification(p);
                     FillContactForm(newData);

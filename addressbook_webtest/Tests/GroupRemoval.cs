@@ -21,8 +21,7 @@ namespace addressbook_webtest
             app.Groups.Remove(0);
             List<GroupData> newGroups = app.Groups.GetGroupList();
             oldGroups.RemoveAt(0);
-            
-            app.Groups.IsGroupPresent();
+          
             Assert.AreEqual(oldGroups, newGroups);
 
 

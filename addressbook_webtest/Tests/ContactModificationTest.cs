@@ -15,9 +15,20 @@ namespace addressbook_webtest
         {
             ContactData newData = (new ContactData("J", "Lo"));
             newData.Lastname = "OOO";
+        
 
-            app.Contacts.IsContactPresent();
+            List<ContactData> oldContact = app.Contacts.GetContactList();
             app.Contacts.Modify(2, newData);
+            List<ContactData> newContact = app.Contacts.GetContactList();
+
+            
+            oldContact[0].Lastname = newData.Lastname;
+
+            oldContact.Sort();
+            newContact.Sort();
+
+            Assert.AreEqual(oldContact, oldContact);
+
         }
     }
 }

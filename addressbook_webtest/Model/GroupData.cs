@@ -8,12 +8,21 @@ namespace addressbook_webtest
 {
     public class GroupData : IEquatable<GroupData>, IComparable<GroupData>
     {
+        private string v;
 
-
-        public GroupData(string name)
+        public GroupData(string name, string header, string footer)
         {
             Name = name;
+            Header = header;
+            Footer = footer;
+
         }
+
+        public GroupData(string v)
+        {
+            this.v = v;
+        }
+
         public bool Equals(GroupData other)
         {
             if (Object.ReferenceEquals(other, null))

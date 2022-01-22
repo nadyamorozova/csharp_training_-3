@@ -21,7 +21,7 @@ namespace addressbook_webtest
             List<GroupData> oldGroups = app.Groups.GetGroupList();
             app.Groups.Create(group);
 
-            Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
+         
 
             List<GroupData> newGroups = app.Groups.GetGroupList();
             oldGroups.Add(group);
@@ -36,41 +36,45 @@ namespace addressbook_webtest
             GroupData group = (new GroupData(""));
             group.Header = "";
             group.Footer = "";
-           
+
 
             List<GroupData> oldGroups = app.Groups.GetGroupList();
 
             app.Groups.Create(group);
 
-            Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
-
-
             List<GroupData> newGroups = app.Groups.GetGroupList();
-            oldGroups.Add(group);
-            oldGroups.Sort();
-            newGroups.Sort();
-            Assert.AreEqual(oldGroups, newGroups);
-        }
-
-        //[Test]
-        
-        //public void BadNameGroupCreationTest()
-        //{
-        //    GroupData group = (new GroupData("x'x"));
-        //    group.Header = "";
-        //    group.Footer = "";
-
-        //    List<GroupData> oldGroups = app.Groups.GetGroupList();
-
-        //    app.Groups.Create(group);
-
-        //    Assert.AreEqual(oldGroups.Count +1, app.Groups.GetGroupCount());
-
-
-        //    List<GroupData> newGroups = app.Groups.GetGroupList();
-        //    oldGroups.Add(group);
-        //    oldGroups.Sort();
-        //    newGroups.Sort();
-        //    Assert.AreEqual(oldGroups, newGroups);
+            Assert.AreEqual(oldGroups.Count + 1, newGroups.Count);
         }
     }
+}
+
+
+    //Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
+    //    oldGroups.Add(group);
+    //    oldGroups.Sort();
+    //    newGroups.Sort();
+    //    Assert.AreEqual(oldGroups, newGroups);
+    //}
+
+    //[Test]
+
+    //public void BadNameGroupCreationTest()
+    //{
+    //    GroupData group = (new GroupData("x'x"));
+    //    group.Header = "";
+    //    group.Footer = "";
+
+    //    List<GroupData> oldGroups = app.Groups.GetGroupList();
+
+    //    app.Groups.Create(group);
+
+    //    Assert.AreEqual(oldGroups.Count +1, app.Groups.GetGroupCount());
+
+
+    //    List<GroupData> newGroups = app.Groups.GetGroupList();
+    //    oldGroups.Add(group);
+    //    oldGroups.Sort();
+    //    newGroups.Sort();
+    //    Assert.AreEqual(oldGroups, newGroups);
+
+    
