@@ -18,7 +18,7 @@ namespace addressbook_webtest
             ContactData contacts = new ContactData("J","Lo");
             contacts.Address = "Arbat";
             contacts.MobilePhone = "777";
-            contacts.Email = "ya@ya.ru";
+            contacts.AllEmail = "ya@ya.ru";
 
 
             List<ContactData> oldContacts = app.Contacts.GetContactList();

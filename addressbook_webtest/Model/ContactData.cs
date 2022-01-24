@@ -19,7 +19,7 @@ namespace addressbook_webtest
             Address = address;
             MobilePhone = mobile;
             WorkPhone = WorkPhone;
-            Email = email;
+            AllEmail = email;
         }
 
         public bool Equals(ContactData other)
