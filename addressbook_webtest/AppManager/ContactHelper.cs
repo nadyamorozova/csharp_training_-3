@@ -169,7 +169,7 @@ namespace addressbook_webtest
                 public ContactHelper SelectContact(int index)
                 {
                     driver.FindElement(By.LinkText("home")).Click();
-                    driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[" + index + "]/td/input")).Click();
+                    driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + (index + 1) + "]")). Click();
                     return this;
                 }
 
