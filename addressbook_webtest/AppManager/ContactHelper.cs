@@ -89,9 +89,9 @@ namespace addressbook_webtest
                     IList<IWebElement> cells = element.FindElements(By.TagName("td"));
                     IWebElement Lastname = cells[1];
                     IWebElement Firstname = cells[2];
-                    contactCache.Add(new ContactData(firstname.Text, lastname.Text));
-                    {
-
+                    contactCache.Add(new ContactData(firstname.Text, lastname.Text)
+                    {                     
+                    
                         Id = element.FindElement(By.TagName("input")).GetAttribute("value")
                     });
                 }
@@ -102,8 +102,8 @@ namespace addressbook_webtest
             
          public ContactHelper Modify(ContactData newData)
                 {
-                    SelectContact(0);
-                    InitContactModification(0);
+                    
+                    InitContactModification(1);
                     FillContactForm(newData);
                     SubmitContactModification();
                     manager.Navigator.ReturnToHomePage();
@@ -152,7 +152,7 @@ namespace addressbook_webtest
                     return this;
                 }
 
-                public ContactHelper InitContactModification()
+                public ContactHelper InitContactModification(int v)
                 {
                  driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
 

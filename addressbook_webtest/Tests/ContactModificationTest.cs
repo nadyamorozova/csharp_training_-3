@@ -13,9 +13,10 @@ namespace addressbook_webtest
         [Test]
         public void ContactModificationTests()
         {
-            ContactData newData = (new ContactData("J", "Lo"));
-            newData.Lastname = "OOO";
-
+            ContactData newData = new ContactData("Rename");
+            newData.Lastname = "Lopez";
+            newData.Address = "Russia";
+            
 
             List<ContactData> oldContact = app.Contacts.GetContactList();
             ContactData oldData = oldContact[0];
@@ -28,6 +29,7 @@ namespace addressbook_webtest
 
 
             oldContact[0].Lastname = newData.Lastname;
+            oldContact[0].Firstname = newData.Firstname;
 
             oldContact.Sort();
             newContact.Sort();

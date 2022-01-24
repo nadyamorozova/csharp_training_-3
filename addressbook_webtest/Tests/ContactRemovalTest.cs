@@ -16,7 +16,7 @@ namespace addressbook_webtest
         public void ContactRemovalTests()
         {
             List<ContactData> oldContacts = app.Contacts.GetContactList();
-            app.Contacts.Remove(0);
+            app.Contacts.Remove(1);
             Assert.AreEqual(oldContacts.Count - 1, app.Contacts.GetContactCount());
             List<ContactData> newContacts = app.Contacts.GetContactList();
             oldContacts.RemoveAt(0);
