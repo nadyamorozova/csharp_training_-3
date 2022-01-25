@@ -141,7 +141,7 @@ namespace addressbook_webtest
                     Type(By.Name("lastname"), contact.Lastname);
                     Type(By.Name("address"), contact.Address);
                     Type(By.Name("mobile"), contact.MobilePhone);
-                    Type(By.Name("email"), contact.AllEmail);
+                    Type(By.Name("email"), contact.Email);
                     return this;
                 }
 
