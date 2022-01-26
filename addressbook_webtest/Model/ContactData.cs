@@ -79,7 +79,6 @@ namespace addressbook_webtest
         public string MobilePhone { get; set; }
         public string Email { get; set; }
         public string Email2 { get; set; }
-        
         public string Email3 { get; set; }
         public string WorkPhone { get; internal set; }
         public string Id { get; set; }
@@ -123,9 +122,7 @@ namespace addressbook_webtest
                 allEmails = value;
             }
         }
-     
-
-        private string CleanUp(string phone)
+             private string CleanUp(string phone)
         {
             if (phone == null || phone == "")
             {
