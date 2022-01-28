@@ -151,19 +151,18 @@ namespace addressbook_webtest
 
 
                     IList<IWebElement> cells = element.FindElements(By.TagName("td"));
-                    IWebElement Lastname = cells[1];
-                    IWebElement Firstname = cells[2];
-                    contactCache.Add(new ContactData(firstname.ToString(), lastname.ToString())
+                    IWebElement lastname = cells[1];
+                    IWebElement firstname = cells[2];
+                    contactCache.Add(new ContactData(firstname.Text, lastname.Text)
                     {
                         Id = element.FindElement(By.TagName("input")).GetAttribute("value")
                     });
                 }
+            }
 
                 return new List<ContactData>(contactCache);
             }
 
-            return null;
-        }
 
         public ContactHelper Modify(ContactData newData)
         {
