@@ -29,15 +29,15 @@ namespace addressbook_webtest
 
 
         [Test, TestCaseSource("RandomGroupDataProvider")]
-        public void GroupCreationTests(GroupData groupData)
+        public void GroupCreationTests(GroupData group)
         {
             List<GroupData> oldGroups = app.Groups.GetGroupList();
-            app.Groups.Create(groupData);
+            app.Groups.Create(group);
             Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
 
             List<GroupData> newGroups = app.Groups.GetGroupList();
 
-            oldGroups.Add(groupData);
+            oldGroups.Add(group);
             oldGroups.Sort();
             newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);

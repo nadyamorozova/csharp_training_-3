@@ -56,7 +56,7 @@ namespace addressbook_webtest
 
         public override string ToString()
         {
-            return $"contact = {Lastname} {Firstname}";
+            return "Firstname=" + Firstname + "\nMiddlename= " + Middlename + "\nLastname= " + Lastname;
         }
 
          public int CompareTo(ContactData other)
