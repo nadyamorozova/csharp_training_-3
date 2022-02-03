@@ -5,17 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 
-//namespace addressbook_webtest
+namespace addressbook_webtest
 
-////{
-////    [TestFixture]
-////    public class SearchTests : AuthTestBase
-////    {
-////        [Test]
-////        //public void TestSearch()
-////        ////{
-////        //    System.Console.Out.Write(app.Contacts.GetNumberOfSearchResult());
-////        //}
+{
+    [TestFixture]
+    public class SearchTests : AuthTestBase
+    {
+        [Test]
+        public void TestSearch()
+        {
+            System.Console.Out.Write(app.Contacts.GetNumberOfSearchResult());
+        }
 
-    
-////}
+    }
+}

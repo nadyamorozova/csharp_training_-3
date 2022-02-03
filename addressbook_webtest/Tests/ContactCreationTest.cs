@@ -4,13 +4,12 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using NUnit.Framework;
 using System.Collections.Generic;
-
 namespace addressbook_webtest
 {
     [TestFixture]
     public class ContactCreationTests : AuthTestBase
     {
-        
+
         [Test]
         public void ContactCreationTest()
         {
@@ -19,15 +18,13 @@ namespace addressbook_webtest
             contacts.Address = "Arbat";
             contacts.MobilePhone = "777";
             contacts.AllEmail = "ya@ya.ru";
-
-
             List<ContactData> oldContacts = app.Contacts.GetContactList();
-            
+
 
             app.Contacts.Create(contacts);
 
-            //Assert.AreEqual(oldContacts.Count + 1, app.Contacts.GetContactCount());
-            
+            Assert.AreEqual(oldContacts.Count + 1, app.Contacts.GetContactCount());
+
             List<ContactData> newContacts = app.Contacts.GetContactList();
             oldContacts.Add(contacts);
             oldContacts.Sort();

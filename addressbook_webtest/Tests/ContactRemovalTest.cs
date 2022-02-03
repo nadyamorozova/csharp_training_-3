@@ -4,14 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
-
 namespace addressbook_webtest
 {
-
     [TestFixture]
     public class ContactRemovalTest : AuthTestBase
     {
-
         [Test]
         public void ContactRemovalTests()
         {
@@ -22,12 +19,5 @@ namespace addressbook_webtest
             oldContacts.RemoveAt(0);
             Assert.AreEqual(oldContacts, newContacts);
         }
-    } 
+    }
 }
-
-
-            
- 
-      
-          
-         
