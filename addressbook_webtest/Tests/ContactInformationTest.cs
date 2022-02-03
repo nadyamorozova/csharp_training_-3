@@ -11,25 +11,23 @@ namespace addressbook_webtest
     public class ContactInformationTest : AuthTestBase
     {
         [Test]
-        public void TestContactInformation()
+        public void ContactInformationTests()
         {
 
             ContactData fromTable = app.Contacts.GetContactInformationFromTable(0);
-            ContactData fromForm = app.Contacts.GetContactInformationFromEditForm(0);
+            ContactData fromForm = app.Contacts.GetContactInformationFromEditForm();
 
-            //verification  проверки
             Assert.AreEqual(fromTable, fromForm);
-            Assert.AreEqual(fromTable.Address, fromForm.Address);
+            Assert.AreEqual(fromTable.Address, fromForm.Address.Trim());
             Assert.AreEqual(fromTable.AllPhones, fromForm.AllPhones);
             Assert.AreEqual(fromTable.AllEmail, fromForm.AllEmail);
         }
 
-
         [Test]
         public void ContactDetailTest()
         {
-            string fromDetails = app.Contacts.GetContactInformationProperties();
-            ContactData fromForm = app.Contacts.GetContactInformationFromEditForm(0);
+            string fromDetails = app.Contacts.GetContactInformationFromDetailsForm();
+            ContactData fromForm = app.Contacts.GetContactInformationFromEditForm();
 
 
             Assert.AreEqual(fromDetails, fromForm.AllDetails);

@@ -11,7 +11,7 @@ namespace addressbook_webtest
     {
 
         public string allPhones;
-        public string AllDetails;
+        public string allDetails;
         public string allEmails;
         public string fullNameNicknameblock;
         public string titleCompAddrBlock;
@@ -19,7 +19,7 @@ namespace addressbook_webtest
         public string emailHomepageBlock;
         public string birthAnnivBlock;
         public string secondaryBlock;
-     
+        private string v;
 
         public ContactData(string firstname, string lastname)
         {
@@ -27,17 +27,19 @@ namespace addressbook_webtest
             Firstname = firstname;
             Lastname = lastname; 
         }
-        public ContactData(String name)
+
+        public ContactData(string v)
         {
-            Firstname = name;
+            this.v = v;
         }
+
         public bool Equals(ContactData other)
         {
-            if (ReferenceEquals(other, null))
+            if (Object.ReferenceEquals(other, null))
             {
                 return false;
             }
-            if (ReferenceEquals(this, other))
+            if (Object.ReferenceEquals(this, other))
             {
                 return true;
             }
@@ -45,16 +47,19 @@ namespace addressbook_webtest
 
         }
 
+
+
         public override int GetHashCode()
         {
-            return Firstname.GetHashCode() & Firstname.GetHashCode();
-        }
-        public override string ToString()
-        {
-            return "Firstname" + Firstname + "\nMiddlename= " + Middlename + "\nLastname= " + Lastname;
+            return Lastname.GetHashCode() & Firstname.GetHashCode();
         }
 
-        public int CompareTo(ContactData other)
+        public override string ToString()
+        {
+            return $"contact = {Lastname} {Firstname}";
+        }
+
+         public int CompareTo(ContactData other)
         {
             if (Object.ReferenceEquals(other, null))
             {
@@ -103,8 +108,7 @@ namespace addressbook_webtest
 
         public string GetAge(string day, string month, string year, string fieldName)
         {
-            if (day == null) return null;
-
+           
             int monthNumber = 0;
             int Age;
             switch (month)
@@ -174,6 +178,8 @@ namespace addressbook_webtest
                     FullDate = month;
                 }
             }
+
+
             if (year != null && year != "")
             {
                 if (FullDate != "")
@@ -299,7 +305,7 @@ namespace addressbook_webtest
         }
 
                 
-            public string allDetails
+            public string AllDetails
             {
               get
               {
@@ -334,6 +340,7 @@ namespace addressbook_webtest
                             allDetails2 = titleBlock;
                         }
                     }
+
                     if (phoneBlock != "")
                     {
                         if (allDetails2 != "")
@@ -396,33 +403,27 @@ namespace addressbook_webtest
         {
             get
             {
-                string fullNameNicknameblock = "";
-                string fullName = ReturnFullName(Firstname.Trim(), Middlename.Trim(), Lastname.Trim());
-                if (fullName != null && fullName != "")
+                if (fullNameNicknameblock != null)
                 {
-                    fullNameNicknameblock = fullName.Trim();
+                    return fullNameNicknameblock;
                 }
-                if (Nickname != null && Nickname != "")
+                else
+                
                 {
-                    if (fullNameNicknameblock != null && fullNameNicknameblock != "")
-                    {
-                        fullNameNicknameblock += "\r\n" + Nickname.Trim();
-                    }
-                    else
-                    {
-                        fullNameNicknameblock = Nickname.Trim();
-                    }
+                        if (ReturnFullName(Firstname.Trim(), Middlename.Trim(), Lastname.Trim()) != "")
+                        {
+                            return (ReturnFullName(Firstname.Trim(), Middlename.Trim(), Lastname.Trim()) + "\r\n" + Nickname.Trim());
+                        }
+                        else
+                        return (ReturnDetailwithoutRN(Nickname));
                 }
-                return fullNameNicknameblock;
             }
+
             set
             {
                 fullNameNicknameblock = value;
             }
         }
-
-
-
         public string TitleCompAddrBlock
         {
             get
@@ -495,6 +496,8 @@ namespace addressbook_webtest
                         phonesBlock = ("W: " + WorkPhone.Trim()).Trim();
                     }
                 }
+
+
                 if (Fax != null && Fax != "")
                 {
                     if (phonesBlock != null && phonesBlock != "")
@@ -506,6 +509,7 @@ namespace addressbook_webtest
                         phonesBlock = ("F: " + Fax.Trim()).Trim();
                     }
                 }
+
                 return phonesBlock;
             }
             set
@@ -726,6 +730,9 @@ namespace addressbook_webtest
 }
 
 
-
+//public ContactData(String name)
+//{
+//    Firstname = name;
+//}
 
 
