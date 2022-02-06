@@ -19,7 +19,7 @@ namespace addressbook_webtest
         public string emailHomepageBlock;
         public string birthAnnivBlock;
         public string secondaryBlock;
-        private string v;
+       
 
         public ContactData(string firstname, string lastname)
         {
@@ -27,11 +27,11 @@ namespace addressbook_webtest
             Firstname = firstname;
             Lastname = lastname; 
         }
-
-        public ContactData(string v)
+        public ContactData(string firstname)
         {
-            this.v = v;
+            this.Firstname = firstname;
         }
+       
 
         public bool Equals(ContactData other)
         {
