@@ -76,8 +76,6 @@ namespace addressbook_webtest
             return 0;
         }
        
-
-
         public string Firstname { get; set; }
         public string Middlename { get; set; }
         public string Lastname { get; set; }
@@ -204,10 +202,7 @@ namespace addressbook_webtest
             }
             else return "";
         }
-
-
-
-        public string GetAnniversary(string day, string month, string year, string fieldName)
+         public string GetAnniversary(string day, string month, string year, string fieldName)
         {
             if (day == null) return null;
 
