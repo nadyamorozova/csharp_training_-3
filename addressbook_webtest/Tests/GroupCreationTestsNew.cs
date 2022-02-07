@@ -32,6 +32,7 @@ namespace addressbook_webtest
             return groups;
         }
 
+
         public static IEnumerable<GroupData> GroupDataFromCsvFile()
         {
             List<GroupData> groups = new List<GroupData>();
@@ -50,11 +51,11 @@ namespace addressbook_webtest
         public static IEnumerable<GroupData> GroupDataFromJsonFile()
         {
             return JsonConvert.DeserializeObject<List<GroupData>>(
-                File.ReadAllText(@"groups.json"));
+                 File.ReadAllText(@"groups.json"));
         }
         public static IEnumerable<GroupData> GroupDataFromXmlFile()
         {
-            return (List<GroupData>) new XmlSerializer(typeof(List<GroupData>))
+            return (List<GroupData>)new XmlSerializer(typeof(List<GroupData>))
                 .Deserialize(new StreamReader(@"groups.xml"));
         }
 
@@ -82,7 +83,7 @@ namespace addressbook_webtest
             return groups;
         }
 
-        [Test, TestCaseSource("GroupDataFromJsonFile")]
+        [Test, TestCaseSource("GroupDataFromExcelFile")]
         public void GroupCreationTests(GroupData group)
         {
             List<GroupData> oldGroups = app.Groups.GetGroupList();
@@ -98,47 +99,47 @@ namespace addressbook_webtest
         }
     }
 }
+        
 
-        //[Test]
-        //public void EmptyGroupCreationTest()
-        //{
-        //    GroupData group = (new GroupData(""));
-        //    group.Header = "";
-        //    group.Footer = "";
-
-
-        //    List<GroupData> oldGroups = app.Groups.GetGroupList();
-
-        //    app.Groups.Create(group);
-
-        //    Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
-
-        //    List<GroupData> newGroups = app.Groups.GetGroupList();
-           
-        //    oldGroups.Add(group);
-        //    oldGroups.Sort();
-        //    newGroups.Sort();
-        //    Assert.AreEqual(oldGroups, newGroups);
-
-
-//[Test]
-
-//public void BadNameGroupCreationTest()
+                //[Test]
+//public void EmptyGroupCreationTest()
 //{
-//    GroupData group = (new GroupData("x'x"));
+//    GroupData group = (new GroupData(""));
 //    group.Header = "";
 //    group.Footer = "";
+
 
 //    List<GroupData> oldGroups = app.Groups.GetGroupList();
 
 //    app.Groups.Create(group);
 
-//    Assert.AreEqual(oldGroups.Count +1, app.Groups.GetGroupCount());
-
+//    Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
 
 //    List<GroupData> newGroups = app.Groups.GetGroupList();
+
 //    oldGroups.Add(group);
 //    oldGroups.Sort();
 //    newGroups.Sort();
 //    Assert.AreEqual(oldGroups, newGroups);
+
+
+    //[Test]
+
+    //public void BadNameGroupCreationTest()
+    //{
+    //    GroupData group = (new GroupData("x'x"));
+    //    group.Header = "";
+    //    group.Footer = "";
+
+    //    List<GroupData> oldGroups = app.Groups.GetGroupList();
+
+    //    app.Groups.Create(group);
+
+   // Assert.AreEqual(oldGroups.Count +1, app.Groups.GetGroupCount());
+
+   // List<GroupData> newGroups = app.Groups.GetGroupList();
+   //oldGroups.Add(group);
+   //oldGroups.Sort();
+   // newGroups.Sort();
+   //Assert.AreEqual(oldGroups, newGroups);
 

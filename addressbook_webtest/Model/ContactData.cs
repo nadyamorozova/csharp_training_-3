@@ -19,17 +19,20 @@ namespace addressbook_webtest
         public string emailHomepageBlock;
         public string birthAnnivBlock;
         public string secondaryBlock;
-        private string v;
+      
+        public ContactData()
+        {
 
+        }
         public ContactData(string firstname, string lastname)
         {
             Firstname = firstname;
             Lastname = lastname;
         }
 
-        public ContactData(string v)
+        public ContactData(string firstname)
         {
-            this.v = v;
+            this.Firstname = firstname;
         }
 
         public bool Equals(ContactData other)

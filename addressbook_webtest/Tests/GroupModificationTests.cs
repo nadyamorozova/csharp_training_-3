@@ -34,7 +34,7 @@ namespace addressbook_webtest
             foreach (GroupData group in newGroups)
             {
                 if (group.Id == oldData.Id)
-                Assert.AreEqual(newData.Name, group.Name);
+                    Assert.AreEqual(newData.Name, group.Name);
             }
         }
     }
@@ -42,10 +42,10 @@ namespace addressbook_webtest
 
 
 
-        
 
-    
 
-            
-        
-    
+
+
+
+
+
