@@ -1,37 +1,36 @@
-﻿using System;
+﻿   
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace addressbook_webtest
 {
     public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
-
         public string allPhones;
+        public string allEmail;
         public string allDetails;
-        public string allEmails;
         public string fullNameNicknameblock;
         public string titleCompAddrBlock;
         public string phonesBlock;
         public string emailHomepageBlock;
         public string birthAnnivBlock;
         public string secondaryBlock;
-       
+        private string v;
 
         public ContactData(string firstname, string lastname)
         {
-
             Firstname = firstname;
-            Lastname = lastname; 
+            Lastname = lastname;
         }
-        public ContactData(string firstname)
+
+        public ContactData(string v)
         {
-            this.Firstname = firstname;
+            this.v = v;
         }
-       
 
         public bool Equals(ContactData other)
         {
@@ -44,7 +43,6 @@ namespace addressbook_webtest
                 return true;
             }
             return Firstname == other.Firstname && Lastname == other.Lastname;
-
         }
 
 
@@ -56,10 +54,10 @@ namespace addressbook_webtest
 
         public override string ToString()
         {
-            return "Firstname=" + Firstname + "\nMiddlename= " + Middlename + "\nLastname= " + Lastname;
+            return $"contact = {Lastname} {Firstname}";
         }
 
-         public int CompareTo(ContactData other)
+        public int CompareTo(ContactData other)
         {
             if (Object.ReferenceEquals(other, null))
             {
@@ -75,12 +73,14 @@ namespace addressbook_webtest
             }
             return 0;
         }
-       
+
         public string Firstname { get; set; }
         public string Middlename { get; set; }
         public string Lastname { get; set; }
         public string Id { get; set; }
         public string Nickname { get; set; }
+        public string Title { get; set; }
+        public string Company { get; set; }
         public string Address { get; set; }
         public string HomePhone { get; set; }
         public string MobilePhone { get; set; }
@@ -89,24 +89,19 @@ namespace addressbook_webtest
         public string Email { get; set; }
         public string Email2 { get; set; }
         public string Email3 { get; set; }
-        public string Company { get; set; }
-        public string Title { get; set; }  
         public string Homepage { get; set; }
         public string BDay { get; set; }
         public string BMonth { get; set; }
-        public string ADay { get; set; }
         public string BYear { get; set; }
+        public string ADay { get; set; }
         public string AMonth { get; set; }
         public string AYear { get; set; }
         public string Address2 { get; set; }
         public string Phone2 { get; set; }
         public string Notes { get; set; }
 
-
-
         public string GetAge(string day, string month, string year, string fieldName)
         {
-           
             int monthNumber = 0;
             int Age;
             switch (month)
@@ -116,40 +111,49 @@ namespace addressbook_webtest
                     break;
                 case "February":
                     monthNumber = 2;
+
                     break;
                 case "March":
                     monthNumber = 3;
+
                     break;
                 case "April":
                     monthNumber = 4;
+
                     break;
                 case "May":
                     monthNumber = 5;
+
                     break;
                 case "June":
                     monthNumber = 6;
+
                     break;
                 case "July":
                     monthNumber = 7;
+
                     break;
                 case "August":
                     monthNumber = 8;
+
                     break;
                 case "September":
                     monthNumber = 9;
+
                     break;
                 case "October":
                     monthNumber = 10;
+
                     break;
                 case "November":
                     monthNumber = 11;
+
                     break;
                 case "December":
                     monthNumber = 12;
+
                     break;
             }
-
-
             if (year != "")
             {
                 if ((DateTime.Now.Month >= monthNumber) && (DateTime.Now.Day >= Int32.Parse(day)))
@@ -157,8 +161,6 @@ namespace addressbook_webtest
                 else
                     Age = DateTime.Now.Year - Int32.Parse(year) - 1;
             }
-
-
             else Age = 0;
             string FullDate = "";
             if (day != null && day != "-" && day != "0")
@@ -176,8 +178,6 @@ namespace addressbook_webtest
                     FullDate = month;
                 }
             }
-
-
             if (year != null && year != "")
             {
                 if (FullDate != "")
@@ -202,10 +202,9 @@ namespace addressbook_webtest
             }
             else return "";
         }
-         public string GetAnniversary(string day, string month, string year, string fieldName)
-        {
-            if (day == null) return null;
 
+        public string GetAnniversary(string day, string month, string year, string fieldName)
+        {
             int Anniversary;
             if (year != "")
                 Anniversary = DateTime.Now.Year - Int32.Parse(year);
@@ -227,8 +226,6 @@ namespace addressbook_webtest
                     FullDate = month;
                 }
             }
-
-
             if (year != null && year != "")
             {
                 if (FullDate != "")
@@ -240,8 +237,6 @@ namespace addressbook_webtest
                     FullDate = year;
                 }
             }
-
-
             if (FullDate != "")
             {
                 if (year != null && year != "")
@@ -255,7 +250,6 @@ namespace addressbook_webtest
             }
             else return "";
         }
-
 
 
         public string AllPhones
@@ -277,33 +271,29 @@ namespace addressbook_webtest
             }
         }
 
-
-
-            public string AllEmail
-            {
+        public string AllEmail
+        {
             get
             {
-                if (allEmails != null)
+                if (allEmail != null)
                 {
-                    return allEmails;
+                    return allEmail;
                 }
                 else
                 {
-                return (ReturnDetailwithRN(Email) + ReturnDetailwithRN(Email2) + ReturnDetailwithRN(Email3)).Trim();
+                    return (ReturnDetailwithRN(Email) + ReturnDetailwithRN(Email2) + ReturnDetailwithRN(Email3)).Trim();
                 }
             }
-
             set
             {
-                allEmails = value;
+                allEmail = value;
             }
         }
 
-                
-            public string AllDetails
+        public string AllDetails
+        {
+            get
             {
-              get
-              {
                 string fullNameBlock = FullNameNicknameblock;
                 string titleBlock = TitleCompAddrBlock;
                 string phoneBlock = PhonesBlock;
@@ -335,7 +325,6 @@ namespace addressbook_webtest
                             allDetails2 = titleBlock;
                         }
                     }
-
                     if (phoneBlock != "")
                     {
                         if (allDetails2 != "")
@@ -394,31 +383,39 @@ namespace addressbook_webtest
                 allDetails = value;
             }
         }
+
         public string FullNameNicknameblock
         {
             get
             {
-                if (fullNameNicknameblock != null)
-                {
-                    return fullNameNicknameblock;
-                }
-                else
+                string fullNameNicknameblock = "";
                 
+                string fullName = ReturnFullName(Firstname.Trim(), Middlename.Trim(), Lastname.Trim());
+                
+                if (fullName != null && fullName != "")
                 {
-                        if (ReturnFullName(Firstname.Trim(), Middlename.Trim(), Lastname.Trim()) != "")
-                        {
-                            return (ReturnFullName(Firstname.Trim(), Middlename.Trim(), Lastname.Trim()) + "\r\n" + Nickname.Trim());
-                        }
-                        else
-                        return (ReturnDetailwithoutRN(Nickname));
+                    fullNameNicknameblock = fullName.Trim();
                 }
-            }
+                if (Nickname != null && Nickname != "")
+                {
+                    if (fullNameNicknameblock != null && fullNameNicknameblock != "")
+                    {
+                        fullNameNicknameblock += "\r\n" + Nickname.Trim();
+                    }
+                    else
+                    {
+                        fullNameNicknameblock = Nickname.Trim();
+                    }
+                }
 
+                return fullNameNicknameblock;
+            }
             set
             {
                 fullNameNicknameblock = value;
             }
         }
+
         public string TitleCompAddrBlock
         {
             get
@@ -458,7 +455,6 @@ namespace addressbook_webtest
             }
         }
 
-
         public string PhonesBlock
         {
             get
@@ -491,8 +487,6 @@ namespace addressbook_webtest
                         phonesBlock = ("W: " + WorkPhone.Trim()).Trim();
                     }
                 }
-
-
                 if (Fax != null && Fax != "")
                 {
                     if (phonesBlock != null && phonesBlock != "")
@@ -504,7 +498,6 @@ namespace addressbook_webtest
                         phonesBlock = ("F: " + Fax.Trim()).Trim();
                     }
                 }
-
                 return phonesBlock;
             }
             set
@@ -512,8 +505,6 @@ namespace addressbook_webtest
                 phonesBlock = value;
             }
         }
-
-
 
         public string EmailHomepageBlock
         {
@@ -597,13 +588,10 @@ namespace addressbook_webtest
             }
         }
 
-
         public string SecondaryBlock
         {
             get
             {
-                if (Address2 == null) return null;
-
                 string secondaryBlock = "";
                 if (Address2.Trim() != null && Address2.Trim() != "")
                 {
@@ -639,7 +627,6 @@ namespace addressbook_webtest
             }
 
         }
-
         public string CleanUp(string phone)
         {
             if (phone == null || phone == "")
@@ -648,7 +635,6 @@ namespace addressbook_webtest
             }
             return Regex.Replace(phone, "[ \\-()]", "") + "\r\n";
         }
-
 
         public string ReturnDetailwithRN(string text)
         {
@@ -659,7 +645,6 @@ namespace addressbook_webtest
             return text + "\r\n";
         }
 
-
         public string ReturnDetailwithoutRN(string text)
         {
             if (text == null || text == "")
@@ -668,7 +653,6 @@ namespace addressbook_webtest
             }
             return text;
         }
-
 
         public string ReturnDetailwithRNabove(string text)
         {
@@ -723,11 +707,3 @@ namespace addressbook_webtest
 
     }
 }
-
-
-//public ContactData(String name)
-//{
-//    Firstname = name;
-//}
-
-
