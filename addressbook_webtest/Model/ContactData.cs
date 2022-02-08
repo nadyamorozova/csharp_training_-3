@@ -5,9 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using Newtonsoft.Json;
 
 namespace addressbook_webtest
 {
+    [JsonObject(MemberSerialization.OptOut)]
     public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
         public string allPhones;
@@ -76,9 +78,12 @@ namespace addressbook_webtest
             }
             return 0;
         }
-
+        
+        [JsonProperty]
         public string Firstname { get; set; }
+        [JsonProperty]
         public string Middlename { get; set; }
+        [JsonProperty]
         public string Lastname { get; set; }
         public string Id { get; set; }
         public string Nickname { get; set; }
@@ -103,8 +108,10 @@ namespace addressbook_webtest
         public string Phone2 { get; set; }
         public string Notes { get; set; }
 
-        public string GetAge(string day, string month, string year, string fieldName)
+        public string GetAge(string day, string month, string year, string fieldName) 
         {
+            if (day == null) return null;
+              
             int monthNumber = 0;
             int Age;
             switch (month)
@@ -254,7 +261,7 @@ namespace addressbook_webtest
             else return "";
         }
 
-
+        [JsonIgnore]
         public string AllPhones
         {
             get
@@ -273,7 +280,7 @@ namespace addressbook_webtest
                 allPhones = value;
             }
         }
-
+        [JsonIgnore]
         public string AllEmail
         {
             get
@@ -292,7 +299,7 @@ namespace addressbook_webtest
                 allEmail = value;
             }
         }
-
+        [JsonIgnore]
         public string AllDetails
         {
             get
@@ -386,7 +393,7 @@ namespace addressbook_webtest
                 allDetails = value;
             }
         }
-
+        [JsonIgnore]
         public string FullNameNicknameblock
         {
             get
@@ -418,7 +425,7 @@ namespace addressbook_webtest
                 fullNameNicknameblock = value;
             }
         }
-
+        [JsonIgnore]
         public string TitleCompAddrBlock
         {
             get
@@ -457,7 +464,7 @@ namespace addressbook_webtest
                 titleCompAddrBlock = value;
             }
         }
-
+        [JsonIgnore]
         public string PhonesBlock
         {
             get
@@ -508,7 +515,7 @@ namespace addressbook_webtest
                 phonesBlock = value;
             }
         }
-
+        [JsonIgnore]
         public string EmailHomepageBlock
         {
             get
@@ -559,7 +566,7 @@ namespace addressbook_webtest
                 emailHomepageBlock = value;
             }
         }
-
+        [JsonIgnore]
         public string BirthAnnivBlock
         {
             get
@@ -590,7 +597,7 @@ namespace addressbook_webtest
                 birthAnnivBlock = value;
             }
         }
-
+        [JsonIgnore]
         public string SecondaryBlock
         {
             get
