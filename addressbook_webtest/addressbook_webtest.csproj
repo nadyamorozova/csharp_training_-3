@@ -87,6 +87,7 @@
     <Compile Include="Tests\ContactModificationTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="contacts.json" />
     <None Include="groups.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
