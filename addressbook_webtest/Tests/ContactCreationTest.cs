@@ -40,7 +40,7 @@ namespace addressbook_webtest
                     .Deserialize(new StreamReader(@"contacts.xml"));
         }
 
-        [Test, TestCaseSource("ContactDataFromJsonFile")]
+        [Test, TestCaseSource("ContactDataFromXmlFile")]
         public void ContactCreationTest(ContactData contact)
         {
             List<ContactData> oldContacts = app.Contacts.GetContactList();
