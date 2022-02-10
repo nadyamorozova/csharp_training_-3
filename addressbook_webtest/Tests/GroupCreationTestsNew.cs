@@ -9,6 +9,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 using Excel = Microsoft.Office.Interop.Excel;
+using System.Linq;
 
 namespace addressbook_webtest
 {
@@ -97,11 +98,51 @@ namespace addressbook_webtest
             newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
         }
+
+        [Test]
+
+        public void BadNameGroupCreationTest()
+        {
+            GroupData group = (new GroupData("x'x"));
+            group.Header = "";
+            group.Footer = "";
+
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
+
+            app.Groups.Create(group);
+
+            Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
+
+            List<GroupData> newGroups = app.Groups.GetGroupList();
+            oldGroups.Add(group);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
+        }
+        [Test]
+        public void TestDBConnectivity()
+        {
+            foreach (ContactData contact in ContactData.GetAll())
+            System.Console.Out.WriteLine(contact.Deprecated);
+        }
     }
 }
-        
+    
 
-                //[Test]
+//DateTime start = DateTime.Now;
+//List<GroupData> fromUi = app.Groups.GetGroupList();
+//DateTime end = DateTime.Now;
+//System.Console.Out.WriteLine(end.Subtract(start));
+
+
+//start = DateTime.Now;
+
+//List<GroupData> fromDB = GroupData.GetAll();
+//end = DateTime.Now;
+//System.Console.Out.WriteLine(end.Subtract(start));
+
+
+//[Test]
 //public void EmptyGroupCreationTest()
 //{
 //    GroupData group = (new GroupData(""));
@@ -123,23 +164,4 @@ namespace addressbook_webtest
 //    Assert.AreEqual(oldGroups, newGroups);
 
 
-    //[Test]
-
-    //public void BadNameGroupCreationTest()
-    //{
-    //    GroupData group = (new GroupData("x'x"));
-    //    group.Header = "";
-    //    group.Footer = "";
-
-    //    List<GroupData> oldGroups = app.Groups.GetGroupList();
-
-    //    app.Groups.Create(group);
-
-   // Assert.AreEqual(oldGroups.Count +1, app.Groups.GetGroupCount());
-
-   // List<GroupData> newGroups = app.Groups.GetGroupList();
-   //oldGroups.Add(group);
-   //oldGroups.Sort();
-   // newGroups.Sort();
-   //Assert.AreEqual(oldGroups, newGroups);
 

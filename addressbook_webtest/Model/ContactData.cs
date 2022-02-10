@@ -6,9 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
+using LinqToDB.Mapping;
 
 namespace addressbook_webtest
 {
+    [Table(Name = "adressbook")]
     [JsonObject(MemberSerialization.OptOut)]
     public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
@@ -79,8 +81,11 @@ namespace addressbook_webtest
             return 0;
         }
         
+        [Column(Name = "id"), PrimaryKey]
         [JsonProperty]
-        public string Firstname { get; set; }
+        public string Id { get; set; }
+        
+        [Column(Name = "lastname")]
         [JsonProperty]
         public string Middlename { get; set; }
         [JsonProperty]
@@ -107,6 +112,11 @@ namespace addressbook_webtest
         public string Address2 { get; set; }
         public string Phone2 { get; set; }
         public string Notes { get; set; }
+
+
+        [Column(Name = "deprecated")]
+        public string Deprecated { get; set; }
+        
 
         public string GetAge(string day, string month, string year, string fieldName) 
         {
@@ -714,6 +724,13 @@ namespace addressbook_webtest
 
             return FullName;
         }
+        public static List<GontactData> GetAll()
+        {
+            using (AddressBookDB db = new AddressBookDB())
+            {
+                return (from c in db. Contacts.Where(x => x.Deprecated == "0000-00-00 00:00:00") select c).ToList();
+            }
 
+        }
     }
 }
