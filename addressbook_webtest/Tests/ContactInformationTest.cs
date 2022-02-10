@@ -8,7 +8,7 @@ using OpenQA.Selenium;
 namespace addressbook_webtest
 {
     [TestFixture]
-    public class ContactInformationTest : AuthTestBase
+    public class ContactInformationTest : ContactTestBase
     {
         [Test]
         public void ContactInformationTests()

@@ -13,11 +13,43 @@ namespace addressbook_webtest.Tests
         [Test]
         public void TestAddingContactToGroup()
         {
+            List<GroupData> grouplist = GroupData.GetAll();
+            List<ContactData> contactlist = ContactData.GetAll();
+
+            ContactData newcontact = new ContactData("Илон", "Маск");
+            newcontact.Middlename = "Цукербергович";
+            GroupData newgroup = new GroupData("Group 1");
+
+            if (grouplist.Count == 0)
+            {
+                app.Groups.Create(newgroup);
+
+
+                if (contactlist.Count == 0)
+                {
+                    app.Contacts.Create(newcontact);
+                }
+            }
+            else
+            {
+                if (contactlist.Count == 0)
+                {
+                    app.Contacts.Create(newcontact);
+                }
+            }
+
             GroupData group = GroupData.GetAll()[0];
             List<ContactData> oldList = group.GetContacts();
+
+            if (oldList.SequenceEqual(ContactData.GetAll()))
+            {
+                app.Contacts.Create(newcontact);
+            }
+
             ContactData contact = ContactData.GetAll().Except(oldList).First();
 
             app.Contacts.AddContactToGroup(contact, group);
+
 
             List<ContactData> newList = group.GetContacts();
             oldList.Add(contact);

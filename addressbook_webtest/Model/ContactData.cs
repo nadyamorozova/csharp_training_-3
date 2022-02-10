@@ -23,7 +23,8 @@ namespace addressbook_webtest
         public string emailHomepageBlock;
         public string birthAnnivBlock;
         public string secondaryBlock;
-      
+        internal string Firstname;
+
         public ContactData()
         {
 
@@ -80,22 +81,38 @@ namespace addressbook_webtest
             }
             return 0;
         }
-        
+
         [Column(Name = "id"), PrimaryKey]
         [JsonProperty]
         public string Id { get; set; }
-        
+
+        [Column(Name = "Firstname")]
+        [JsonProperty]
+        public string Firstname { get; set; }
+
         [Column(Name = "lastname")]
         [JsonProperty]
         public string Middlename { get; set; }
         [JsonProperty]
         public string Lastname { get; set; }
-        public string Id { get; set; }
+        [Column(Name = "lastname")]
+
+        [Column(Name = "nickname")]
         public string Nickname { get; set; }
+
+        [Column(Name = "title")]
         public string Title { get; set; }
+
+        [Column(Name = "company")]
         public string Company { get; set; }
+
+        [Column(Name = "address")]
         public string Address { get; set; }
+
+        [Column(Name = "home")]
         public string HomePhone { get; set; }
+
+
         public string MobilePhone { get; set; }
         public string WorkPhone { get; set; }
         public string Fax { get; set; }
@@ -116,12 +133,12 @@ namespace addressbook_webtest
 
         [Column(Name = "deprecated")]
         public string Deprecated { get; set; }
-        
 
-        public string GetAge(string day, string month, string year, string fieldName) 
+
+        public string GetAge(string day, string month, string year, string fieldName)
         {
             if (day == null) return null;
-              
+
             int monthNumber = 0;
             int Age;
             switch (month)
@@ -409,9 +426,9 @@ namespace addressbook_webtest
             get
             {
                 string fullNameNicknameblock = "";
-                
+
                 string fullName = ReturnFullName(Firstname.Trim(), Middlename.Trim(), Lastname.Trim());
-                
+
                 if (fullName != null && fullName != "")
                 {
                     fullNameNicknameblock = fullName.Trim();
@@ -724,13 +741,24 @@ namespace addressbook_webtest
 
             return FullName;
         }
-        public static List<GontactData> GetAll()
+        public static List<ContactData> GetAll()
         {
             using (AddressBookDB db = new AddressBookDB())
             {
-                return (from c in db. Contacts.Where(x => x.Deprecated == "0000-00-00 00:00:00") select c).ToList();
+                return (from g in db.Contacts.Where(x => x.Deprecated == "0000-00-00 00:00:00") select g).ToList();
             }
 
         }
+        public List<GroupData> GetGroups()
+        {
+            using (AddressBookDB db = new AddressBookDB())
+            {
+                return (from g in db.Groups
+                        from gcr in db.GCR.Where(p => p.ContactId == Id && p.GroupId == g.Id)
+                        select g).Distinct().ToList();
+            }
+        }
     }
 }
+
+

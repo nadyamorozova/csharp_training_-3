@@ -25,6 +25,11 @@ namespace addressbook_webtest
             return this;
         }
 
+        internal void Modify(object toBeModified, GroupData newData)
+        {
+            throw new NotImplementedException();
+        }
+
         public int GetGroupCount()
         {
             return driver.FindElements(By.CssSelector("span,group")).Count;
@@ -109,12 +114,12 @@ namespace addressbook_webtest
             groupCache = null;
             return this;
         }
-        public GroupHelper SelectGroup(int index)
+        public GroupHelper SelectGroup(int id)
         {
-            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + (index + 1) + "]"))
-                .Click();
+            driver.FindElement(By.XPath("//input[@name='selected[]' and @value='" + id + "']")).Click();
             return this;
         }
+            
         public GroupHelper InitGroupModification()
         {
             driver.FindElement(By.Name("edit")).Click();

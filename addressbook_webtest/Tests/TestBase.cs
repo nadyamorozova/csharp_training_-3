@@ -10,8 +10,9 @@ using NUnit.Framework;
 namespace addressbook_webtest
 {
     public class TestBase
-    {        
-        protected ApplicationManager app;
+    {
+        public static bool PERFORM_LONG_UI_CHECKS = true;
+        public ApplicationManager app;
 
         [SetUp]
         public void SetupApplicationManager()
