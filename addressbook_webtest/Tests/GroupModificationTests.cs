@@ -19,7 +19,7 @@ namespace addressbook_webtest
 
             List<GroupData> oldGroups = GroupData.GetAll();
             GroupData toBeModified = oldGroups[0];
-            
+
             GroupData oldData = oldGroups[0];
 
             app.Groups.Modify(toBeModified, newData);
@@ -39,8 +39,12 @@ namespace addressbook_webtest
                 {
                     Assert.AreEqual(newData.Name, toBeModified.Name);
                 }
+            }
         }
     }
+}
+
+
 
 
 

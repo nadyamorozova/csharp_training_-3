@@ -23,8 +23,6 @@ namespace addressbook_webtest
         public string emailHomepageBlock;
         public string birthAnnivBlock;
         public string secondaryBlock;
-        internal string Firstname;
-
         public ContactData()
         {
 

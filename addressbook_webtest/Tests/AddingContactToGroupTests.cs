@@ -8,9 +8,10 @@ using NUnit.Framework;
 
 namespace addressbook_webtest.Tests
 {
-   public class AddingContactToGroupTests :AuthTestBase
+  [TestFixture]
+   public class AddingContactToGroupTests : ContactTestBase
     {
-        [Test]
+       [Test]
         public void TestAddingContactToGroup()
         {
             List<GroupData> grouplist = GroupData.GetAll();

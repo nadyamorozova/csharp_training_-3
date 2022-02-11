@@ -18,6 +18,9 @@ namespace addressbook_webtest
             newData.Lastname = "Lopez";
             newData.Address = "Russia";
 
+
+            app.Contacts.IsContactPresent();
+
             List<ContactData> oldContact = ContactData.GetAll();
             ContactData toBeModified = oldContact[0];
             ContactData oldData = oldContact[0];
@@ -38,7 +41,8 @@ namespace addressbook_webtest
             {
                 if (contact.Id == oldData.Id)
                 {
-                    Assert.AreEqual(newData.Lastname, contact.Lastname);
+                    Assert.AreEqual(newData.Lastname, toBeModified.Lastname);
+                    Assert.AreEqual(newData.Lastname, toBeModified.Firstname);
                 }
             }
         }

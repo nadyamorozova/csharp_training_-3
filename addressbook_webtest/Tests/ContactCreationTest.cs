@@ -49,9 +49,11 @@ namespace addressbook_webtest
             Assert.AreEqual(oldContacts.Count + 1, app.Contacts.GetContactCount());
 
             List<ContactData> newContacts = ContactData.GetAll();
+            newContacts.Sort();
+            contact.Id = newContacts[newContacts.Count - 1].Id;
             oldContacts.Add(contact);
             oldContacts.Sort();
-            newContacts.Sort();
+            
             Assert.AreEqual(oldContacts, newContacts);
         }
     }
@@ -74,15 +76,7 @@ namespace addressbook_webtest
 //            oldContacts.Sort();
 //            newContacts.Sort();
 //            Assert.AreEqual(oldContacts, newContacts);
-//        }
-//    }
-
-//}
-
-
             //public void ContactCreationTest()
-            //{
-
             //    ContactData contacts = new ContactData("J", "Lo");
             //    contacts.Address = "Arbat";
             //    contacts.MobilePhone = "777";
@@ -95,6 +89,5 @@ namespace addressbook_webtest
             //    Assert.AreEqual(oldContacts.Count + 1, app.Contacts.GetContactCount());
 
             //    List<ContactData> newContacts = app.Contacts.GetContactList();
-            //    
-            //  
+         
    

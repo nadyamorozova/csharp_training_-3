@@ -17,13 +17,12 @@ namespace addressbook_webtest
         public void GroupRemovalTest()
 
         {
-
+            app.Groups.IsGroupPresent();
             List<GroupData> oldGroups = GroupData.GetAll();
 
             GroupData toBeRemoved = oldGroups[0];
 
-            app.Groups.Remove(ToBeRemoved);
-
+            app.Groups.Remove(1);
 
             Assert.AreEqual(oldGroups.Count - 1, app.Groups.GetGroupCount());
 

@@ -205,9 +205,18 @@ namespace addressbook_webtest
             return this;
         }
 
-        public ContactHelper SelectContact(string Id)
+        public ContactHelper SelectContact(string id)
         {
             driver.FindElement(By.XPath("//input[@name='selected[]' and @value='" + id + "']")).Click();
+            return this;
+        }
+        public ContactHelper IsContactPresent()
+        {
+            if (!IsElementPresent(By.XPath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")))
+            {
+                ContactData contact = (new ContactData("J", "Lo"));
+                Create(contact);
+            }
             return this;
         }
 
@@ -289,29 +298,21 @@ namespace addressbook_webtest
 }
 
 
-            //////private object firstname;
-            //////private object lastname;
-            //////private string allEmail;
+//////private object firstname;
+//////private object lastname;
+//////private string allEmail;
 
-            //////public string Id { get; private set; }
-
-            //public ContactHelper IsContactPresent()
-            //{
-            //    if (!IsElementPresent(By.XPath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")))
-            //    {
-            //        ContactData contact = (new ContactData("J", "Lo"));
-            //        Create(contact);
-            //    }
-            //    return this;
-            //}
+//////public string Id { get; private set; }
 
 
-        //    public ContactHelper ContactsDetailsProperties(int index)
-        //{
-        //    driver.FindElements(By.Name("entry"))[index].FindElements(By.TagName("td"))[6]
-        //   .FindElement(By.TagName("a")).Click();
-        //    return this;
-        //}
+
+
+//    public ContactHelper ContactsDetailsProperties(int index)
+//{
+//    driver.FindElements(By.Name("entry"))[index].FindElements(By.TagName("td"))[6]
+//   .FindElement(By.TagName("a")).Click();
+//    return this;
+//}
 //public string GetContactInformationProperties()
 //{
 //    manager.Navigator.GoToHomePage();
