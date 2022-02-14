@@ -13,22 +13,20 @@ namespace addressbook_tests_autoit
         public static string WINTITLE = "Free Address Book";
         private AutoItX3 aux;
         private GroupHelper groupHelper;
-        
-       public ApplicationManager()
-        
-        {
 
-            aux.Run(@"C:\Users\nadya.morozova\Downloads\FreeAddressBookPortable\AddressBook.exe", aux.SW_SHOW);
+        public ApplicationManager()
+
+        {
+            aux = new AutoItX3();
+            aux.Run(@"C:\Users\nadya.morozova\Downloads\FreeAddressBookPortable\AddressBook.exe", "", aux.SW_SHOW);
             aux.WinWait(WINTITLE);
             aux.WinActivate(WINTITLE);
             aux.WinWaitActive(WINTITLE);
 
-            aux = new AutoItX3();
             groupHelper = new GroupHelper(this);
-
         }
 
-            public void Stop()
+        public void Stop()
         {
             aux.ControlClick(WINTITLE, "", "", "WindowsForms10.BUTTON.app.0.1114f8110");
         }
@@ -40,12 +38,13 @@ namespace addressbook_tests_autoit
             }
         }
         public GroupHelper Groups
-        
+
+        {
+            get
             {
-                get
-            {
-                    return groupHelper;
-                }
+                return groupHelper;
+            }
         }
     }
+}
 
