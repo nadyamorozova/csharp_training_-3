@@ -10,7 +10,7 @@ using LinqToDB.Mapping;
 
 namespace addressbook_webtest
 {
-    [Table(Name = "adressbook")]
+    [Table(Name = "addressbook")]
     [JsonObject(MemberSerialization.OptOut)]
     public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
@@ -88,12 +88,13 @@ namespace addressbook_webtest
         [JsonProperty]
         public string Firstname { get; set; }
 
-        [Column(Name = "lastname")]
+       
         [JsonProperty]
         public string Middlename { get; set; }
         [JsonProperty]
-        public string Lastname { get; set; }
         [Column(Name = "lastname")]
+        public string Lastname { get; set; }
+        
 
         [Column(Name = "nickname")]
         public string Nickname { get; set; }
@@ -743,7 +744,7 @@ namespace addressbook_webtest
         {
             using (AddressBookDB db = new AddressBookDB())
             {
-                return (from g in db.Contacts.Where(x => x.Deprecated == "0000-00-00 00:00:00") select g).ToList();
+                return (from c in db.Contacts.Where(x => x.Deprecated == "0000-00-00 00:00:00") select c).ToList();
             }
 
         }

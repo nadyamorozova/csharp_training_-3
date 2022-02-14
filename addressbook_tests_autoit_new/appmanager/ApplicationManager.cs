@@ -4,21 +4,48 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using AutoItX3Lib;
 
 namespace addressbook_tests_autoit
 {
-    
-    
-        public class ApplicationManager
+    public class ApplicationManager
+    {
+        public static string WINTITLE = "Free Address Book";
+        private AutoItX3 aux;
+        private GroupHelper groupHelper;
+        
+       public ApplicationManager()
+        
         {
-            public ApplicationManager()
-            {
 
-            }
+            aux.Run(@"C:\Users\nadya.morozova\Downloads\FreeAddressBookPortable\AddressBook.exe", aux.SW_SHOW);
+            aux.WinWait(WINTITLE);
+            aux.WinActivate(WINTITLE);
+            aux.WinWaitActive(WINTITLE);
+
+            aux = new AutoItX3();
+            groupHelper = new GroupHelper(this);
+
+        }
 
             public void Stop()
+        {
+            aux.ControlClick(WINTITLE, "", "", "WindowsForms10.BUTTON.app.0.1114f8110");
+        }
+        public AutoItX3 Aux
+        {
+            get
             {
-
+                return aux;
             }
         }
+        public GroupHelper Groups
+        
+            {
+                get
+            {
+                    return groupHelper;
+                }
+        }
     }
+

@@ -125,24 +125,23 @@ namespace addressbook_webtest
         [Test]
         public void TestDBConnectivity()
         {
-            foreach (ContactData contact in ContactData.GetAll())
-            System.Console.Out.WriteLine(contact.Deprecated);
+            DateTime start = DateTime.Now;
+            List<GroupData> fromUi = app.Groups.GetGroupList();
+            DateTime end = DateTime.Now;
+            System.Console.Out.WriteLine(end.Subtract(start));
+            start = DateTime.Now;
+
+            List<GroupData> fromDB = GroupData.GetAll();
+            end = DateTime.Now;
+            System.Console.Out.WriteLine(end.Subtract(start));
         }
     }
 }
-    
-
-//DateTime start = DateTime.Now;
-//List<GroupData> fromUi = app.Groups.GetGroupList();
-//DateTime end = DateTime.Now;
-//System.Console.Out.WriteLine(end.Subtract(start));
 
 
-//start = DateTime.Now;
 
-//List<GroupData> fromDB = GroupData.GetAll();
-//end = DateTime.Now;
-//System.Console.Out.WriteLine(end.Subtract(start));
+
+
 
 
 //[Test]
