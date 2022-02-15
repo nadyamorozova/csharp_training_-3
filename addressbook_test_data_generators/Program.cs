@@ -61,15 +61,17 @@ namespace addressbook_test_data_generators
                     writer.Close();
                 }
             }
-            else if (dataType == "contacts")
-            {
+
+                else if (dataType == "contacts")
+                 {
                 if (format == "xml")
                 {
-                 }
+                }
                 else
                 {
                     if (format == "json")
                     {
+
                         WriteContactsToJsonile(contacts, writer);
                     }
 
@@ -77,9 +79,9 @@ namespace addressbook_test_data_generators
                     {
                         System.Console.Out.Write("Unrecognized format: " + format);
                     }
+                    writer.Close();
                 }
             }
-            else System.Console.Out.Write("Unrecognized data type: " + dataType);
         }
 
         static void WriteGroupsToExcelFile(List<GroupData> groups, string filename)

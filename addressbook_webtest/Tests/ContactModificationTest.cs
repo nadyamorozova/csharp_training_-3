@@ -25,7 +25,7 @@ namespace addressbook_webtest
             ContactData toBeModified = oldContact[0];
             ContactData oldData = oldContact[0];
 
-            app.Contacts.Modify(toBeModified,newData);
+            app.Contacts.Modify(toBeModified, newData);
 
             Assert.AreEqual(oldContact.Count, app.Contacts.GetContactCount());
 

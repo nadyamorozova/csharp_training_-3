@@ -83,19 +83,19 @@ namespace addressbook_webtest
         [Column(Name = "id"), PrimaryKey]
         [JsonProperty]
         public string Id { get; set; }
-
-        [Column(Name = "Firstname")]
+        
         [JsonProperty]
-        public string Firstname { get; set; }
+        [Column(Name = "Firstname")]
+         public string Firstname { get; set; }
 
        
         [JsonProperty]
         public string Middlename { get; set; }
+       
         [JsonProperty]
         [Column(Name = "lastname")]
         public string Lastname { get; set; }
         
-
         [Column(Name = "nickname")]
         public string Nickname { get; set; }
 
