@@ -34,31 +34,44 @@ namespace addressbook_webtest
                 new XmlSerializer(typeof(List<ContactData>))
                     .Deserialize(new StreamReader(@"contacts.xml"));
         }
+              
             public static IEnumerable<ContactData> ContactDataFromJsonFile()
             {
-            return JsonConvert.DeserializeObject<List<ContactData>>
-                    (File.ReadAllText(@"contacts.json"));
+                return JsonConvert.DeserializeObject<List<ContactData>>(
+                    File.ReadAllText(@"contacts.json"));
             }
-        
 
-        [Test, TestCaseSource("ContactDataFromJsonFile")]
+
+            [Test, TestCaseSource("ContactDataFromJsonFile")]
         public void ContactCreationTest(ContactData contact)
         {
             List<ContactData> oldContacts = ContactData.GetAll();
 
             app.Contacts.Create(contact);
-            Assert.AreEqual(oldContacts.Count + 1, 
+            Assert.AreEqual(oldContacts.Count + 1,
             app.Contacts.GetContactCount());
 
             List<ContactData> newContacts = ContactData.GetAll();
             oldContacts.Add(contact);
             oldContacts.Sort();
             newContacts.Sort();
-            //contact.Id = newContacts[newContacts.Count - 1].Id;
-           //Assert.AreEqual(oldContacts, newContacts);
+         
+            Assert.AreEqual(oldContacts, newContacts);
         }
+
+        [Test]
+        public void ContactInGroups()
+        {
+            foreach (GroupData group in ContactData.GetAll()[0].GetGroups())
+            {
+                System.Console.Out.WriteLine(group);
+            }
+
+        }
+
     }
 }
+
     
 
 

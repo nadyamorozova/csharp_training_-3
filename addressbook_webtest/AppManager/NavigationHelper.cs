@@ -27,7 +27,6 @@ namespace addressbook_webtest
             driver.Navigate().GoToUrl(baseURL);
         }
 
-
         public void GoToGroupsPage()
         {
             driver.FindElement(By.LinkText("groups")).Click();

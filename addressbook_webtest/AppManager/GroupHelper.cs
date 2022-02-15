@@ -25,20 +25,8 @@ namespace addressbook_webtest
             return this;
         }
 
-        internal void Modify(object toBeModified, GroupData newData)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int GetGroupCount()
-        {
-            return driver.FindElements(By.CssSelector("span,group")).Count;
-        }
-
-
         private List<GroupData> groupCache = null;
         public List<GroupData> GetGroupList()
-
         {
             if (groupCache == null)
             {
@@ -47,13 +35,27 @@ namespace addressbook_webtest
                 ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
                 foreach (IWebElement element in elements)
                 {
-                    groupCache.Add(new GroupData(element.Text)
+                    groupCache.Add(new GroupData(null)
                     {
                         Id = element.FindElement(By.TagName("input")).GetAttribute("value")
                     });
-                    Console.WriteLine(element.Text);
+                }
+                string allGroupNames = driver.FindElement(By.CssSelector("div#content form")).Text;
+                string[] parts = allGroupNames.Split('\n');
+                int shift = groupCache.Count - parts.Length;
+                for (int i = 0; i < groupCache.Count; i++)
+                {
+                    if (i < shift)
+                    {
+                        groupCache[i].Name = "";
+                    }
+                    else
+                    {
+                        groupCache[i].Name = parts[i - shift].Trim();
+                    }
                 }
             }
+
             return new List<GroupData>(groupCache);
         }
 
@@ -67,6 +69,19 @@ namespace addressbook_webtest
             manager.Navigator.GoToGroupsPage();
             return this;
         }
+
+        public GroupHelper Modify(GroupData group, GroupData newData)
+        {
+            manager.Navigator.GoToGroupsPage();
+            SelectGroup(group.Id);
+            InitGroupModification();
+            FillGroupForm(newData);
+            SubmitGroupModification();
+            manager.Navigator.GoToGroupsPage();
+
+            return this;
+        }
+
         public GroupHelper Remove(int p)
         {
             manager.Navigator.GoToGroupsPage();
@@ -75,6 +90,22 @@ namespace addressbook_webtest
             manager.Navigator.GoToGroupsPage();
             return this;
         }
+
+        public GroupHelper Remove(GroupData group)
+        {
+            manager.Navigator.GoToGroupsPage();
+            SelectGroup(group.Id);
+            RemoveGroup();
+            manager.Navigator.GoToGroupsPage();
+
+            return this;
+        }
+
+        public int GetGroupCount()
+        {
+            return driver.FindElements(By.CssSelector("span,group")).Count;
+        }
+
 
         public GroupHelper IsGroupPresent()
         {
@@ -107,6 +138,7 @@ namespace addressbook_webtest
             return this;
         }
 
+
         public GroupHelper SubmitGroupCreation()
         {
 
@@ -114,17 +146,24 @@ namespace addressbook_webtest
             groupCache = null;
             return this;
         }
-        public GroupHelper SelectGroup(int id)
+
+        public GroupHelper SelectGroup(int index)
+        {
+            driver.FindElement(By.XPath("//div[@id='content']/form/span[" + (index + 1) + "]/input")).Click();
+            return this;
+        }
+        public GroupHelper SelectGroup(string id)
         {
             driver.FindElement(By.XPath("//input[@name='selected[]' and @value='" + id + "']")).Click();
             return this;
         }
-            
+
         public GroupHelper InitGroupModification()
         {
             driver.FindElement(By.Name("edit")).Click();
             return this;
         }
+
 
         public GroupHelper SubmitGroupModification()
         {
@@ -139,11 +178,36 @@ namespace addressbook_webtest
             groupCache = null;
             return this;
         }
-         public GroupHelper ReturnToGroupPage()
-          {
-                driver.FindElement(By.LinkText("group page")).Click();
-                return this;
-          }
-        }
     }
+}
+
+
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+      
+
+       
+  
+    //     public GroupHelper ReturnToGroupPage()
+    //      {
+    //            driver.FindElement(By.LinkText("group page")).Click();
+    //            return this;
+    //      }
+    //    }
+    //}
  

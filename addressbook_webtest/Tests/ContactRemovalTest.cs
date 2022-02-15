@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
 
@@ -12,6 +13,7 @@ namespace addressbook_webtest
     public class ContactRemovalTest : AuthTestBase
     {
         [Test]
+
         public void ContactRemovalTests()
         {
              
@@ -19,7 +21,8 @@ namespace addressbook_webtest
 
             ContactData toBeRemoved = oldContacts[0];
             
-            app.Contacts.Remove(toBeRemoved);
+            app.Contacts.Remove(1);
+            Thread.Sleep(5000);
                        
             Assert.AreEqual(oldContacts.Count - 1, app.Contacts.GetContactCount());
 

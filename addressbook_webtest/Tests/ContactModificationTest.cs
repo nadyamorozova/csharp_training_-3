@@ -25,24 +25,24 @@ namespace addressbook_webtest
             ContactData toBeModified = oldContact[0];
             ContactData oldData = oldContact[0];
 
-            app.Contacts.Modify(toBeModified, newData);
+            app.Contacts.Modify(newData);
 
             Assert.AreEqual(oldContact.Count, app.Contacts.GetContactCount());
 
-            List<ContactData> newContact = ContactData.GetAll();
+            List<ContactData> newContacts = ContactData.GetAll();
 
             oldContact[0].Lastname = newData.Lastname;
             oldContact[0].Firstname = newData.Firstname;
             oldContact.Sort();
-            newContact.Sort();
+            newContacts.Sort();
 
             Assert.AreEqual(oldContact, oldContact);
-            foreach (ContactData contact in newContact)
+            foreach (ContactData contact in newContacts)
             {
                 if (contact.Id == oldData.Id)
                 {
                     Assert.AreEqual(newData.Lastname, toBeModified.Lastname);
-                    Assert.AreEqual(newData.Lastname, toBeModified.Firstname);
+                    Assert.AreEqual(newData.Firstname, toBeModified.Firstname);
                 }
             }
         }

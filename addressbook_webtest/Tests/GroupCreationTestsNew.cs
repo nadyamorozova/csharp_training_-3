@@ -102,7 +102,7 @@ namespace addressbook_webtest
             Assert.AreEqual(oldGroups, newGroups);
         }
 
-        [Test]
+        //[Test]
 
         public void BadNameGroupCreationTest()
         {

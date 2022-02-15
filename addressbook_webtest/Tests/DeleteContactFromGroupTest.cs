@@ -9,7 +9,7 @@ namespace addressbook_webtest
 {
     public class DeleteContactFromGroupTest :AuthTestBase
     {
-        [Test]
+       // [Test]
         public void TestDeletingContactFromGroup()
         {
             List<GroupData> grouplist = GroupData.GetAll();

@@ -37,15 +37,24 @@ namespace addressbook_webtest
             };
         }
 
-        internal void Modify(object toBeModified, ContactData newData)
-        {
-            throw new NotImplementedException();
-        }
+        //internal ContactHelper Modify(ContactData newData)
+        //{
+        //    InitContactModification(0);
+        //    FillContactForm(newData);
+        //    SubmitContactModification();
+        //    manager.Navigator.ReturnToHomePage();
 
-        internal void Remove(ContactData toBeRemoved)
-        {
-            throw new NotImplementedException();
-        }
+        //    return this;
+        //}
+
+        //internal ContactHelper Remove(int p)
+        //{
+
+        //    SelectContact(p);
+        //    RemoveContact();
+        //    //driver.SwitchTo().Alert().Accept();
+        //    return this;
+        //}
 
         public ContactData GetContactInformationFromEditForm()
         {
@@ -250,7 +259,7 @@ namespace addressbook_webtest
             return this;
         }
 
-
+    
         internal void AddContactToGroup(ContactData contact, GroupData group)
         {
             manager.Navigator.GoToHomePage();
@@ -258,8 +267,9 @@ namespace addressbook_webtest
             SelectContact(contact.Id);
             SelectGroupToAdd(group.Name);
             CommitAddingContactToGroup();
-            new WebDriverWait(driver, TimeSpan.FromSeconds(10))
-              .Until(d => d.FindElements(By.CssSelector("div.msgbox")).Count > 0);
+
+            //new WebDriverWait(driver, TimeSpan.FromSeconds(30))
+            //  .Until(d => d.FindElements(By.CssSelector("div.msgbox")).Count > 0);
         }
 
         private void CommitAddingContactToGroup()
