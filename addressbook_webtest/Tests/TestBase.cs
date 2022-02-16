@@ -21,7 +21,7 @@ namespace addressbook_webtest
             app = ApplicationManager.GetInstance();
         }
          public static Random rnd = new Random();
-        public static string GenerateRandomString(int max)
+         public static string GenerateRandomString(int max)
         {
             int l = Convert.ToInt32(rnd.NextDouble() * max);
             StringBuilder builder = new StringBuilder();

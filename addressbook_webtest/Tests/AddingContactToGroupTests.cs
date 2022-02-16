@@ -11,7 +11,7 @@ namespace addressbook_webtest.Tests
   [TestFixture]
    public class AddingContactToGroupTests : ContactTestBase
     {
-      // [Test]
+       [Test]
         public void TestAddingContactToGroup()
         {
             List<GroupData> grouplist = GroupData.GetAll();
