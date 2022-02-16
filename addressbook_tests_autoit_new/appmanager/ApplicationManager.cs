@@ -18,10 +18,11 @@ namespace addressbook_tests_autoit
 
         {
             aux = new AutoItX3();
+
             aux.Run(@"C:\Users\nadya.morozova\Downloads\FreeAddressBookPortable\AddressBook.exe", "", aux.SW_SHOW);
             aux.WinWait(WINTITLE);
             aux.WinActivate(WINTITLE);
-            aux.WinWaitActive(WINTITLE);
+            //aux.WinWaitActive(WINTITLE);
 
             groupHelper = new GroupHelper(this);
         }
