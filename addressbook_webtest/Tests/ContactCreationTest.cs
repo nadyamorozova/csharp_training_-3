@@ -42,22 +42,22 @@ namespace addressbook_webtest
             }
 
 
-            [Test, TestCaseSource("ContactDataFromJsonFile")]
-        public void ContactCreationTest(ContactData contact)
-        {
-            List<ContactData> oldContacts = ContactData.GetAll();
+        //[Test, TestCaseSource("ContactDataFromJsonFile")]
+        //public void ContactCreationTest(ContactData contact)
+        //{
+        //    List<ContactData> oldContacts = ContactData.GetAll();
 
-            app.Contacts.Create(contact);
-            Assert.AreEqual(oldContacts.Count + 1,
-            app.Contacts.GetContactCount());
+        //    app.Contacts.Create(contact);
+        //    Assert.AreEqual(oldContacts.Count + 1,
+        //    app.Contacts.GetContactCount());
 
-            List<ContactData> newContacts = ContactData.GetAll();
-            oldContacts.Add(contact);
-            oldContacts.Sort();
-            newContacts.Sort();
+        //    List<ContactData> newContacts = ContactData.GetAll();
+        //    oldContacts.Add(contact);
+        //    oldContacts.Sort();
+        //    newContacts.Sort();
          
-            Assert.AreEqual(oldContacts, newContacts);
-        }
+        //    Assert.AreEqual(oldContacts, newContacts);
+        //}
 
         [Test]
         public void ContactInGroups()

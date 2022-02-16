@@ -90,6 +90,8 @@
     <Compile Include="model\ProjectData.cs" />
     <Compile Include="tests\AccountCreationTest.cs" />
     <Compile Include="tests\AuthTestBase.cs" />
+    <Compile Include="tests\LoginTest.cs" />
+    <Compile Include="tests\NewProject.cs" />
     <Compile Include="tests\ProjectTests.cs" />
     <Compile Include="tests\TestBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

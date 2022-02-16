@@ -9,9 +9,7 @@ namespace addressbook_webtest
     [TestFixture]
     public class ContactModificationTest : ContactTestBase
     {
-  
-
-        [Test]
+          [Test]
         public void ContactModificationTests()
         {
             ContactData newData = new ContactData("Rename");
@@ -25,7 +23,7 @@ namespace addressbook_webtest
             ContactData toBeModified = oldContact[0];
             ContactData oldData = oldContact[0];
 
-            app.Contacts.Modify(newData);
+            app.Contacts.Modify(toBeModified, newData);
 
             Assert.AreEqual(oldContact.Count, app.Contacts.GetContactCount());
 

@@ -15,13 +15,13 @@ namespace mantis_tests
     {
         protected IWebDriver driver;
         protected string baseURL;
+        public RegistrationHelper Registration { get; set; }
 
         protected LoginHelper loginHelper;
         protected NavigationHelper navigationHelper;
         protected ProjectHelper projectHelper;
-
         public FtpHelper Ftp { get; set; }
-        public RegistrationHelper Registration { get; set; }
+    
 
         private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
