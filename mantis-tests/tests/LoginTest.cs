@@ -25,7 +25,6 @@ namespace mantis_tests
             };
 
             app.Login.Logout();
-
             app.Login.Login(account);
 
         }

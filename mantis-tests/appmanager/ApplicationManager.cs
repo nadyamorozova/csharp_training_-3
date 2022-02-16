@@ -8,7 +8,6 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
-
 namespace mantis_tests
 {
     public class ApplicationManager
@@ -16,12 +15,11 @@ namespace mantis_tests
         protected IWebDriver driver;
         protected string baseURL;
         public RegistrationHelper Registration { get; set; }
-
-        protected LoginHelper loginHelper;
-        protected NavigationHelper navigationHelper;
-        protected ProjectHelper projectHelper;
         public FtpHelper Ftp { get; set; }
-    
+        public LoginHelper Login { get; set; }
+        public ManagementMenuHelper MenuManager { get; set; }
+
+
 
         private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
@@ -30,36 +28,37 @@ namespace mantis_tests
             driver = new FirefoxDriver();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
             baseURL = "http://localhost";
-
-            loginHelper = new LoginHelper(this);
-            navigationHelper = new NavigationHelper(this, baseURL);
-            projectHelper = new ProjectHelper(this);
-            Ftp = new FtpHelper(this);
             Registration = new RegistrationHelper(this);
+            Ftp = new FtpHelper(this);
+           
+            Login = new LoginHelper(this);
+            MenuManager = new ManagementMenuHelper(this);
+
         }
         ~ApplicationManager()
         {
-            try
             {
-                driver.Quit();
-            }
-            catch (Exception)
-            {
+                try
+                {
+                    driver.Quit();
+                }
+                catch (Exception)
+                {
+                    // Ignore errors if unable to close the browser
+                }
             }
         }
-
         public static ApplicationManager GetInstance()
         {
             if (!app.IsValueCreated)
             {
                 ApplicationManager newInstance = new ApplicationManager();
-                newInstance.Navigator.GoToHomePage();
+                newInstance.driver.Url = "http://localhost/mantisbt-2.25.2/account_page.php";
                 app.Value = newInstance;
             }
+
             return app.Value;
         }
-
-
         public IWebDriver Driver
         {
             get
@@ -68,26 +67,5 @@ namespace mantis_tests
             }
         }
 
-        public LoginHelper Auth
-        {
-            get
-            {
-                return loginHelper;
-            }
-        }
-        public NavigationHelper Navigator
-        {
-            get
-            {
-                return navigationHelper;
-            }
-        }
-        public ProjectHelper Projects
-        {
-            get
-            {
-                return projectHelper;
-            }
-        }
     }
 }

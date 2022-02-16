@@ -12,6 +12,7 @@ namespace mantis_tests
     
         protected ApplicationManager manager;
         protected IWebDriver driver;
+        protected string baseURL;
 
         public HelperBase(ApplicationManager manager)
         {

@@ -5,14 +5,23 @@ using System.Text;
 using NUnit.Framework;
 using System.Threading.Tasks;
 
-namespace mantis_tests.tests
-{
+namespace mantis_tests
+    {
     public class AuthTestBase : TestBase
     {
         [SetUp]
         public void SetupLogin()
+
         {
-            app.Auth.Login(new AccountData());
+            AccountData account = new AccountData()
+            { 
+            Name = "administrator",
+            Password = "root",
+
+            };
+            
+            app.Login.Login(account);
+
         }
     }
 
