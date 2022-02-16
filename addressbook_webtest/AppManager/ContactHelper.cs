@@ -41,8 +41,8 @@ namespace addressbook_webtest
 
         public ContactHelper Modify(ContactData contact, ContactData newData)
         {
-            SelectContact(0);
-            InitContactModification(0);
+            SelectContact(1);
+            InitContactModification(1);
             FillContactForm(newData);
             SubmitContactModification();
             manager.Navigator.ReturnToHomePage();
@@ -71,7 +71,7 @@ namespace addressbook_webtest
         public ContactData GetContactInformationFromEditForm()
         {
             manager.Navigator.GoToHomePage();
-            InitContactModification(0);
+            InitContactModification(1);
             string firstName = driver.FindElement(By.Name("firstname")).GetAttribute("value");
             string middleName = driver.FindElement(By.Name("middlename")).GetAttribute("value");
             string nickName = driver.FindElement(By.Name("nickname")).GetAttribute("value");
@@ -179,7 +179,7 @@ namespace addressbook_webtest
         public ContactHelper Modify(ContactData newData)
         {
 
-            InitContactModification(0);
+            InitContactModification(1);
             FillContactForm(newData);
             SubmitContactModification();
             manager.Navigator.ReturnToHomePage();
@@ -213,7 +213,11 @@ namespace addressbook_webtest
             return this;
         }
 
-
+        //private ContactHelper InitContactModification(string id)
+        //{
+        //    driver.FindElement(By.XPath("//tr[./td[./input[@name='selected[]' and @value='" + id + "']]]"))
+        //        .FindElement(By.XPath(".//img[@alt='Edit']")).Click();
+        //}
 
         public ContactHelper InitContactModification(int index)
         {
@@ -233,14 +237,11 @@ namespace addressbook_webtest
         }
 
 
-
         public ContactHelper SelectContact(int index)
         {
             driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
             return this;
         }
-
-
 
         public ContactHelper SelectContact(string id)
         {
@@ -249,8 +250,7 @@ namespace addressbook_webtest
         }
         public ContactHelper IsContactPresent()
 
-
-        {
+                    {
             if (!IsElementPresent(By.XPath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")))
             {
                 ContactData contact = (new ContactData("J", "Lo"));

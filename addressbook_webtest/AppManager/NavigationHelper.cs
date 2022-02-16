@@ -33,7 +33,7 @@ namespace addressbook_webtest
         }
         public void ReturnToHomePage()
         {
-            driver.FindElement(By.LinkText("homepage")).Click();
+            driver.FindElement(By.LinkText("home page")).Click();
         }
     }
 }
