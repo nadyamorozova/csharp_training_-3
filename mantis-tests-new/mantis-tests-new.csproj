@@ -6,11 +6,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3795415B-D2DC-4A13-8384-5999AE880092}</ProjectGuid>
+    <ProjectGuid>{28F0DCBC-8F17-4B24-9BFE-1F63016DD471}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>mantis_tests</RootNamespace>
-    <AssemblyName>mantis-tests</AssemblyName>
+    <RootNamespace>mantis_tests_new</RootNamespace>
+    <AssemblyName>mantis-tests-new</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -46,9 +46,6 @@
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\MSTest.TestFramework.2.1.2\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
-      <HintPath>packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
-    </Reference>
     <Reference Include="nunit.core, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <HintPath>packages\NUnitTestAdapter.WithFramework.2.0.0\lib\nunit.core.dll</HintPath>
       <Private>False</Private>
@@ -68,15 +65,6 @@
       <HintPath>packages\NUnitTestAdapter.WithFramework.2.0.0\lib\NUnit.VisualStudio.TestAdapter.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="RazorHosting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\SimpleBrowser.0.5.61.0\lib\net40\RazorHosting.dll</HintPath>
-    </Reference>
-    <Reference Include="SimpleBrowser, Version=0.5.61.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\SimpleBrowser.0.5.61.0\lib\net40\SimpleBrowser.dll</HintPath>
-    </Reference>
-    <Reference Include="SimpleBrowser.WebDriver, Version=0.5.43.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\SimpleBrowser.WebDriver.0.5.43\lib\net40\SimpleBrowser.WebDriver.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -91,25 +79,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="appmanager\AdminHelper.cs" />
-    <Compile Include="appmanager\APIHelper.cs" />
     <Compile Include="appmanager\ApplicationManager.cs" />
     <Compile Include="appmanager\FtpHelper.cs" />
     <Compile Include="appmanager\HelperBase.cs" />
+    <Compile Include="appmanager\JamesHelper.cs" />
     <Compile Include="appmanager\LoginHelper.cs" />
     <Compile Include="appmanager\ManagementMenuHelper.cs" />
-    <Compile Include="appmanager\NavigationHelper.cs" />
     <Compile Include="appmanager\ProjectHelper.cs" />
+    <Compile Include="appmanager\ProjectManagementHelper.cs" />
     <Compile Include="appmanager\RegistrationHelper.cs" />
+    <Compile Include="appmanager\TelenetInterface.cs" />
     <Compile Include="model\AccountData.cs" />
     <Compile Include="model\ProjectData.cs" />
-    <Compile Include="tests\AccountCreationTest.cs" />
-    <Compile Include="tests\AuthTestBase.cs" />
-    <Compile Include="tests\LoginTest.cs" />
-    <Compile Include="tests\NewProject.cs" />
-    <Compile Include="tests\ProjectTests.cs" />
-    <Compile Include="tests\TestBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="tests\AccountCreationTests.cs" />
+    <Compile Include="tests\AuthBase.cs" />
+    <Compile Include="tests\AuthTest.cs" />
+    <Compile Include="tests\LoginTests.cs" />
+    <Compile Include="tests\NewProject.cs" />
+    <Compile Include="tests\TestBase.cs" />
+    <Compile Include="tests\UnitTest1.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -118,9 +107,6 @@
     <Content Include="config_inc.php">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
