@@ -28,7 +28,7 @@ namespace mantis_tests
 
                 Name = "teeestt",
                 Password = "password",
-                Email = "testuser111111@localhost.localdomain"
+                Email = "testuser1411@localhost.localdomain"
             };
 
             List<AccountData> accounts = app.Admin.GetAllAccounts();
@@ -41,19 +41,20 @@ namespace mantis_tests
 
             app.Registration.Register(account);
         }
-
-        [Test]
-        public void GetAccountsList()
+              [TestFixtureTearDown]
+            public void restoreConfig()
         {
-            List<AccountData> accounts = app.Admin.GetAllAccounts();
-
-            //[TestFixtureTearDown]
-            //public void restoreConfig()
-            //{
-            //    app.Ftp.RestoreBackupFile("/config_inc.php");
-            //}
-
+            app.Ftp.RestoreBackupFile("/config_inc.php");
         }
     }
 }
+
+
+
+//[Test]
+////public void GetAccountsList()
+////{
+//    List<AccountData> accounts = app.Admin.GetAllAccounts();
+
+
 

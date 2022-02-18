@@ -59,6 +59,32 @@ namespace mantis_tests
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //          public mantis_tests_new.Mantis.ProjectData[] GetProjectsList(AccountData account)
 //        {
 //           Mantis.MantisConnectPortTypeClient client = new Mantis.MantisConnectPortTypeClient();
