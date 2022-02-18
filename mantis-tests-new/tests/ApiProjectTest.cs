@@ -93,9 +93,9 @@ namespace mantis_tests
 
             };
 
-            Mantis.ProjectData[] projects = app.API.GetProjectsList(account);
+            mantis_tests_new.Mantis.ProjectData[] projects = app.API.GetProjectsList(account);
 
-            foreach (Mantis.ProjectData project in projects)
+            foreach (mantis_tests_new.Mantis.ProjectData project in projects)
                 Console.Out.WriteLine(project.name);
 
         }
