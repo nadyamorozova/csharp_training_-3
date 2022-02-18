@@ -7,6 +7,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using System.Text.RegularExpressions;
+using Mantis = mantis_tests_new.Mantis;
 
 namespace mantis_tests
 {
@@ -14,15 +15,16 @@ namespace mantis_tests
     {
         public APIHelper(ApplicationManager manager) : base(manager) { }
 
-
+        
         public void CreateNewIssue(AccountData account, ProjectData project, IssueData issueData)
         {
-           mantis_tests_new.Mantis.MantisConnectPortTypeClient client = new mantis_tests_new.Mantis.MantisConnectPortTypeClient();
-            mantis_tests_new.Mantis.IssueData issue = new mantis_tests_new.Mantis.IssueData();
+            
+            mantis_tests_new.Mantis.MantisConnectPortTypeClient client = new Mantis.MantisConnectPortTypeClient();
+            mantis_tests_new.Mantis.IssueData issue = new Mantis.IssueData();
             issue.summary = issueData.Summary;
             issue.description = issueData.Description;
             issue.category = issueData.Category;
-            issue.project = new mantis_tests_new.Mantis.ObjectRef();
+            issue.project = new Mantis.ObjectRef();
             issue.project.id = project.Id;
             client.mc_issue_add(account.Name, account.Password, issue);
 
@@ -30,8 +32,8 @@ namespace mantis_tests
 
         public void CreateNewProject(AccountData account, ProjectData projectData)
         {
-            mantis_tests_new.Mantis.MantisConnectPortTypeClient client = new mantis_tests_new.Mantis.MantisConnectPortTypeClient();
-            mantis_tests_new.Mantis.ProjectData project = new mantis_tests_new.Mantis.ProjectData();
+            mantis_tests_new.Mantis.MantisConnectPortTypeClient client = new Mantis.MantisConnectPortTypeClient();
+            mantis_tests_new.Mantis.ProjectData project = new Mantis.ProjectData();
             project.name = projectData.Name;
 
             client.mc_project_add(account.Name, account.Password, project);
@@ -42,9 +44,9 @@ namespace mantis_tests
 
         public mantis_tests_new.Mantis.ProjectData[] GetProjectsList(AccountData account)
         {
-            mantis_tests_new.Mantis.MantisConnectPortTypeClient client = new mantis_tests_new.Mantis.MantisConnectPortTypeClient();
+            Mantis.MantisConnectPortTypeClient client = new Mantis.MantisConnectPortTypeClient();
 
-            mantis_tests_new.Mantis.ProjectData[] projects = client.mc_projects_get_user_accessible(account.Name, account.Password);
+            Mantis.ProjectData[] projects = client.mc_projects_get_user_accessible(account.Name, account.Password);
 
             //foreach (Mantis.ProjectData project in projects)
             //      Console.Out.WriteLine(project.name);

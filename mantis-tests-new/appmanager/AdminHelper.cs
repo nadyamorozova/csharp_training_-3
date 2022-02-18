@@ -7,7 +7,7 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
-using SimpleBrowser.WebDriver;
+//using SimpleBrowser.WebDriver;
 
 
 namespace mantis_tests
@@ -60,7 +60,7 @@ namespace mantis_tests
 
         private IWebDriver OpenAppAndLogin()
         {
-            IWebDriver driver = new SimpleBrowserDriver();
+            //IWebDriver driver = new SimpleBrowserDriver();
             //         driver.Url = baseURL + "/login_page.php";
             driver.Url = baseURL + "/login_page.php";
 

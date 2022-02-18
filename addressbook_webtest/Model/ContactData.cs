@@ -48,7 +48,8 @@ namespace addressbook_webtest
             {
                 return true;
             }
-            return Firstname == other.Firstname && Lastname == other.Lastname;
+            //return Firstname == other.Firstname && Lastname == other.Lastname;
+            return Id == other.Id;
         }
 
 

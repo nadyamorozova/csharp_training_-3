@@ -304,11 +304,12 @@ namespace addressbook_webtest
         {
             manager.Navigator.GoToHomePage();
             ClearGroupFilter();
+
             SelectContact(contact.Id);
             SelectGroupToAdd(group.Name);
             CommitAddingContactToGroup();
 
-            new WebDriverWait(driver, TimeSpan.FromSeconds(10))
+            new WebDriverWait(driver, TimeSpan.FromSeconds(30))
             .Until(d => d.FindElements(By.CssSelector("div.msgbox")).Count > 0);
         }
 
@@ -329,7 +330,7 @@ namespace addressbook_webtest
 
         private void ClearGroupFilter()
         {
-            new SelectElement(driver.FindElement(By.Name("group"))).SelectByText("[all]");
+            new SelectElement(driver.FindElement(By.Name("group"))).SelectByText("[none]");
         }
 
 

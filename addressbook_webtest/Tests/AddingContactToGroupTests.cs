@@ -49,11 +49,6 @@ namespace addressbook_webtest.Tests
 
             ContactData contact = ContactData.GetAll().Except(oldList).First();
 
-
-
-
-
-
             app.Contacts.AddContactToGroup(contact, group);
 
 
@@ -156,5 +151,4 @@ namespace addressbook_webtest.Tests
                 }
             }
         }
-    }
-}
+    
