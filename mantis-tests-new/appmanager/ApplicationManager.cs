@@ -17,12 +17,12 @@ namespace mantis_tests
 
         public RegistrationHelper Registration { get; set; }
         public FtpHelper Ftp { get; set; }
-        //public JamesHelper James { get; set; }
+        public JamesHelper James { get; set; }
         public LoginHelper Login { get; set; }
         public ManagementMenuHelper MenuManager { get; set; }
         public ProjectManagementHelper Project { get; set; }
         public AdminHelper Admin { get; set; }
-        public APIHelper API { get;  set; }
+        public APIHelper API { get; set; }
 
         private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
@@ -38,7 +38,7 @@ namespace mantis_tests
             MenuManager = new ManagementMenuHelper(this);
             Project = new ProjectManagementHelper(this);
             API = new APIHelper(this);
-            Admin = new AdminHelper (this, baseURL);
+            Admin = new AdminHelper(this, baseURL);
         }
         ~ApplicationManager()
         {
@@ -49,7 +49,7 @@ namespace mantis_tests
                 }
                 catch (Exception)
                 {
-                    // Ignore errors if unable to close the browser
+                    
                 }
             }
         }
@@ -58,7 +58,7 @@ namespace mantis_tests
             if (!app.IsValueCreated)
             {
                 ApplicationManager newInstance = new ApplicationManager();
-                newInstance.driver.Url = newInstance.baseURL +  "/ login_page.php";
+                newInstance.driver.Url = newInstance.baseURL + "/ login_page.php";
                 app.Value = newInstance;
             }
 
@@ -69,6 +69,10 @@ namespace mantis_tests
             get
             {
                 return driver;
+            }
+            set
+            {
+                driver = value;
             }
         }
 

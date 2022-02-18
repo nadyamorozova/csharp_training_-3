@@ -30,6 +30,22 @@ namespace mantis_tests
 
         }
 
+        List<ProjectData> projectList = new List<ProjectData>();
+        public List<ProjectData> GetProjectsList(AccountData account)
+        {
+            Mantis.MantisConnectPortTypeClient client = new Mantis.MantisConnectPortTypeClient();
+            Mantis.ProjectData[] projectData = client.mc_projects_get_user_accessible(account.Name, account.Password);
+            foreach (var project in projectData)
+            {
+                projectList.Add(new ProjectData
+                {
+                    Id = project.id,
+                    Description = project.description,
+                    ProjectName = project.name
+                });
+            }
+            return projectList;
+        }
 
 
         public void CreateNewProject(AccountData account, ProjectData projectData)
@@ -41,23 +57,25 @@ namespace mantis_tests
             client.mc_project_add(account.Name, account.Password, project);
 
         }
-          public mantis_tests_new.Mantis.ProjectData[] GetProjectsList(AccountData account)
-        {
-           Mantis.MantisConnectPortTypeClient client = new Mantis.MantisConnectPortTypeClient();
-
-           Mantis.ProjectData[] projects = client.mc_projects_get_user_accessible(account.Name, account.Password);
-
-            return projects;
-
-        }
     }
 }
+//          public mantis_tests_new.Mantis.ProjectData[] GetProjectsList(AccountData account)
+//        {
+//           Mantis.MantisConnectPortTypeClient client = new Mantis.MantisConnectPortTypeClient();
+
+//           Mantis.ProjectData[] projects = client.mc_projects_get_user_accessible(account.Name, account.Password);
+
+//            return projects;
+
+//        }
+//    }
+//}
 
 
 
-        //
-        //{
-        //    Mantis.MantisConnectPortTypeClient client = new Mantis.MantisConnectPortTypeClient();
+//
+//{
+//    Mantis.MantisConnectPortTypeClient client = new Mantis.MantisConnectPortTypeClient();
 
 //    Mantis.ProjectData[] projects = client.mc_projects_get_user_accessible(account.Name, account.Password);
 

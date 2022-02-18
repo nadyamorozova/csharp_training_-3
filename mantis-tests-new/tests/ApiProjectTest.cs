@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using System.Threading;
-
+using Mantis = mantis_tests_new.Mantis;
 namespace mantis_tests
 {
 
@@ -107,9 +107,9 @@ namespace mantis_tests
 
             };
 
-            mantis_tests_new.Mantis.ProjectData[] projects = app.API.GetProjectsList(account);
+         Mantis.ProjectData[] projects = app.API.GetProjectsList(account);
 
-            foreach (mantis_tests_new.Mantis.ProjectData project in projects)
+            foreach (Mantis.ProjectData project in projects)
                 Console.Out.WriteLine(project.name);
 
         }

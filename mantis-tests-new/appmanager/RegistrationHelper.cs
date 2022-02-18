@@ -31,7 +31,7 @@ namespace mantis_tests
         private void OpenRegistrationForm()
 
         {
-            driver.FindElement(By.XPath("//a[@href= 'signup_page.php']")).Click();
+            driver.FindElement(By.XPath("//a[@href='signup_page.php']")).Click();
             //driver.FindElement(By.CssSelector("#login-box > div > div.toolbar.center > a")).Click(); ;
         }
 

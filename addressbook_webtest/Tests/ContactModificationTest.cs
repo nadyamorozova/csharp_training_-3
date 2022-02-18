@@ -39,8 +39,8 @@ namespace addressbook_webtest
             {
                 if (contact.Id == oldData.Id)
                 {
-                    Assert.AreEqual(newData.Lastname, toBeModified.Lastname);
-                    Assert.AreEqual(newData.Firstname, toBeModified.Firstname);
+                    Assert.AreEqual(newData.Lastname, contact.Lastname);
+                    Assert.AreEqual(newData.Firstname, contact.Firstname);
                 }
             }
         }

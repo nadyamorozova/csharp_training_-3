@@ -27,7 +27,7 @@ namespace mantis_tests
         {
             List<AccountData> accounts = new List<AccountData>();
 
-            IWebDriver driver = OpenAppAndLogin();
+            //IWebDriver driver = OpenAppAndLogin();
             driver.Url = baseURL + "/manage_user_page.php";
             IList<IWebElement> rows = driver.FindElements(By.XPath("//table[@class='table table-striped table-bordered table-condensed table-hover']/tbody/tr/td/a"));
             foreach (IWebElement row in rows)
@@ -45,7 +45,7 @@ namespace mantis_tests
                 }
              );
 
-        }
+            }
             return accounts;
         }
 
@@ -54,13 +54,13 @@ namespace mantis_tests
             IWebDriver driver = OpenAppAndLogin();
             driver.Url = baseURL + "/manage_user_edit_page.php?user_id=" + account.Id;
             driver.FindElement(By.CssSelector("input[value=''Удалить учётную запись]")).Click();
-            driver.FindElement(By.XPath("//input[@value = 'Удалить учётную запись']")).Click(); 
+            driver.FindElement(By.XPath("//input[@value = 'Удалить учётную запись']")).Click();
 
         }
 
         private IWebDriver OpenAppAndLogin()
         {
-          
+
             driver.Url = baseURL + "/login_page.php";
 
 
@@ -75,3 +75,4 @@ namespace mantis_tests
         }
     }
 }
+    

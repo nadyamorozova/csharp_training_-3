@@ -39,15 +39,7 @@ namespace addressbook_webtest
 
    
 
-        public ContactHelper Modify(ContactData contact, ContactData newData)
-        {
-            SelectContact(1);
-            InitContactModification(1);
-            FillContactForm(newData);
-            SubmitContactModification();
-            manager.Navigator.ReturnToHomePage();
-            return this;
-        }
+ 
 
         //internal ContactHelper Modify(ContactData newData)
         //{
@@ -161,10 +153,7 @@ namespace addressbook_webtest
                 {
                     IWebElement lastname = element.FindElement(By.CssSelector("td:nth-child(2)"));
                     IWebElement firstname = element.FindElement(By.CssSelector("td:nth-child(3)"));
-                    ////др
-                    //IList<IWebElement> cells = element.FindElements(By.TagName("td"));
-                    //IWebElement lastname = cells[1];
-                    //IWebElement firstname = cells[2];
+                  
                     contactCache.Add(new ContactData(firstname.Text, lastname.Text)
                     {
                         Id = element.FindElement(By.TagName("input")).GetAttribute("value")
@@ -176,16 +165,24 @@ namespace addressbook_webtest
 
 
 
-        public ContactHelper Modify(ContactData newData)
+        public ContactHelper Modify(int p, ContactData newData)
         {
 
-            InitContactModification(1);
+            InitContactModification(p);
             FillContactForm(newData);
             SubmitContactModification();
             manager.Navigator.ReturnToHomePage();
             return this;
         }
-
+        public ContactHelper Modify(ContactData contact, ContactData newData)
+        {
+           IsContactPresent();
+            InitContactModification(contact.Id);
+            FillContactForm(newData);
+            SubmitContactModification();
+            manager.Navigator.ReturnToHomePage();
+            return this;
+        }
 
 
         public ContactHelper Remove(int p)
@@ -195,6 +192,7 @@ namespace addressbook_webtest
             RemoveContact();
             return this;
         }
+
 
 
         public ContactHelper InitNewContactCreation()
@@ -213,11 +211,12 @@ namespace addressbook_webtest
             return this;
         }
 
-        //private ContactHelper InitContactModification(string id)
-        //{
-        //    driver.FindElement(By.XPath("//tr[./td[./input[@name='selected[]' and @value='" + id + "']]]"))
-        //        .FindElement(By.XPath(".//img[@alt='Edit']")).Click();
-        //}
+        private ContactHelper InitContactModification(string id)
+        {
+            driver.FindElement(By.XPath("//tr[./td[./input[@name='selected[]' and @value='" + id + "']]]"))
+                .FindElement(By.XPath(".//img[@alt='Edit']")).Click();
+            return this;
+        }
 
         public ContactHelper InitContactModification(int index)
         {
