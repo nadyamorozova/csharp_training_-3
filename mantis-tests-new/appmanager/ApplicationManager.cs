@@ -17,7 +17,7 @@ namespace mantis_tests
 
         public RegistrationHelper Registration { get; set; }
         public FtpHelper Ftp { get; set; }
-        public JamesHelper James { get; set; }
+        //public JamesHelper James { get; set; }
         public LoginHelper Login { get; set; }
         public ManagementMenuHelper MenuManager { get; set; }
         public ProjectManagementHelper Project { get; set; }
