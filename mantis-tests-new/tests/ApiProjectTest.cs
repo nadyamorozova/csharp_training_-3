@@ -71,17 +71,31 @@ namespace mantis_tests
 
             app.Project.Remove();
 
-            Thread.Sleep(5000);
+            //Thread.Sleep(5000);
 
-            List<ProjectData> newProjects = app.Project.GetProjectList();
+            //List<ProjectData> newProjects = app.Project.GetProjectList();
 
-            Assert.AreEqual(oldProjects.Count - 1, newProjects.Count);
+            Assert.AreEqual(oldProjects.Count - 1, app.Project.GetProjectCount());
+        }
+        [Test]
+        public void TestProjectRemoval()
+        {
+            AccountData account = new AccountData()
+            {
+                Name = "administrator",
+                Password = "root",
+            };
+            ProjectData project = new ProjectData()
+            {
+                Name = "Project" + " " + DateTime.Now,
+                Description = "Test",
+            };
+            app.Login.Login(account);
 
-
-
+            app.MenuManager.OpenMenuProject();
         }
 
-        [Test]
+            [Test]
 
         public void GetListAPI()
         {
@@ -128,15 +142,5 @@ namespace mantis_tests
 
 
         }
-
-
-
-
-
-
-
-
-
-
     }
 }
