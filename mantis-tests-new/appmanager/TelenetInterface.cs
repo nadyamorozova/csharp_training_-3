@@ -89,20 +89,20 @@ namespace MinimalisticTelnet
                     case -1:
                         break;
                     case (int)Verbs.IAC:
-                        // interpret as command
+                        
                         int inputverb = tcpSocket.GetStream().ReadByte();
                         if (inputverb == -1) break;
                         switch (inputverb)
                         {
                             case (int)Verbs.IAC:
-                                //literal IAC = 255 escaped, so append char 255 to string
+                         
                                 sb.Append(inputverb);
                                 break;
                             case (int)Verbs.DO:
                             case (int)Verbs.DONT:
                             case (int)Verbs.WILL:
                             case (int)Verbs.WONT:
-                                // reply to all commands with "WONT", unless it is SGA (suppres go ahead)
+                                
                                 int inputoption = tcpSocket.GetStream().ReadByte();
                                 if (inputoption == -1) break;
                                 tcpSocket.GetStream().WriteByte((byte)Verbs.IAC);

@@ -29,6 +29,11 @@ namespace addressbook_tests_autoit
 
         public void Stop()
         {
+            ////доб
+            //aux.ControlClick("Group editor", "", "WindowsForms10.BUTTON.app.0.62e44910");
+
+            //aux.ControlClick("Group editor", "", "WindowsForms10.BUTTON.app.0.2c908d54");
+            //исх
             aux.ControlClick(WINTITLE, "", "WindowsForms10.BUTTON.app.app.0.2c908d510");
         }
         public AutoItX3 Aux
