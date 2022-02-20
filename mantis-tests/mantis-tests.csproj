@@ -102,9 +102,10 @@
     <Compile Include="appmanager\ProjectHelper.cs" />
     <Compile Include="appmanager\RegistrationHelper.cs" />
     <Compile Include="model\AccountData.cs" />
+    <Compile Include="model\IssueData.cs" />
     <Compile Include="model\ProjectData.cs" />
     <Compile Include="tests\AccountCreationTest.cs" />
-    <Compile Include="tests\AuthTestBase.cs" />
+    <Compile Include="tests\AddNewIssue.cs" />
     <Compile Include="tests\LoginTest.cs" />
     <Compile Include="tests\NewProject.cs" />
     <Compile Include="tests\ProjectTests.cs" />

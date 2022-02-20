@@ -1,73 +1,59 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using NUnit.Framework;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using NUnit.Framework;
+using System.IO;
+namespace mantis_tests
+{
+    [TestFixture]
+    public class ProjectTests : TestBase
+    {
+        AccountData account = new AccountData()
+        {
+            Username = "administrator",
+            Password = "root",
+        };
+        ProjectData project = new ProjectData
+        {
+            ProjectName = "project_" + DateTime.Now.ToString(),
+            Description = "Description"
+        };
+        [Test]
+        public void TestProjectCreation()
+        {
+            var oldProjects = app.API.GetProjectsList(account);
 
-//namespace mantis_tests
-//{
-//    [TestFixture]
-//    public class ProjectTests : TestBase
-//    {
-//        AccountData account = new AccountData()
-//        {
-//            Name = "administrator",
-//            Password = "root",
+            app.Auth.Login(account);
+            app.Navigator.GoToProjectsPage();
+            app.Projects.Create(project);
 
-//        };
+            var newProjects = app.API.GetProjectsList(account);
 
-//        ProjectData project = new ProjectData
-//        {
-//            ProjectName = "project_" + DateTime.Now.ToString(),
-//            Description = "Description"
-//        };
+            oldProjects.Add(project);
+            oldProjects.Sort();
+            newProjects.Sort();
+            Assert.AreEqual(oldProjects, newProjects);
+        }
+        [Test]
+        public void TestProjectRemoval()
+        {
+            var projectsList = app.API.GetProjectsList(account);
+            if (projectsList.Count == 0)
+            {
+                app.API.CreateProject(account, project);
+            }
+            var oldProjects = app.API.GetProjectsList(account);
+            app.Auth.Login(account);
+            app.Navigator.GoToProjectsPage();
 
+            app.Projects.Remove(1);
 
+            var newProjects = app.API.GetProjectsList(account);
 
-//        [Test]
-//        public void ProjectCreationTest()
-//        {
-//            app.Auth.Login(account);
-//            app.Navigator.GoToProjectsPage();
-
-//            List<ProjectData> oldProjects = app.Projects.GetProjectList();
-//            app.Projects.Create(project);
-
-//            Assert.AreEqual(oldProjects.Count + 1, app.Projects.GetProjectList().Count);
-
-//            List<ProjectData> newProjects = app.Projects.GetProjectList();
-//            oldProjects.Add(project);
-//            oldProjects.Sort();
-//            newProjects.Sort();
-//            Assert.AreEqual(oldProjects, newProjects);
-
-//        }
-
-//        [Test]
-//        public void ProjectRemovalTest()
-//        {
-
-//            app.Auth.Login(account);
-//            app.Navigator.GoToProjectsPage();
-
-//            List<ProjectData> projectsList = app.Projects.GetProjectList();
-//            if (projectsList.Count == 0)
-//            {
-//                app.Projects.Create(project);
-//            }
-
-//            List<ProjectData> oldProjects = app.Projects.GetProjectList();
-
-//            app.Projects.Remove(1);
-
-//            Assert.AreEqual(oldProjects.Count - 1, app.Projects.GetProjectList().Count);
-
-//            List<ProjectData> newProjects = app.Projects.GetProjectList();
-//            oldProjects.Remove(project);
-//            oldProjects.Sort();
-//            newProjects.Sort();
-//            Assert.AreEqual(oldProjects, newProjects);
-
-//        }
-
-
-//    }
-//}
+            oldProjects.Remove(project);
+            oldProjects.Sort();
+            newProjects.Sort();
+            Assert.AreEqual(oldProjects, newProjects);
+        }
+    }
+}

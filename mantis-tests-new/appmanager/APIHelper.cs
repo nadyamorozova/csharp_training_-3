@@ -30,9 +30,10 @@ namespace mantis_tests
 
         }
 
-        List<ProjectData> projectList = new List<ProjectData>();
-        public List<ProjectData> GetProjectsList(AccountData account)
+        //  List<ProjectData> projectList = new List<ProjectData>();
+       public List<ProjectData> GetProjectsList(AccountData account)
         {
+            var projectList = new List<ProjectData>();
             Mantis.MantisConnectPortTypeClient client = new Mantis.MantisConnectPortTypeClient();
             Mantis.ProjectData[] projectData = client.mc_projects_get_user_accessible(account.Name, account.Password);
             foreach (var project in projectData)
@@ -41,7 +42,7 @@ namespace mantis_tests
                 {
                     Id = project.id,
                     Description = project.description,
-                    ProjectName = project.name
+                    Name = project.name
                 });
             }
             return projectList;

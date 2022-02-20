@@ -31,9 +31,14 @@ namespace mantis_tests
                 Description = "Test",
 
             };
-
+            var oldProjects = app.API.GetProjectsList(account);
             app.API.CreateNewProject(account, project);
+            var newProjects = app.API.GetProjectsList(account);
+            oldProjects.Add(project);
 
+            oldProjects.Sort();
+            newProjects.Sort();
+            Assert.AreEqual(oldProjects, newProjects);
         }
 
         [Test]
@@ -55,7 +60,7 @@ namespace mantis_tests
 
             };
 
-            int projectsCount = app.API.GetProjectsList(account).Length;
+            int projectsCount = app.API.GetProjectsList(account).Count;
 
 
             if (projectsCount == 0)
@@ -95,24 +100,22 @@ namespace mantis_tests
             app.MenuManager.OpenMenuProject();
         }
 
-            [Test]
+        //    [Test]
 
-        public void GetListAPI()
-        {
-            AccountData account = new AccountData()
-            {
+        //public void GetListAPI()
+        //{
+        //    AccountData account = new AccountData()
+        //    {
 
-                Name = "administrator",
-                Password = "root",
+        //        Name = "administrator",
+        //        Password = "root",
 
-            };
+        //    };
 
-         Mantis.ProjectData[] projects = app.API.GetProjectsList(account);
+        // var projects = app.API.GetProjectsList(account);
 
-            foreach (Mantis.ProjectData project in projects)
-                Console.Out.WriteLine(project.name);
-
-        }
+            
+        //}
 
         [Test]
 
